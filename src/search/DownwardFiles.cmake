@@ -462,6 +462,15 @@ fast_downward_plugin(
 )
 
 fast_downward_plugin(
+    NAME TEST_HEURISTIC
+    HELP "The test heuristic"
+    SOURCES
+        heuristics/test_heuristic
+    DEPENDS PRIORITY_QUEUES RELAXATION_HEURISTIC TASK_PROPERTIES
+)
+
+
+fast_downward_plugin(
     NAME ADDITIVE_HEURISTIC
     HELP "The additive heuristic"
     SOURCES
