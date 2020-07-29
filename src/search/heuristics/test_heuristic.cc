@@ -14,6 +14,8 @@ using namespace std;
 
 namespace test_heuristic { 
 
+
+
 const int TestHeuristic::MAX_COST_VALUE;
 
 // construction and destruction
@@ -21,19 +23,74 @@ TestHeuristic::TestHeuristic(const Options &opts)
     : RelaxationHeuristic(opts),
       did_write_overflow_warning(false) {
     utils::g_log << "Initializing test heuristic..." << endl;
+    struct xq bla = {1,-1,1};
+    struct xq bla2 = {1,-1,0};
+    queue.push(1,bla);
+    queue.push(2,bla2);
+    utils::g_log << queue.pop().second.type << endl;
+    utils::g_log << queue.pop().second.type << endl;
 }
 
+
+
+void TestHeuristic::setup_exploration_queue() {
+    queue.clear();
+    struct xq temp;
+    for (Proposition &prop : propositions) {
+        prop.cost = -1;
+        temp = {(int)get_prop_id(prop),-1,1};
+        p_and_o.push_back(temp);
+    }
+    for (UnaryOperator &op : unary_operators) {
+        op.cost = -1;
+        temp = {(int)get_op_id(op),-1,0};
+        p_and_o.push_back(temp);
+    }
+}
+
+void TestHeuristic::adjust_variable(struct xq &q,const State &state) {
+    if(q.type == 1) {               // if q is part of P
+        if(xq_is_part_of_s(q,state)) {
+            q.rhsq = 0;
+        } else {
+            PropID p_id = q.id;
+            Proposition *prop = get_proposition(p_id);
+            OpID op_id = prop->reached_by;
+        }
+
+    } else {                        // q is part of O
+
+    }
+
+}
+
+bool TestHeuristic::xq_is_part_of_s(struct xq &q,const State &state) {
+    for (FactProxy fact : state) {
+        PropID init_prop = get_prop_id(fact);
+        if(q.id == (int)init_prop) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 int TestHeuristic::compute_heuristic(const State &state) {
+    if(first_time) {
+        setup_exploration_queue();
+        for(struct xq q : p_and_o) {
+            adjust_variable(q, state);
+        }
+        first_time = false;
+    } else {
+
+    }
     int h = 10;
     return h;
 }
 
 int TestHeuristic::compute_heuristic(const GlobalState &global_state) {
     return compute_heuristic(convert_global_state(global_state));
-}
-
-void TestHeuristic::compute_heuristic_for_cegar(const State &state) {
-    compute_heuristic(state);
 }
 
 static shared_ptr<Heuristic> _parse(OptionParser &parser) {
