@@ -34,9 +34,11 @@ struct Proposition {
     unsigned int marked : 1; // used for preferred operators of h^add and h^FF
     int num_precondition_occurences;
     array_pool::ArrayPoolIndex precondition_of;
+    //int bla;
+    std::vector<OpID> add_effects; // saves the OpID's of those operations where the proposition is part of the add effects of that operation
 };
 
-static_assert(sizeof(Proposition) == 16, "Proposition has wrong size");
+//static_assert(sizeof(Proposition) == 16, "Proposition has wrong size");
 
 struct UnaryOperator {
     UnaryOperator(int num_preconditions,

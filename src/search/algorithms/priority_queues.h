@@ -33,6 +33,7 @@ class AbstractQueue {
 public:
     typedef std::pair<int, Value> Entry;
 
+
     AbstractQueue() {}
     virtual ~AbstractQueue() {}
 
@@ -129,6 +130,20 @@ public:
 
     virtual void add_virtual_pushes(int /*num_extra_pushes*/) {
     }
+
+    bool remove(const Value &value) {
+
+        for( auto i = heap.c.begin(); i != heap.c.end(); i++ ) {
+            if((*i).second == value) {
+                heap.c.erase(i);
+                std::make_heap(heap.c.begin(), heap.c.end(), heap.comp);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
 };
 
 
@@ -156,8 +171,7 @@ class BucketQueue : public AbstractQueue<Value> {
                buckets[current_bucket_no].empty())
             ++current_bucket_no;
     }
-
-    void extract_sorted_entries(std::vector<Entry> &result) {
+    virtual void extract_sorted_entries(std::vector<Entry> &result) {
         // Generate vector with the entries of the queue in sorted
         // order, removing them from this queue as a side effect.
         assert(result.empty());

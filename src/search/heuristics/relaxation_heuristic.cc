@@ -77,8 +77,10 @@ RelaxationHeuristic::RelaxationHeuristic(const options::Options &opts)
 
     int num_unary_ops = unary_operators.size();
     for (OpID op_id = 0; op_id < num_unary_ops; ++op_id) {
-        for (PropID precond : get_preconditions(op_id))
+        propositions[get_operator(op_id)->effect].add_effects.push_back(op_id); // neu vo mir
+        for (PropID precond : get_preconditions(op_id)) {
             precondition_of_vectors[precond].push_back(op_id);
+        }
     }
 
     int num_propositions = propositions.size();
@@ -93,6 +95,7 @@ RelaxationHeuristic::RelaxationHeuristic(const options::Options &opts)
 bool RelaxationHeuristic::dead_ends_are_reliable() const {
     return !task_properties::has_axioms(task_proxy);
 }
+
 
 PropID RelaxationHeuristic::get_prop_id(int var, int value) const {
     return proposition_offsets[var] + value;
