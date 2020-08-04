@@ -62,13 +62,13 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     bool first_time = true;
 
     void setup_exploration_queue();
-    void adjust_variable(struct xq &q,const State &state);
+    void adjust_variable(struct xq &q);
     bool xq_is_part_of_s(struct xq &q,const State &state);
     OpID getMinOperator(Proposition * prop);
     int get_pre_condition_sum(struct xq &q);
     void solve_equations(const State &state);
     bool prop_is_part_of_s(PropID prop, const State &state);
-    std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller);
+    std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller, int which);
 
     void write_overflow_warning();
 

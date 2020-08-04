@@ -110,6 +110,11 @@ public:
         return result;
     }
 
+    virtual Entry top() {
+        assert(!heap.empty());
+        return heap.top();
+    }
+
     virtual bool empty() const {
         return heap.empty();
     }
@@ -137,6 +142,15 @@ public:
             if((*i).second == value) {
                 heap.c.erase(i);
                 std::make_heap(heap.c.begin(), heap.c.end(), heap.comp);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool contains(const Value &value) {
+        for( auto i = heap.c.begin(); i != heap.c.end(); i++ ) {
+            if((*i).second == value) {
                 return true;
             }
         }
