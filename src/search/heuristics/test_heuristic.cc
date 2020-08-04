@@ -186,19 +186,52 @@ vector<int> TestHeuristic::manage_state_comparison(vector<int> & bigger, vector<
         int counta = 0;
         int countb = 0;
 
+        bool done_a = false;
+        bool done_b = false;
 
 
-        while(counta < (int)bigger.size() && countb < (int)smaller.size()) {
+        while(!done_a || !done_b) {
                 if(bigger[counta]<smaller[countb]) {
-                    c.push_back(bigger[counta]);
-                    counta++;
-                } else if(bigger[counta]>smaller[countb]) {
-                    c.push_back(smaller[countb]);
-                    countb++;
+                    if(counta < (int)bigger.size()-1) {
+                        c.push_back(bigger[counta]);
+                        counta++;
+                    } else if(counta < (int)bigger.size() && !done_a) {
+                        c.push_back(bigger[counta]);
+                        done_a = true;
+                    } else if(countb < (int)smaller.size()-1){
+                        c.push_back(smaller[countb]);
+                        countb++;
+                    } else if(countb < (int)smaller.size()){
+                        c.push_back(smaller[countb]);
+                        done_b = true;
+                    }
+                } else if(bigger[counta] > smaller[countb]) {
+                    if(countb < (int)smaller.size()-1){
+                        c.push_back(smaller[countb]);
+                        countb++;
+                    } else if(countb < (int)smaller.size() && !done_b){
+                        c.push_back(smaller[countb]);
+                        done_b = true;
+                    } else if(counta < (int)bigger.size()-1) {
+                        c.push_back(bigger[counta]);
+                        counta++;
+                    } else if(counta < (int)bigger.size()) {
+                        c.push_back(bigger[counta]);
+                        done_a = true;
+                    }
                 } else {
-                    counta++;
-                    countb++;
+                    if(counta < (int)bigger.size()-1) {
+                        counta++;
+                    } else if(counta < (int)bigger.size() && !done_a) {
+                        done_a = true;
+                    }
+                    if(countb < (int)smaller.size()-1) {
+                        countb++;
+                    } else if(countb < (int)smaller.size() && !done_b) {
+                        done_b = true;
+                    }
                 }
+
         }
         return c;
 }
@@ -209,27 +242,36 @@ int TestHeuristic::compute_heuristic(const State &state) {
         for(struct xq q : p_and_o) {
             adjust_variable(q, state);
         }
+        first_time = false;
+    } else {
+        PropID prop;
+        new_state.clear();
+        for (FactProxy fact : state) {
+            prop = get_prop_id(fact);
+            new_state.push_back((int)prop);
+        }
 
-        vector<int> a = {1,2,3,4,5,6,8,9};
-        vector<int> b = {1,2,3,7,8,10,11};
+        vector<int> a = new_state;
+        vector<int> b = old_state;
         vector<int> c;
-        if(a.size() < b.size()) {
+
+        if(a.size() == 0 && b.size() == 0) {
+            c = {};
+        } else if(a.size() == 0 && b.size() > 0) {
+            c = b;
+        } else if(a.size() > 0 && b.size() == 0) {
+            c = a;
+        } else if(a.size() < b.size()) {
             c = manage_state_comparison(b,a);
         } else {
             c = manage_state_comparison(a,b);
         }
 
         for(int i : c) {
-            utils::g_log << i << endl;
+            struct xq q = {i,MAX_COST_VALUE,1};
+            auto cur = find(p_and_o.begin(), p_and_o.end(), q);
+            adjust_variable(*cur,state);
         }
-        first_time = false;
-    } else {
-        /**PropID prop;
-        new_state.clear();
-        for (FactProxy fact : state) {
-            prop = get_prop_id(fact);
-            new_state.push_back((int)prop);
-        }*/
     }
 
     
@@ -247,6 +289,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
         total_cost+=goal_cost;
     }
 
+    old_state.clear();
     for(FactProxy v : state) {
         old_state.push_back(get_prop_id(v));
     }
