@@ -148,13 +148,8 @@ void TestHeuristic::solve_equations(const State &state) {
                 for (OpID op_id : precondition_of_pool.get_slice(
                  prop->precondition_of, prop->num_precondition_occurences)) {
                      struct xq bla = {(int)op_id,MAX_COST_VALUE,0};
-                     utils::g_log << "COMP:" << endl;
-                     utils::g_log << bla.id << "        "  << bla.rhsq << endl;
                      auto cur = find(p_and_o.begin(), p_and_o.end(), bla);
-                     utils::g_log << cur->id << "        "  << cur->rhsq << endl;
                      adjust_variable(*cur,state);
-                     utils::g_log << cur->id << "        "  << cur->rhsq << endl;
-                     utils::g_log << "END:" << endl;
                  }
             }
         } else {
@@ -182,22 +177,59 @@ void TestHeuristic::solve_equations(const State &state) {
 }
 
 
+vector<int> TestHeuristic::manage_state_comparison(vector<int> & bigger, vector<int> & smaller) {
+
+    vector<int> c = {};
+        sort(bigger.begin(),bigger.end());
+        sort(smaller.begin(),smaller.end());
+
+        int counta = 0;
+        int countb = 0;
+
+
+
+        while(counta < (int)bigger.size() && countb < (int)smaller.size()) {
+                if(bigger[counta]<smaller[countb]) {
+                    c.push_back(bigger[counta]);
+                    counta++;
+                } else if(bigger[counta]>smaller[countb]) {
+                    c.push_back(smaller[countb]);
+                    countb++;
+                } else {
+                    counta++;
+                    countb++;
+                }
+        }
+        return c;
+}
+
 int TestHeuristic::compute_heuristic(const State &state) {
     if(first_time) {
         setup_exploration_queue();
         for(struct xq q : p_and_o) {
             adjust_variable(q, state);
         }
-        first_time = false;
-    } else {
-        for (FactProxy fact : state) {
-            PropID init_prop = get_prop_id(fact);
-            for(FactProxy fact2 : compare_state) {
-                PropID init_prop2 = get_prop_id(fact2);
-                utils::g_log << init_prop << endl;
-            }
+
+        vector<int> a = {1,2,3,4,5,6,8,9};
+        vector<int> b = {1,2,3,7,8,10,11};
+        vector<int> c;
+        if(a.size() < b.size()) {
+            c = manage_state_comparison(b,a);
+        } else {
+            c = manage_state_comparison(a,b);
         }
 
+        for(int i : c) {
+            utils::g_log << i << endl;
+        }
+        first_time = false;
+    } else {
+        /**PropID prop;
+        new_state.clear();
+        for (FactProxy fact : state) {
+            prop = get_prop_id(fact);
+            new_state.push_back((int)prop);
+        }*/
     }
 
     
@@ -215,10 +247,13 @@ int TestHeuristic::compute_heuristic(const State &state) {
         total_cost+=goal_cost;
     }
 
-    compare_state = &state;
+    for(FactProxy v : state) {
+        old_state.push_back(get_prop_id(v));
+    }
 
     return (total_cost/2);
 }
+ 
 
 int TestHeuristic::compute_heuristic(const GlobalState &global_state) {
     return compute_heuristic(convert_global_state(global_state));

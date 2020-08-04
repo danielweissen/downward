@@ -54,7 +54,8 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
      */
     static const int MAX_COST_VALUE = 100000000;
     std::vector<struct xq> p_and_o;
-    const State * compare_state;
+    std::vector<int> new_state;
+    std::vector<int> old_state;
 
     priority_queues::HeapQueue<xq> queue;
     bool did_write_overflow_warning;
@@ -67,6 +68,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     int get_pre_condition_sum(struct xq &q);
     void solve_equations(const State &state);
     bool prop_is_part_of_s(PropID prop, const State &state);
+    std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller);
 
     void write_overflow_warning();
 
