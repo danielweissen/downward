@@ -2,6 +2,7 @@
 #define ALGORITHMS_PRIORITY_QUEUES_H
 
 #include "../utils/collections.h"
+#include "../task_utils/task_properties.h"
 #include "../utils/logging.h"
 
 #include <cassert>
@@ -137,20 +138,9 @@ public:
     }
 
     bool remove(const Value &value) {
-
         for( auto i = heap.c.begin(); i != heap.c.end(); i++ ) {
             if((*i).second == value) {
                 heap.c.erase(i);
-                std::make_heap(heap.c.begin(), heap.c.end(), heap.comp);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool contains(const Value &value) {
-        for( auto i = heap.c.begin(); i != heap.c.end(); i++ ) {
-            if((*i).second == value) {
                 return true;
             }
         }

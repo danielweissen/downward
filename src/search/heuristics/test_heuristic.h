@@ -27,16 +27,10 @@ using relaxation_heuristic::UnaryOperator;
 
 struct xq {
     int id; // id of prop or op
-    int rhsq;
     unsigned int type : 1; // == 1 if Prop, == 0 if OP
 
     bool operator==(const xq& a) const {
         return (id == a.id && type == a.type);
-    }
-
-    std::ostream& operator<<(std::ostream& os)    {
-        os << id << " " << rhsq << " " << type;
-        return os;
     }
 };
 
@@ -53,7 +47,6 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
        below the signed 32-bit int upper bound.
      */
     static const int MAX_COST_VALUE = 100000000;
-    std::vector<struct xq> p_and_o;
     std::vector<int> new_state;
     std::vector<int> old_state;
 

@@ -27,6 +27,8 @@ struct Proposition {
     Proposition();
     int cost; // used for h^max cost or h^add cost
     // TODO: Make sure in constructor that reached_by does not overflow.
+    int rhsq;
+    int del_bound;
     OpID reached_by : 30;
     /* The following two variables are conceptually bools, but Visual C++ does
        not support packing ints and bools together in a bitfield. */
@@ -47,6 +49,8 @@ struct UnaryOperator {
                   int operator_no, int base_cost);
     int cost; // Used for h^max cost or h^add cost;
               // includes operator cost (base_cost)
+    int rhsq;
+    int del_bound;
     int unsatisfied_preconditions;
     PropID effect;
     int base_cost;
@@ -55,7 +59,7 @@ struct UnaryOperator {
     int operator_no; // -1 for axioms; index into the task's operators otherwise
 };
 
-static_assert(sizeof(UnaryOperator) == 28, "UnaryOperator has wrong size");
+//static_assert(sizeof(UnaryOperator) == 28, "UnaryOperator has wrong size");
 
 class RelaxationHeuristic : public Heuristic {
     void build_unary_operators(const OperatorProxy &op);
