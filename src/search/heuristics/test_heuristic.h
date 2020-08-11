@@ -25,15 +25,6 @@ using relaxation_heuristic::UnaryOperator;
 
 
 
-struct xq {
-    int id; // id of prop or op
-    unsigned int type : 1; // == 1 if Prop, == 0 if OP
-
-    bool operator==(const xq& a) const {
-        return (id == a.id && type == a.type);
-    }
-};
-
 
 
 class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
@@ -50,17 +41,18 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     std::vector<int> new_state;
     std::vector<int> old_state;
 
-    priority_queues::HeapQueue<xq> queue;
+    priority_queues::HeapQueue<int> queue;
     bool did_write_overflow_warning;
     bool first_time = true;
 
     void setup_exploration_queue();
-    void adjust_variable(struct xq &q);
-    bool xq_is_part_of_s(struct xq &q,const State &state);
+    void adjust_variable(int q);
     OpID getMinOperator(Proposition * prop);
-    int get_pre_condition_sum(struct xq &q);
-    void solve_equations(const State &state);
-    bool prop_is_part_of_s(PropID prop, const State &state);
+    int get_pre_condition_sum(OpID id);
+    void solve_equations();
+    bool prop_is_part_of_s(PropID prop);
+    int make_op(int q);
+    OpID get_op(int q);
     std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller, int which);
 
     void write_overflow_warning();

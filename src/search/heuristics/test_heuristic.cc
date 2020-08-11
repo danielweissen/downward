@@ -44,9 +44,9 @@ void TestHeuristic::setup_exploration_queue() {
     }
 }
 
-void TestHeuristic::adjust_variable(struct xq &q) {
-    if(q.type == 1) {
-        PropID p_id = q.id;
+void TestHeuristic::adjust_variable(int q) {
+    if(q >= 0) {
+        PropID p_id = q;
         Proposition *prop = get_proposition(p_id);
         if(prop->cost != prop->rhsq) {
             prop->del_bound = std::min(prop->cost,prop->rhsq); // here we save the value that tells us which queue entries to ignore
@@ -55,40 +55,33 @@ void TestHeuristic::adjust_variable(struct xq &q) {
             prop->del_bound = -1;
         }
     } else {
-        OpID op_id = q.id;
+        OpID op_id = make_op(q);
         UnaryOperator* un_op = get_operator(op_id);
         if(un_op->cost != un_op->rhsq) {
             un_op->del_bound = std::min(un_op->cost,un_op->rhsq); // here we save the value that tells us which queue entries to ignore
-            queue.push(std::min(un_op->cost,un_op->rhsq),q);
+            queue.push(std::min(un_op->cost,un_op->rhsq),q); // starts at -1 - minus infinity
         } else {
             un_op->del_bound = -1;
         }
     }
 }
 
-int TestHeuristic::get_pre_condition_sum(struct xq &q) {
-    OpID o_id = q.id;
+int TestHeuristic::make_op(int q) {
+    q++;
+    return (-q);
+}
+
+int TestHeuristic::get_pre_condition_sum(OpID id) {
     int sum = 0;
-    for(PropID prop : get_preconditions(o_id)) {
+    for(PropID prop : get_preconditions(id)) {
         sum += get_proposition(prop)->cost;
     }
     return sum;
 }
 
-bool TestHeuristic::xq_is_part_of_s(struct xq &q,const State &state) {
-    for (FactProxy fact : state) {
-        PropID init_prop = get_prop_id(fact);
-        if(q.id == (int)init_prop) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool TestHeuristic::prop_is_part_of_s(PropID prop, const State &state) {
-    for (FactProxy fact : state) {
-        PropID init_prop = get_prop_id(fact);
-        if((int)prop == (int)init_prop) {
+bool TestHeuristic::prop_is_part_of_s(PropID prop) {
+    for(PropID i : new_state) {
+        if((int)prop == (int)i) {
             return true;
         }
     }
@@ -105,13 +98,13 @@ OpID TestHeuristic::getMinOperator(Proposition * prop) {
     return min;
 }
 
-void TestHeuristic::solve_equations(const State &state) {
+void TestHeuristic::solve_equations() {
 
     while(!queue.empty()) {
         int value = queue.top().first;
-        struct xq current = queue.top().second;
-        if(current.type == 1) {
-            Proposition *prop = get_proposition((PropID)current.id);
+        int current = queue.top().second;
+        if(current >= 0) {
+            Proposition *prop = get_proposition((PropID)current);
             if(value == prop->del_bound) {
                 if(prop->rhsq < prop->cost) {
                     queue.pop();
@@ -120,13 +113,12 @@ void TestHeuristic::solve_equations(const State &state) {
                     for (OpID op_id : precondition_of_pool.get_slice(
                     prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator *op = get_operator(op_id);
-                        struct xq cur = {op_id,0};
                         if(op->rhsq >= MAX_COST_VALUE) {
-                            op->rhsq = 1 + get_pre_condition_sum(cur);
+                            op->rhsq = 1 + get_pre_condition_sum(op_id);
                         } else {
                             op->rhsq = op->rhsq - old_cost + prop->cost; 
                         }
-                        adjust_variable(cur);
+                        adjust_variable(make_op(op_id));
                     }
 
                 } else {
@@ -134,7 +126,7 @@ void TestHeuristic::solve_equations(const State &state) {
                         queue.pop();
                     }
                     prop->cost = MAX_COST_VALUE;
-                    if(!prop_is_part_of_s(current.id,state)) {
+                    if(!prop_is_part_of_s(current)) {
                         OpID min_op = getMinOperator(prop);
                         prop->rhsq = 1 + get_operator(min_op)->cost;
                         adjust_variable(current);
@@ -142,9 +134,8 @@ void TestHeuristic::solve_equations(const State &state) {
                     for (OpID op_id : precondition_of_pool.get_slice(
                     prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator *op = get_operator(op_id);
-                        struct xq cur = {(int)op_id,0};
                         op->rhsq = MAX_COST_VALUE;
-                        adjust_variable(cur);
+                        adjust_variable(make_op(op_id));
                     }
                 }
             } else {
@@ -152,17 +143,16 @@ void TestHeuristic::solve_equations(const State &state) {
                 continue;
             }
         } else {
-            UnaryOperator *op = get_operator((OpID)current.id);
+            UnaryOperator *op = get_operator(make_op(current));
             if(value == op->del_bound) {
                 if(op->rhsq < op->cost) {
                     queue.pop();
                     op->cost = op->rhsq;
                     PropID add = op->effect;
-                    if(!prop_is_part_of_s(add,state)) {
+                    if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        struct xq cur = {(int)add,1};
                         prop->rhsq = std::min(prop->rhsq,(1+op->cost));
-                        adjust_variable(cur);
+                        adjust_variable(add);
                     }
                 } else {
                     if(op->rhsq == op->cost) {
@@ -170,16 +160,15 @@ void TestHeuristic::solve_equations(const State &state) {
                     }
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
-                    op->rhsq = 1 + get_pre_condition_sum(current);
+                    op->rhsq = 1 + get_pre_condition_sum(make_op(current));
                     adjust_variable(current);
                     PropID add = op->effect;
-                    if(!prop_is_part_of_s(add,state)) {
+                    if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        struct xq cur = {(int)add,1};
                         if(prop->rhsq == (1 + x_old)) {
                             OpID min_op = getMinOperator(get_proposition(add));
                             prop->rhsq = 1 + get_operator(min_op)->cost;
-                            adjust_variable(cur);
+                            adjust_variable(add);
                         }
                     }
                 }
@@ -261,12 +250,13 @@ vector<int> TestHeuristic::manage_state_comparison(vector<int> & bigger, vector<
 int TestHeuristic::compute_heuristic(const State &state) {
     if(first_time) {
         setup_exploration_queue();
+        new_state.clear();
         for(FactProxy fact : state) {
             PropID init_prop = get_prop_id(fact);
             Proposition *prop = get_proposition(init_prop);
-            struct xq cur = {(int)init_prop,1};
+            new_state.push_back((int)init_prop);
             prop->rhsq = 0;
-            adjust_variable(cur);
+            adjust_variable(init_prop);
         }
         first_time = false;
     } else {
@@ -298,22 +288,20 @@ int TestHeuristic::compute_heuristic(const State &state) {
         }
 
         for(int i : p_in_s) {
-            struct xq cur = {i,1};
             Proposition *prop = get_proposition((PropID)i);
             prop->rhsq = 0;
-            adjust_variable(cur);
+            adjust_variable(i);
         }
 
         for(int i : p_in_s_strich) {
-            struct xq cur = {i,1};
             Proposition *prop = get_proposition((PropID)i);
             OpID min_op = getMinOperator(prop);
             prop->rhsq = 1 + get_operator(min_op)->cost;
-            adjust_variable(cur);
+            adjust_variable(i);
         }
     }
 
-    solve_equations(state);
+    solve_equations();
 
     int total_cost = 0;
     for (PropID goal_id : goal_propositions) {
@@ -325,9 +313,10 @@ int TestHeuristic::compute_heuristic(const State &state) {
     }
     
 
+
     old_state.clear();
-    for(FactProxy v : state) {
-        old_state.push_back(get_prop_id(v));
+    for(int v : new_state) {
+        old_state.push_back(v);
     }
     return (total_cost/2);
 }

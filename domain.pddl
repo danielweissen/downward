@@ -1,48 +1,83 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; 4 Op-blocks world
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define (domain logistics-strips)
+  (:requirements :strips) 
+  (:predicates 	(OBJ ?obj)
+	       	(TRUCK ?truck)
+               	(LOCATION ?loc)
+		(AIRPLANE ?airplane)
+                (CITY ?city)
+                (AIRPORT ?airport)
+		(at ?obj ?loc)
+		(in ?obj1 ?obj2)
+		(in-city ?obj ?city))
+ 
+  ; (:types )		; default object
 
-(define (domain BLOCKS)
-  (:requirements :strips)
-  (:predicates (on ?x ?y)
-	       (ontable ?x)
-	       (clear ?x)
-	       (handempty)
-	       (holding ?x)
-	       )
+(:action LOAD-TRUCK
+  :parameters
+   (?obj
+    ?truck
+    ?loc)
+  :precondition
+   (and (OBJ ?obj) (TRUCK ?truck) (LOCATION ?loc)
+   (at ?truck ?loc) (at ?obj ?loc))
+  :effect
+   (and (not (at ?obj ?loc)) (in ?obj ?truck)))
 
-  (:action pick-up
-	     :parameters (?x)
-	     :precondition (and (clear ?x) (ontable ?x) (handempty))
-	     :effect
-	     (and (not (ontable ?x))
-		   (not (clear ?x))
-		   (not (handempty))
-		   (holding ?x)))
+(:action LOAD-AIRPLANE
+  :parameters
+   (?obj
+    ?airplane
+    ?loc)
+  :precondition
+   (and (OBJ ?obj) (AIRPLANE ?airplane) (LOCATION ?loc)
+   (at ?obj ?loc) (at ?airplane ?loc))
+  :effect
+   (and (not (at ?obj ?loc)) (in ?obj ?airplane)))
 
-  (:action put-down
-	     :parameters (?x)
-	     :precondition (holding ?x)
-	     :effect
-	     (and (not (holding ?x))
-		   (clear ?x)
-		   (handempty)
-		   (ontable ?x)))
-  (:action stack
-	     :parameters (?x ?y)
-	     :precondition (and (holding ?x) (clear ?y))
-	     :effect
-	     (and (not (holding ?x))
-		   (not (clear ?y))
-		   (clear ?x)
-		   (handempty)
-		   (on ?x ?y)))
-  (:action unstack
-	     :parameters (?x ?y)
-	     :precondition (and (on ?x ?y) (clear ?x) (handempty))
-	     :effect
-	     (and (holding ?x)
-		   (clear ?y)
-		   (not (clear ?x))
-		   (not (handempty))
-		   (not (on ?x ?y)))))
+(:action UNLOAD-TRUCK
+  :parameters
+   (?obj
+    ?truck
+    ?loc)
+  :precondition
+   (and (OBJ ?obj) (TRUCK ?truck) (LOCATION ?loc)
+        (at ?truck ?loc) (in ?obj ?truck))
+  :effect
+   (and (not (in ?obj ?truck)) (at ?obj ?loc)))
+
+(:action UNLOAD-AIRPLANE
+  :parameters
+   (?obj
+    ?airplane
+    ?loc)
+  :precondition
+   (and (OBJ ?obj) (AIRPLANE ?airplane) (LOCATION ?loc)
+        (in ?obj ?airplane) (at ?airplane ?loc))
+  :effect
+   (and (not (in ?obj ?airplane)) (at ?obj ?loc)))
+
+(:action DRIVE-TRUCK
+  :parameters
+   (?truck
+    ?loc-from
+    ?loc-to
+    ?city)
+  :precondition
+   (and (TRUCK ?truck) (LOCATION ?loc-from) (LOCATION ?loc-to) (CITY ?city)
+   (at ?truck ?loc-from)
+   (in-city ?loc-from ?city)
+   (in-city ?loc-to ?city))
+  :effect
+   (and (not (at ?truck ?loc-from)) (at ?truck ?loc-to)))
+
+(:action FLY-AIRPLANE
+  :parameters
+   (?airplane
+    ?loc-from
+    ?loc-to)
+  :precondition
+   (and (AIRPLANE ?airplane) (AIRPORT ?loc-from) (AIRPORT ?loc-to)
+	(at ?airplane ?loc-from))
+  :effect
+   (and (not (at ?airplane ?loc-from)) (at ?airplane ?loc-to)))
+)

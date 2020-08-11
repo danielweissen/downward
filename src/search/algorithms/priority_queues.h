@@ -220,6 +220,14 @@ public:
         return std::make_pair(current_bucket_no, top_element);
     }
 
+    Entry top() {
+        assert(num_entries > 0);
+        update_current_bucket_no();
+        Bucket &current_bucket = buckets[current_bucket_no];
+        Value top_element = current_bucket.back();
+        return std::make_pair(current_bucket_no, top_element);
+    }
+
     virtual bool empty() const {
         return num_entries == 0;
     }
