@@ -74,6 +74,7 @@ int TestHeuristic::make_op(int q) {
 int TestHeuristic::get_pre_condition_sum(OpID id) {
     int sum = 0;
     for(PropID prop : get_preconditions(id)) {
+        //if(!get_proposition(prop)->add_effects.empty())
         sum += get_proposition(prop)->cost;
     }
     return sum;
@@ -106,6 +107,8 @@ void TestHeuristic::solve_equations() {
     while(!queue.empty()) {
         int value = queue.top().first;
         int current = queue.top().second;
+        utils::g_log <<"id                                  "<< current << endl;
+        utils::g_log << "queue value    "<< value << endl;
         if(current >= 0) {
             Proposition *prop = get_proposition((PropID)current);
             if(value == prop->del_bound) {
@@ -147,6 +150,9 @@ void TestHeuristic::solve_equations() {
             }
         } else {
             UnaryOperator *op = get_operator(make_op(current));
+            utils::g_log << op->del_bound << endl;
+            utils::g_log << "adsfasd"<<op->rhsq << endl;
+            utils::g_log << op->cost << endl;
             if(value == op->del_bound) {
                 if(op->rhsq < op->cost) {
                     queue.pop();
@@ -309,7 +315,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
     for (PropID goal_id : goal_propositions) {
         const Proposition *goal = get_proposition(goal_id);
         int goal_cost = goal->cost;
-        utils::g_log << goal_cost << endl;
+        //utils::g_log << goal_cost << endl;
         if (goal_cost >= MAX_COST_VALUE)
             return DEAD_END;
         total_cost+=goal_cost;
