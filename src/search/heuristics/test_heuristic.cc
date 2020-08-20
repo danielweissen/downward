@@ -89,6 +89,9 @@ bool TestHeuristic::prop_is_part_of_s(PropID prop) {
 }
 
 OpID TestHeuristic::getMinOperator(Proposition * prop) {
+    if(prop->add_effects.empty()) {
+        return 0;
+    }
     OpID min = prop->add_effects.front();
     for(OpID a : prop->add_effects) {
         if((int) get_operator(a)->cost < (int) get_operator(min)->cost) {
@@ -300,19 +303,19 @@ int TestHeuristic::compute_heuristic(const State &state) {
             adjust_variable(i);
         }
     }
-
     solve_equations();
 
     int total_cost = 0;
     for (PropID goal_id : goal_propositions) {
         const Proposition *goal = get_proposition(goal_id);
         int goal_cost = goal->cost;
+        utils::g_log << goal_cost << endl;
         if (goal_cost >= MAX_COST_VALUE)
             return DEAD_END;
         total_cost+=goal_cost;
     }
-    
 
+    
 
     old_state.clear();
     for(int v : new_state) {
