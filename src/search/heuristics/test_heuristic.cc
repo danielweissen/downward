@@ -74,7 +74,6 @@ int TestHeuristic::make_op(int q) {
 int TestHeuristic::get_pre_condition_sum(OpID id) {
     int sum = 0;
     for(PropID prop : get_preconditions(id)) {
-        //if(!get_proposition(prop)->add_effects.empty())
         sum += get_proposition(prop)->cost;
     }
     return sum;
@@ -107,8 +106,16 @@ void TestHeuristic::solve_equations() {
     while(!queue.empty()) {
         int value = queue.top().first;
         int current = queue.top().second;
-        utils::g_log <<"id                                  "<< current << endl;
-        utils::g_log << "queue value    "<< value << endl;
+        if(value >= MAX_COST_VALUE) {
+           /** utils::g_log <<"id                                  "<< current << endl;
+            utils::g_log << "queue value                    "<< value << endl;
+            if(get_operator(make_op(current))->num_preconditions != 0) {
+                for(PropID prop : get_preconditions(make_op(current))) {
+                    utils::g_log << "prec                    "<< prop << endl;
+                    utils::g_log << "prec cost                  "<< get_proposition(prop)->cost << endl;
+                }
+            } */
+        }
         if(current >= 0) {
             Proposition *prop = get_proposition((PropID)current);
             if(value == prop->del_bound) {
@@ -150,9 +157,9 @@ void TestHeuristic::solve_equations() {
             }
         } else {
             UnaryOperator *op = get_operator(make_op(current));
-            utils::g_log << op->del_bound << endl;
-            utils::g_log << "adsfasd"<<op->rhsq << endl;
-            utils::g_log << op->cost << endl;
+            //utils::g_log << op->del_bound << endl;
+            //utils::g_log << "adsfasd"<<op->rhsq << endl;
+            //utils::g_log << op->cost << endl;
             if(value == op->del_bound) {
                 if(op->rhsq < op->cost) {
                     queue.pop();
