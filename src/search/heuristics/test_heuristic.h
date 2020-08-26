@@ -51,6 +51,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     int get_pre_condition_sum(OpID id);
     void solve_equations();
     bool prop_is_part_of_s(PropID prop);
+    int make_inf(int a);
     int make_op(int q);
     OpID get_op(int q);
     std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller, int which);

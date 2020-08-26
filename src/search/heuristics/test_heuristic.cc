@@ -101,6 +101,13 @@ OpID TestHeuristic::getMinOperator(Proposition * prop) {
     return min;
 }
 
+int TestHeuristic::make_inf(int a) {
+    if(a > MAX_COST_VALUE) {
+        return MAX_COST_VALUE;
+    }
+    return a;
+}
+
 void TestHeuristic::solve_equations() {
 
     while(!queue.empty()) {
@@ -127,9 +134,9 @@ void TestHeuristic::solve_equations() {
                     prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator *op = get_operator(op_id);
                         if(op->rhsq >= MAX_COST_VALUE) {
-                            op->rhsq = 1 + get_pre_condition_sum(op_id);
+                            op->rhsq = make_inf(1 + get_pre_condition_sum(op_id));
                         } else {
-                            op->rhsq = op->rhsq - old_cost + prop->cost; 
+                            op->rhsq = make_inf(op->rhsq - old_cost + prop->cost); 
                         }
                         adjust_variable(make_op(op_id));
                     }
@@ -141,7 +148,7 @@ void TestHeuristic::solve_equations() {
                     prop->cost = MAX_COST_VALUE;
                     if(!prop_is_part_of_s(current)) {
                         OpID min_op = getMinOperator(prop);
-                        prop->rhsq = 1 + get_operator(min_op)->cost;
+                        prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
                         adjust_variable(current);
                     }
                     for (OpID op_id : precondition_of_pool.get_slice(
@@ -167,7 +174,7 @@ void TestHeuristic::solve_equations() {
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        prop->rhsq = std::min(prop->rhsq,(1+op->cost));
+                        prop->rhsq = make_inf(std::min(prop->rhsq,(1+op->cost)));
                         adjust_variable(add);
                     }
                 } else {
@@ -176,14 +183,14 @@ void TestHeuristic::solve_equations() {
                     }
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
-                    op->rhsq = 1 + get_pre_condition_sum(make_op(current));
+                    op->rhsq = make_inf(1 + get_pre_condition_sum(make_op(current)));
                     adjust_variable(current);
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
                         if(prop->rhsq == (1 + x_old)) {
                             OpID min_op = getMinOperator(get_proposition(add));
-                            prop->rhsq = 1 + get_operator(min_op)->cost;
+                            prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
                             adjust_variable(add);
                         }
                     }
