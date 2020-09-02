@@ -126,6 +126,14 @@ int AdditiveHeuristic::compute_add_and_ff(const State &state) {
             return DEAD_END;
         increase_cost(total_cost, goal_cost);
     }
+    //for (Proposition &prop : propositions) {
+    //    utils::g_log << "prop id:" << get_prop_id(prop)<< endl;
+    //    utils::g_log << "prop cost:" << prop.cost << endl;
+    //}
+    //for (UnaryOperator &op : unary_operators) {
+    //    utils::g_log << "op id:" << get_op_id(op)<< endl;
+    //    utils::g_log << "op cost:" << op.cost << endl;
+    //}
     return total_cost;
 }
 

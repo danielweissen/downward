@@ -17,6 +17,8 @@
 #include <optional.hh>
 #include <set>
 
+#include "../heuristics/test_heuristic.h"
+
 using namespace std;
 
 namespace eager_search {
@@ -116,6 +118,7 @@ SearchStatus EagerSearch::step() {
             return FAILED;
         }
         StateID id = open_list->remove_min();
+
         // TODO is there a way we can avoid creating the state here and then
         //      recreate it outside of this function with node.get_state()?
         //      One way would be to store GlobalState objects inside SearchNodes
@@ -131,7 +134,6 @@ SearchStatus EagerSearch::step() {
           operators are computed when the state is expanded.
         */
         EvaluationContext eval_context(s, node->get_g(), false, &statistics);
-
         if (lazy_evaluator) {
             /*
               With lazy evaluators (and only with these) we can have dead nodes
@@ -171,7 +173,6 @@ SearchStatus EagerSearch::step() {
         statistics.inc_expanded();
         break;
     }
-
     GlobalState s = node->get_state();
     if (check_goal_and_set_plan(s))
         return SOLVED;

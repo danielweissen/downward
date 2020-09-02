@@ -154,8 +154,6 @@ SearchStatus LazySearch::step() {
     // - current_operator is the operator which leads to current_state from predecessor.
     // - current_g is the g value of the current state according to the cost_type
     // - current_real_g is the g value of the current state (using real costs)
-
-
     SearchNode node = search_space.get_node(current_state);
     bool reopen = reopen_closed_nodes && !node.is_new() &&
         !node.is_dead_end() && (current_g < node.get_g());
