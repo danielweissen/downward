@@ -8,6 +8,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <tuple>
 
 class State;
 
@@ -42,14 +43,24 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     std::vector<int> old_state;
 
     priority_queues::HeapQueue<int> queue;
+    std::vector<int> queue_propositions;
+    std::vector<int> queue_operators;
+    int num_in_queue;
+
+    
+
     bool did_write_overflow_warning;
     bool first_time = true;
 
     void setup_exploration_queue();
+    void setup_exploration_queue_2();
     void adjust_variable(int q);
+    void adjust_variable_2(int q, int type);
     OpID getMinOperator(Proposition * prop);
     int get_pre_condition_sum(OpID id);
     void solve_equations();
+    void solve_equations_2();
+    std::pair<int,int> get_min();
     bool prop_is_part_of_s(PropID prop);
     int make_inf(int a);
     int make_op(int q);
