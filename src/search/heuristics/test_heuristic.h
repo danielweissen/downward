@@ -39,35 +39,26 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
        below the signed 32-bit int upper bound.
      */
     static const int MAX_COST_VALUE = 100000000;
-    std::vector<int> new_state;
-    std::vector<int> old_state;
+    std::vector<bool> current_state;
+    State last_state;
 
     priority_queues::HeapQueue<int> queue;
     std::vector<int> queue_propositions;
     std::vector<int> queue_operators;
     int num_in_queue;
 
-    
-
-    bool did_write_overflow_warning;
     bool first_time = true;
 
     void setup_exploration_queue();
-    void setup_exploration_queue_2();
-    void adjust_variable(int q);
-    void adjust_variable_2(int q, int type);
+    void adjust_variable(int q, int type);
     OpID getMinOperator(Proposition * prop);
     int get_pre_condition_sum(OpID id);
     void solve_equations();
-    void solve_equations_2();
     std::pair<int,int> get_min();
+    // int get_min();
     bool prop_is_part_of_s(PropID prop);
     int make_inf(int a);
     int make_op(int q);
-    OpID get_op(int q);
-    std::vector<int> manage_state_comparison(std::vector<int> & bigger, std::vector<int> & smaller, int which);
-
-    void write_overflow_warning();
 
     int compute_heuristic(const State &state);
 protected:
