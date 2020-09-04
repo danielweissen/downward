@@ -123,6 +123,7 @@ void TestHeuristic::adjust_variable(int q) {
         if(un_op->cost != un_op->rhsq) {
             int min = std::min(un_op->cost,un_op->rhsq);
             un_op->del_bound = min; // here we save the value that tells us which queue entries to ignore
+            queue.push(min,q);
         } else {
             un_op->del_bound = -1;
         }
@@ -417,6 +418,7 @@ vector<int> TestHeuristic::manage_state_comparison(vector<int> & bigger, vector<
         return c;
 }
 
+
 int TestHeuristic::compute_heuristic(const State &state) {
     if(first_time) {
         setup_exploration_queue_2();
@@ -430,8 +432,6 @@ int TestHeuristic::compute_heuristic(const State &state) {
         }
         first_time = false;
     } else {
-        //queue.clear();
-
         new_state.clear();
         for (FactProxy fact : state) {
             new_state.push_back(get_prop_id(fact));
@@ -439,25 +439,9 @@ int TestHeuristic::compute_heuristic(const State &state) {
 
         vector<int> p_in_s;
         vector<int> p_in_s_strich;
-        /**
-        if(new_state.size() == 0 && old_state.size() == 0) {
-            p_in_s = {};
-            p_in_s_strich = {};
-        } else if(new_state.size() == 0 && old_state.size() > 0) {
-            p_in_s = {};
-            p_in_s_strich = old_state;
-        } else if(new_state.size() > 0 && old_state.size() == 0) {
-            p_in_s = new_state;
-            p_in_s_strich = {};
-        } else  */
-
-        //if(new_state.size() < old_state.size()) {
-        //    p_in_s_strich = manage_state_comparison(old_state,new_state,1);
-        //    p_in_s = manage_state_comparison(old_state,new_state,0);
-        //} else {
-            p_in_s = manage_state_comparison(new_state,old_state,1);
-            p_in_s_strich = manage_state_comparison(new_state,old_state,0);
-        //}
+        
+        p_in_s = manage_state_comparison(new_state,old_state,1);
+        p_in_s_strich = manage_state_comparison(new_state,old_state,0);
 
         num_in_queue = 0;
 
@@ -490,10 +474,70 @@ int TestHeuristic::compute_heuristic(const State &state) {
     for(int v : new_state) {
         old_state.push_back(v);
     }
+    return (total_cost/2);
+}
+
+/**int TestHeuristic::compute_heuristic(const State &state) {
+    if(first_time) {
+        setup_exploration_queue();
+        new_state.clear();
+        for(FactProxy fact : state) {
+            PropID init_prop = get_prop_id(fact);
+            Proposition *prop = get_proposition(init_prop);
+            new_state.push_back(init_prop);
+            prop->rhsq = 0;
+            adjust_variable(init_prop);
+        }
+        first_time = false;
+    } else {
+        //queue.clear();
+
+        new_state.clear();
+        for (FactProxy fact : state) {
+            new_state.push_back(get_prop_id(fact));
+        }
+
+        vector<int> p_in_s;
+        vector<int> p_in_s_strich;
+        
+        p_in_s = manage_state_comparison(new_state,old_state,1);
+        p_in_s_strich = manage_state_comparison(new_state,old_state,0);
+
+        for(int i : p_in_s) {
+            Proposition *prop = get_proposition(i);
+            prop->rhsq = 0;
+            adjust_variable(i);
+        }
+
+        for(int i : p_in_s_strich) {
+            Proposition *prop = get_proposition(i);
+            OpID min_op = getMinOperator(prop);
+            prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
+            adjust_variable(i);
+        }
+    }
+
+    solve_equations();
+
+    int total_cost = 0;
+    for (PropID goal_id : goal_propositions) {
+        const Proposition *goal = get_proposition(goal_id);
+        int goal_cost = goal->cost;
+        if (goal_cost >= MAX_COST_VALUE)
+            return DEAD_END;
+        total_cost+=goal_cost;
+    }
+
+    old_state.clear();
+    for(int v : new_state) {
+        old_state.push_back(v);
+    }
 
     return (total_cost/2);
 }
- 
+ */
+
+
 int TestHeuristic::compute_heuristic(const GlobalState &global_state) {
     return compute_heuristic(convert_global_state(global_state));
 }
