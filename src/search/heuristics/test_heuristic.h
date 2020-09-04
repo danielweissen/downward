@@ -50,15 +50,15 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     bool first_time = true;
 
     void setup_exploration_queue();
-    void adjust_variable(int q, int type);
+    void adjust_proposition(int index);
+    void adjust_operator(int index);
     OpID getMinOperator(Proposition * prop);
     int get_pre_condition_sum(OpID id);
     void solve_equations();
-    std::pair<int,int> get_min();
-    // int get_min();
+    // std::pair<int,int> get_min();
+    int get_min();
     bool prop_is_part_of_s(PropID prop);
     int make_inf(int a);
-    int make_op(int q);
 
     int compute_heuristic(const State &state);
 protected:
