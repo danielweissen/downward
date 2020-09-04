@@ -43,16 +43,14 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     State last_state;
 
     priority_queues::HeapQueue<int> queue;
-    std::vector<int> queue_propositions;
-    std::vector<int> queue_operators;
     int num_in_queue;
 
     bool first_time = true;
 
     void setup_exploration_queue();
-    void adjust_proposition(int index);
-    void adjust_operator(int index);
-    OpID getMinOperator(Proposition * prop);
+    void adjust_proposition(Proposition *prop);
+    void adjust_operator(UnaryOperator *un_op);
+    OpID getMinOperator(Proposition *prop);
     int get_pre_condition_sum(OpID id);
     void solve_equations();
     // std::pair<int,int> get_min();

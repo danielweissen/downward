@@ -28,6 +28,7 @@ struct Proposition {
     int cost; // used for h^max cost or h^add cost
     // TODO: Make sure in constructor that reached_by does not overflow.
     int rhsq;
+    int priority;
     int del_bound;
     OpID reached_by : 30;
     /* The following two variables are conceptually bools, but Visual C++ does
@@ -51,6 +52,7 @@ struct UnaryOperator {
               // includes operator cost (base_cost)
     int rhsq;
     int del_bound;
+    int priority;
     int unsatisfied_preconditions;
     PropID effect;
     int base_cost;

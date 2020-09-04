@@ -28,14 +28,11 @@ TestHeuristic::TestHeuristic(const Options &opts)
 }
 
 void TestHeuristic::setup_exploration_queue() {
-    assert(queue_propositions.empty());
-    assert(queue_operators.empty());
-    queue_propositions.resize(propositions.size(), -1);
-    queue_operators.resize(unary_operators.size(), -1);
     num_in_queue = 0;
     for (Proposition &prop : propositions) {
         prop.cost = MAX_COST_VALUE; // == infinity
         prop.rhsq = MAX_COST_VALUE;
+        prop.priority = -1;
         prop.del_bound = MAX_COST_VALUE;
     }
     for (UnaryOperator &op : unary_operators) {
@@ -48,6 +45,7 @@ void TestHeuristic::setup_exploration_queue() {
             op.rhsq = MAX_COST_VALUE;
             op.del_bound = MAX_COST_VALUE;
         }
+        op.priority = -1;
     }
 }
 
@@ -71,28 +69,26 @@ void TestHeuristic::setup_exploration_queue() {
 //     }
 // }
 
-void TestHeuristic::adjust_proposition(int index) {
-    Proposition *prop = get_proposition(index);
+void TestHeuristic::adjust_proposition(Proposition *prop) {
     if(prop->cost != prop->rhsq) {
-        if(queue_propositions[index] == -1) {
+        if(prop->priority == -1) {
             ++num_in_queue;
         }
-        queue_propositions[index] = std::min(prop->cost, prop->rhsq);
-    } else if(queue_propositions[index] != -1) {
-        queue_propositions[index] = -1;
+        prop->priority = std::min(prop->cost, prop->rhsq);
+    } else if(prop->priority != -1) {
+        prop->priority = -1;
         --num_in_queue;
     }
 }
 
-void TestHeuristic::adjust_operator(int index) {
-    UnaryOperator* un_op = get_operator(index);
+void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
     if(un_op->cost != un_op->rhsq) {
-        if(queue_operators[index] == -1) {
+        if(un_op->priority == -1) {
             ++num_in_queue;
         }
-        queue_operators[index] = std::min(un_op->cost, un_op->rhsq);
-    } else if(queue_operators[index] != -1) {
-        queue_operators[index] = -1;
+        un_op->priority = std::min(un_op->cost, un_op->rhsq);
+    } else if(un_op->priority != -1) {
+        un_op->priority = -1;
         --num_in_queue;
     }
 }
@@ -136,7 +132,7 @@ bool TestHeuristic::prop_is_part_of_s(PropID prop) {
     return current_state[prop];
 }
 
-OpID TestHeuristic::getMinOperator(Proposition * prop) {
+OpID TestHeuristic::getMinOperator(Proposition *prop) {
     if(prop->add_effects.empty()) {
         return 0;
     }
@@ -154,41 +150,41 @@ int TestHeuristic::make_inf(int a) {
 }
 
 void TestHeuristic::solve_equations() {
-    int num_props = static_cast<int>(queue_propositions.size());
+    int num_props = static_cast<int>(propositions.size());
     while(num_in_queue > 0) {
         int index = get_min();
         if (index >= num_props) {
             index -= num_props;
             UnaryOperator *op = get_operator(index);
             if(op->rhsq < op->cost) {
-                queue_operators[index] = -1;
+                op->priority = -1;
                 num_in_queue--;
                 op->cost = op->rhsq;
                 PropID add = op->effect;
                 if(!prop_is_part_of_s(add)) {
                     Proposition *prop = get_proposition(add);
                     prop->rhsq = make_inf(std::min(prop->rhsq,(1+op->cost)));
-                    adjust_proposition(add);
+                    adjust_proposition(prop);
                 }
             } else {
                 int x_old = op->cost;
                 op->cost = MAX_COST_VALUE;
                 op->rhsq = make_inf(1 + get_pre_condition_sum(index));
-                adjust_operator(index);
+                adjust_operator(op);
                 PropID add = op->effect;
                 if(!prop_is_part_of_s(add)) {
                     Proposition *prop = get_proposition(add);
                     if(prop->rhsq == (1 + x_old)) {
-                        OpID min_op = getMinOperator(get_proposition(add));
+                        OpID min_op = getMinOperator(prop);
                         prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
-                        adjust_proposition(add);
+                        adjust_proposition(prop);
                     }
                 }
             }
         } else {
-            Proposition* prop = get_proposition(index);
+            Proposition *prop = get_proposition(index);
             if (prop->rhsq < prop->cost) {
-                queue_propositions[index] = -1;
+                prop->priority = -1;
                 num_in_queue--;
                 int old_cost = prop->cost;
                 prop->cost = prop->rhsq;
@@ -200,7 +196,7 @@ void TestHeuristic::solve_equations() {
                     } else {
                         op->rhsq = make_inf(op->rhsq - old_cost + prop->cost);
                     }
-                    adjust_operator(op_id);
+                    adjust_operator(op);
                 }
 
             } else {
@@ -208,13 +204,13 @@ void TestHeuristic::solve_equations() {
                 if (!prop_is_part_of_s(index)) {
                     OpID min_op = getMinOperator(prop);
                     prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
-                    adjust_proposition(index);
+                    adjust_proposition(prop);
                 }
                 for (OpID op_id : precondition_of_pool.get_slice(
                     prop->precondition_of, prop->num_precondition_occurences)) {
                     UnaryOperator* op = get_operator(op_id);
                     op->rhsq = MAX_COST_VALUE;
-                    adjust_operator(op_id);
+                    adjust_operator(op);
                 }
             }
         }
@@ -223,26 +219,27 @@ void TestHeuristic::solve_equations() {
 
 // Indices larger than or equal to num_props are used for operators
 int TestHeuristic::get_min() {
-    int index = -1;
+    int result = -1;
     int min = MAX_COST_VALUE + 1;
-    int num_props = static_cast<int>(queue_propositions.size());
-    for (int i = 0; i < num_props; ++i) {
-        int val = queue_propositions[i];
-        if (val >= 0 && val < min) {
-            index = i;
-            min = val;
+    int index = 0;
+    for (Proposition &prop : propositions) {
+        int prio = prop.priority;
+        if (prio >= 0 && prio < min) {
+            result = index;
+            min = prio;
         }
+        ++index;
     }
-    int num_ops = static_cast<int>(queue_operators.size());
-    for (int i = 0; i < num_ops; ++i) {
-        int val = queue_operators[i];
-        if (val >= 0 && val < min) {
-            index = num_props + i;
-            min = val;
+    for (UnaryOperator &un_op : unary_operators) {
+        int prio = un_op.priority;
+        if (prio >= 0 && prio < min) {
+            result = index;
+            min = prio;
         }
+        ++index;
     }
-    assert(index >= 0);
-    return index;
+    assert(result >= 0);
+    return result;
 }
 
 // std::pair<int,int> TestHeuristic::get_min() {
@@ -363,7 +360,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
             Proposition *prop = get_proposition(prop_id);
             // new_state[get_prop_id(fact)] = 1;
             prop->rhsq = 0;
-            adjust_proposition(prop_id);
+            adjust_proposition(prop);
         }
         first_time = false;
     } else {
@@ -374,7 +371,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
                 current_state[prop_id] = true;
                 Proposition *prop = get_proposition(prop_id);
                 prop->rhsq = 0;
-                adjust_proposition(prop_id);
+                adjust_proposition(prop);
             }
         }
 
@@ -384,7 +381,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
                 Proposition *prop = get_proposition(prop_id);
                 OpID min_op = getMinOperator(prop);
                 prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
-                adjust_proposition(prop_id);
+                adjust_proposition(prop);
             }
         }
     }
