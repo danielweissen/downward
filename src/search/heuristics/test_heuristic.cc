@@ -44,7 +44,9 @@ void TestHeuristic::setup_exploration_queue() {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
             op.cost = 1;
             op.rhsq = 1;
-            op.priority = -1;
+            // THIS ISNT PART OF THE PSEUDOCODE
+            op.priority = 1;
+            ++num_in_queue;
         }
     }
 
@@ -174,14 +176,16 @@ int TestHeuristic::make_inf(int a) {
 
 void TestHeuristic::solve_equations() {
     int num_props = static_cast<int>(propositions.size());
+    // while the priority queue is not empty do
     while(num_in_queue > 0) {
+        // assign the element with the smallest priority in the priority queue to q
         int index = get_min();
         if (index >= num_props) {
             index -= num_props;
             UnaryOperator *op = get_operator(index);
             if(op->rhsq < op->cost) {
                 op->priority = -1;
-                num_in_queue--;
+                --num_in_queue;
                 op->cost = op->rhsq;
                 PropID add = op->effect;
                 if(!prop_is_part_of_s(add)) {
@@ -205,34 +209,51 @@ void TestHeuristic::solve_equations() {
                 }
             }
         } else {
+            //if q ∈ P then 
             Proposition *prop = get_proposition(index);
+            // if rhsq < xq then
             if (prop->rhsq < prop->cost) {
+                // delete q from the priority queue
                 prop->priority = -1;
-                num_in_queue--;
+                --num_in_queue;
+                // set xold := xq
                 int old_cost = prop->cost;
+                // set xq := rhsq
                 prop->cost = prop->rhsq;
+                // for each o ∈ O such that q ∈ Prec(o) do
                 for (OpID op_id : precondition_of_pool.get_slice(
                     prop->precondition_of, prop->num_precondition_occurences)) {
                     UnaryOperator* op = get_operator(op_id);
+                    // if rhso = ∞ then
                     if (op->rhsq >= MAX_COST_VALUE) {
+                        // set rhso := 1 + SUM p∈Prec(o) xp
                         op->rhsq = make_inf(1 + get_pre_condition_sum(op_id));
                     } else {
+                        // else set rhso := rhso − xold + xq
                         op->rhsq = make_inf(op->rhsq - old_cost + prop->cost);
                     }
+                    // AdjustVariable(o)
                     adjust_operator(op);
                 }
 
             } else {
+                // set xq := ∞
                 prop->cost = MAX_COST_VALUE;
+                // if q /∈ s then
                 if (!prop_is_part_of_s(index)) {
+                    // set rhsq = 1 + mino∈O|q∈Add(o) xo
                     OpID min_op = getMinOperator(prop);
                     prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
+                    // AdjustVariable(q)
                     adjust_proposition(prop);
                 }
+                // for each o ∈ O such that q ∈ Prec(o) do
                 for (OpID op_id : precondition_of_pool.get_slice(
                     prop->precondition_of, prop->num_precondition_occurences)) {
+                    // set rhso := ∞
                     UnaryOperator* op = get_operator(op_id);
                     op->rhsq = MAX_COST_VALUE;
+                    // AdjustVariable(o)
                     adjust_operator(op);
                 }
             }
