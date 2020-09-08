@@ -44,6 +44,8 @@ void TestHeuristic::setup_exploration_queue() {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
             op.cost = 1;
             op.rhsq = 1;
+            //Proposition *prop = get_proposition(op.effect);
+            //std::cout << prop->add_effects.empty() << endl;
             // THIS ISNT PART OF THE PSEUDOCODE
             op.priority = 1;
             ++num_in_queue;
@@ -157,17 +159,18 @@ bool TestHeuristic::prop_is_part_of_s(PropID prop) {
     return current_state[prop];
 }
 
-OpID TestHeuristic::getMinOperator(Proposition *prop) {
+int TestHeuristic::get_min_operator_cost(Proposition *prop) {
     if(prop->add_effects.empty()) {
-        return 0;
+        return MAX_COST_VALUE;
     }
+
     OpID min = prop->add_effects.front();
     for(OpID a : prop->add_effects) {
         if(get_operator(a)->cost < get_operator(min)->cost) {
             min = a;
         }
     }
-    return min;
+    return get_operator(min)->cost;
 }
 
 int TestHeuristic::make_inf(int a) {
@@ -185,7 +188,7 @@ void TestHeuristic::solve_equations() {
             UnaryOperator *op = get_operator(index);
             if(op->rhsq < op->cost) {
                 op->priority = -1;
-                --num_in_queue;
+                num_in_queue--;
                 op->cost = op->rhsq;
                 PropID add = op->effect;
                 if(!prop_is_part_of_s(add)) {
@@ -202,8 +205,7 @@ void TestHeuristic::solve_equations() {
                 if(!prop_is_part_of_s(add)) {
                     Proposition *prop = get_proposition(add);
                     if(prop->rhsq == (1 + x_old)) {
-                        OpID min_op = getMinOperator(prop);
-                        prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
+                        prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
                         adjust_proposition(prop);
                     }
                 }
@@ -215,7 +217,7 @@ void TestHeuristic::solve_equations() {
             if (prop->rhsq < prop->cost) {
                 // delete q from the priority queue
                 prop->priority = -1;
-                --num_in_queue;
+                num_in_queue--;
                 // set xold := xq
                 int old_cost = prop->cost;
                 // set xq := rhsq
@@ -242,8 +244,7 @@ void TestHeuristic::solve_equations() {
                 // if q /∈ s then
                 if (!prop_is_part_of_s(index)) {
                     // set rhsq = 1 + mino∈O|q∈Add(o) xo
-                    OpID min_op = getMinOperator(prop);
-                    prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
+                    prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
                     // AdjustVariable(q)
                     adjust_proposition(prop);
                 }
@@ -534,8 +535,7 @@ void TestHeuristic::handle_last_state(const State &state) {
         if (state[i].get_value() != last_state[i].get_value()) {
             PropID prop_id = get_prop_id(last_state[i]);
             Proposition *prop = get_proposition(prop_id);
-            OpID min_op = getMinOperator(prop);
-            prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
+            prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
             adjust_proposition(prop);
         }
     }

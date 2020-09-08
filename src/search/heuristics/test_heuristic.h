@@ -50,7 +50,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     void setup_exploration_queue();
     void adjust_proposition(Proposition *prop);
     void adjust_operator(UnaryOperator *un_op);
-    OpID getMinOperator(Proposition *prop);
+    int get_min_operator_cost(Proposition *prop);
     int get_pre_condition_sum(OpID id);
     void solve_equations();
     void handle_current_state(const State &state);
