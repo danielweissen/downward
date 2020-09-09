@@ -59,6 +59,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     int get_min();
     bool prop_is_part_of_s(PropID prop);
     int make_inf(int a);
+    int make_op(OpID op);
     int compute_total_cost();
     int compute_heuristic(const State &state);
 protected:
