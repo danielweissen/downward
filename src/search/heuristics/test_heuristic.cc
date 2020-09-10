@@ -10,6 +10,7 @@
 
 #include <cassert>
 #include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -81,9 +82,6 @@ void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
 }
 
 int TestHeuristic::get_pre_condition_sum(OpID id) {
-    if(get_preconditions_vector(id).empty()) {
-        return 0;
-    }
     int sum = 0;
     for(PropID prop : get_preconditions(id)) {
         if(sum >= MAX_COST_VALUE) {
@@ -122,11 +120,10 @@ int TestHeuristic::make_inf(int a) {
 }
 
 void TestHeuristic::solve_equations() {
-    // while the priority queue is not empty do
-    while(!queue.empty()) {
-        // assign the element with the smallest priority in the priority queue to q
-        int queue_val = queue.top().first;
-        int index = queue.top().second;
+    while(num_in_queue > 0) {
+        std::pair<int,int> top = queue.top();
+        int queue_val = top.first;
+        int index = top.second;
         if (index < 0) {
             index = make_op(index);
             UnaryOperator *op = get_operator(index);
@@ -136,16 +133,19 @@ void TestHeuristic::solve_equations() {
                     op->val_in_queue = -1;
                     num_in_queue--;
                     op->cost = op->rhsq;
+                    //number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
                         prop->rhsq = make_inf(std::min(prop->rhsq,(1+op->cost)));
                         adjust_proposition(prop);
                     }
+                    continue;
                 } else {
-                    num_of_under_consitent_q++;
+                    //num_of_under_consitent_q++;
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
+                    //number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
                     op->rhsq = make_inf(1 + get_pre_condition_sum(index));
                     adjust_operator(op);
                     PropID add = op->effect;
@@ -156,61 +156,48 @@ void TestHeuristic::solve_equations() {
                             adjust_proposition(prop);
                         }
                     }
+                    continue;
                 }
             } else {
                 queue.pop();
                 continue;
             }
-        } else {
-            //if q ∈ P then 
+        } else { 
             Proposition *prop = get_proposition(index);
             if(prop->val_in_queue == queue_val) {
-                // if rhsq < xq then
                 if (prop->rhsq < prop->cost) {
-                    // delete q from the priority queue
                     queue.pop();
                     prop->val_in_queue = -1;
                     num_in_queue--;
-                    // set xold := xq
                     int old_cost = prop->cost;
-                    // set xq := rhsq
                     prop->cost = prop->rhsq;
-                    // for each o ∈ O such that q ∈ Prec(o) do
+                    //number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
                     for (OpID op_id : precondition_of_pool.get_slice(
                         prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator* op = get_operator(op_id);
-                        // if rhso = ∞ then
                         if (op->rhsq >= MAX_COST_VALUE) {
-                            // set rhso := 1 + SUM p∈Prec(o) xp
                             op->rhsq = make_inf(1 + get_pre_condition_sum(op_id));
                         } else {
-                            // else set rhso := rhso − xold + xq
                             op->rhsq = make_inf(op->rhsq - old_cost + prop->cost);
                         }
-                        // AdjustVariable(o)
                         adjust_operator(op);
                     }
-
+                    continue;
                 } else {
-                    num_of_under_consitent_q++;
-                    // set xq := ∞
+                    //num_of_under_consitent_q++;
                     prop->cost = MAX_COST_VALUE;
-                    // if q /∈ s then
+                    //number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
                     if (!prop_is_part_of_s(index)) {
-                        // set rhsq = 1 + mino∈O|q∈Add(o) xo
                         prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
-                        // AdjustVariable(q)
                         adjust_proposition(prop);
                     }
-                    // for each o ∈ O such that q ∈ Prec(o) do
                     for (OpID op_id : precondition_of_pool.get_slice(
                         prop->precondition_of, prop->num_precondition_occurences)) {
-                        // set rhso := ∞
                         UnaryOperator* op = get_operator(op_id);
                         op->rhsq = MAX_COST_VALUE;
-                        // AdjustVariable(o)
                         adjust_operator(op);
                     }
+                    continue;
                 }
             } else {
                 queue.pop();
@@ -222,21 +209,18 @@ void TestHeuristic::solve_equations() {
 
 int TestHeuristic::compute_heuristic(const State &state) {
     if(first_time) {
-        //empty the priority queue
-        num_of_different_state_variables = 0;
-        num_of_under_consitent_q = 0;
-        num_of_true_state_variable = task_proxy.get_variables().size();
+        //num_of_different_state_variables = 0;
+        //num_of_under_consitent_q = 0;
+        //num_of_true_state_variable = task_proxy.get_variables().size();
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
+        //number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
+        //number_of_op_cost_adjustments = vector<int>(unary_operators.size(), 0);
         queue.clear();
-        //for each q ∈ P ∪ O do set rhsq := xq := ∞
-        //for each o ∈ O with P rec(o) = ∅ do set rhso := xo := 1
         setup_exploration_queue();
         assert(state == task_proxy.get_initial_state());
-        // set s to the state whose heuristic value needs to get computed
-        //for each p ∈ s do rhsp := 0 AdjustVariable(p)
         for(FactProxy fact : state) { 
-            num_of_different_state_variables++;
+            //num_of_different_state_variables++;
             PropID prop_id = get_prop_id(fact);
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
@@ -245,45 +229,87 @@ int TestHeuristic::compute_heuristic(const State &state) {
         }
         first_time = false;
     } else {
-        // set s to the state whose heuristic value needs to get computed next
-        num_of_different_state_variables = 0;
-        num_of_under_consitent_q = 0;
+        //num_of_different_state_variables = 0;
+        //num_of_under_consitent_q = 0;
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
+        //number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
+        //number_of_op_cost_adjustments = vector<int>(unary_operators.size(), 0);
         queue.clear();
-        //for(FactProxy fact : state) {
-        //    PropID prop_id = get_prop_id(fact);
-        //    current_state[prop_id] = true;
-        //}
-        // for each p ∈ s \ s' do rhsp := 0 AdjustVariable(p)
         handle_current_state(state);
-        // for each p ∈ s 0 \ s do rhsp := 1 + mino∈O|p∈Add(o) xo AdjustVariable(p)
         handle_last_state(state);
     }
-    // forever do
     solve_equations();
-    // use hadd(s) = 1/2 sum goal cost
+
     int total_cost = compute_total_cost();
-    // set s' := s
+
     last_state = State(state);
 
 
 
+    // NEVER USE THIS WHEN TESTING SPEED
+    //calc_means();
 
+
+    return (total_cost);
+}
+
+void TestHeuristic::calc_means() {
     number_of_under_consistent_q.push_back(num_of_under_consitent_q);
     number_of_state_variables_not_in_common.push_back(num_of_different_state_variables);
-    
-
+    update_adjustment_means();
 
     cout << get_state_variables_not_in_common_mean() << endl;
     cout << get_under_consisten_variables_mean() << endl;
     cout << endl;
 
+    cout << endl;
+    cout << get_current_adjustment_mean(0) << endl;
+    cout << get_current_adjustment_mean(1) << endl;
+    cout << get_current_adjustment_mean(2) << endl;
+    cout << endl;
+}
 
+std::tuple<int,int,int> TestHeuristic::get_num_adjustments() {
+    int counter0 = 0;
+    int counter1 = 0;
+    int counter2 = 0;
+    for(int i : number_of_prop_cost_adjustments) {
+        if(i==0) {
+            counter0++;
+        } else if(i==1) {
+            counter1++;
+        } else if(i==2) {
+            counter2++;
+        }
+    }
+    for(int i : number_of_op_cost_adjustments) {
+        if(i==0) {
+            counter0++;
+        } else if(i==1) {
+            counter1++;
+        } else if(i==2) {
+            counter2++;
+        }
+    }
+    return std::make_tuple(counter0,counter1,counter2);
+}
 
+void TestHeuristic::update_adjustment_means() {
+    std::tuple<int,int,int> val = get_num_adjustments();
+    adjustment_0.push_back(std::get<0>(val));
+    adjustment_1.push_back(std::get<1>(val));
+    adjustment_2.push_back(std::get<2>(val));
+}
 
-
-    return (total_cost);
+double TestHeuristic::get_current_adjustment_mean(int which) {
+    if(which == 0) {
+        return ((std::accumulate(std::begin(adjustment_0), std::end(adjustment_0), 0.0) / adjustment_0.size()) / (propositions.size() + unary_operators.size()));
+    } else if(which == 1) {
+         return ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()) / (propositions.size() + unary_operators.size()));
+    } else {
+         return ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()) / (propositions.size() + unary_operators.size()));
+    }
 }
 
 // number of state variables that change from one state to another in relation to total number of state variables
@@ -378,7 +404,7 @@ void TestHeuristic::handle_current_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         PropID prop_id = get_prop_id(state[i]);
         if (state[i].get_value() != last_state[i].get_value()) {
-            num_of_different_state_variables++;
+            //num_of_different_state_variables++;
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
             prop->rhsq = 0;
