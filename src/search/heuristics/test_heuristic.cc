@@ -81,6 +81,9 @@ void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
 }
 
 int TestHeuristic::get_pre_condition_sum(OpID id) {
+    if(get_preconditions_vector(id).empty()) {
+        return 0;
+    }
     int sum = 0;
     for(PropID prop : get_preconditions(id)) {
         if(sum >= MAX_COST_VALUE) {
@@ -120,7 +123,7 @@ int TestHeuristic::make_inf(int a) {
 
 void TestHeuristic::solve_equations() {
     // while the priority queue is not empty do
-    while(num_in_queue > 0) {
+    while(!queue.empty()) {
         // assign the element with the smallest priority in the priority queue to q
         int queue_val = queue.top().first;
         int index = queue.top().second;
@@ -140,6 +143,7 @@ void TestHeuristic::solve_equations() {
                         adjust_proposition(prop);
                     }
                 } else {
+                    num_of_under_consitent_q++;
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
                     op->rhsq = make_inf(1 + get_pre_condition_sum(index));
@@ -188,6 +192,7 @@ void TestHeuristic::solve_equations() {
                     }
 
                 } else {
+                    num_of_under_consitent_q++;
                     // set xq := ∞
                     prop->cost = MAX_COST_VALUE;
                     // if q /∈ s then
@@ -218,6 +223,9 @@ void TestHeuristic::solve_equations() {
 int TestHeuristic::compute_heuristic(const State &state) {
     if(first_time) {
         //empty the priority queue
+        num_of_different_state_variables = 0;
+        num_of_under_consitent_q = 0;
+        num_of_true_state_variable = task_proxy.get_variables().size();
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
         queue.clear();
@@ -228,6 +236,7 @@ int TestHeuristic::compute_heuristic(const State &state) {
         // set s to the state whose heuristic value needs to get computed
         //for each p ∈ s do rhsp := 0 AdjustVariable(p)
         for(FactProxy fact : state) { 
+            num_of_different_state_variables++;
             PropID prop_id = get_prop_id(fact);
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
@@ -237,12 +246,14 @@ int TestHeuristic::compute_heuristic(const State &state) {
         first_time = false;
     } else {
         // set s to the state whose heuristic value needs to get computed next
+        num_of_different_state_variables = 0;
+        num_of_under_consitent_q = 0;
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
         queue.clear();
         //for(FactProxy fact : state) {
         //    PropID prop_id = get_prop_id(fact);
-           // current_state[prop_id] = true;
+        //    current_state[prop_id] = true;
         //}
         // for each p ∈ s \ s' do rhsp := 0 AdjustVariable(p)
         handle_current_state(state);
@@ -255,7 +266,34 @@ int TestHeuristic::compute_heuristic(const State &state) {
     int total_cost = compute_total_cost();
     // set s' := s
     last_state = State(state);
+
+
+
+
+    number_of_under_consistent_q.push_back(num_of_under_consitent_q);
+    number_of_state_variables_not_in_common.push_back(num_of_different_state_variables);
+    
+
+
+    cout << get_state_variables_not_in_common_mean() << endl;
+    cout << get_under_consisten_variables_mean() << endl;
+    cout << endl;
+
+
+
+
+
     return (total_cost);
+}
+
+// number of state variables that change from one state to another in relation to total number of state variables
+double TestHeuristic::get_state_variables_not_in_common_mean() {
+    return ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
+}
+
+// number of q that are under consisten relation to total amount of q
+double TestHeuristic::get_under_consisten_variables_mean() {
+    return ((std::accumulate(std::begin(number_of_under_consistent_q), std::end(number_of_under_consistent_q), 0.0) / number_of_under_consistent_q.size()) / (propositions.size() + unary_operators.size()));
 }
 
 /**int TestHeuristic::compute_heuristic(const State &state) {
@@ -340,6 +378,7 @@ void TestHeuristic::handle_current_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         PropID prop_id = get_prop_id(state[i]);
         if (state[i].get_value() != last_state[i].get_value()) {
+            num_of_different_state_variables++;
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
             prop->rhsq = 0;
@@ -363,7 +402,7 @@ void TestHeuristic::handle_last_state(const State &state) {
 }
 
 static shared_ptr<Heuristic> _parse(OptionParser &parser) {
-    parser.document_synopsis("Additive heuristic", "");
+    parser.document_synopsis("PINCH Additive heuristic", "");
     parser.document_language_support("action costs", "supported");
     parser.document_language_support("conditional effects", "supported");
     parser.document_language_support(

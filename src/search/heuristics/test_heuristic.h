@@ -41,6 +41,14 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     static const int MAX_COST_VALUE = 100000000;
     std::vector<bool> current_state;
     State last_state;
+    int num_of_different_state_variables = 0;
+    int num_of_true_state_variable;
+    int num_of_under_consitent_q = 0;
+    double mean_of_state_variables_not_in_common = 0;
+    double mean_of_under_consistent_variables = 0;
+    std::vector<int> number_of_state_variables_not_in_common;
+    std::vector<int> number_of_under_consistent_q;
+    
 
     priority_queues::BucketQueue<int> queue;
     int num_in_queue;
@@ -60,6 +68,8 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     int make_op(OpID op);
     int compute_total_cost();
     int compute_heuristic(const State &state);
+    double get_state_variables_not_in_common_mean();
+    double get_under_consisten_variables_mean();
 protected:
     virtual int compute_heuristic(const GlobalState &global_state) override;
 public:
