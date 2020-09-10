@@ -42,7 +42,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     std::vector<bool> current_state;
     State last_state;
 
-    priority_queues::HeapQueue<int> queue;
+    priority_queues::BucketQueue<int> queue;
     int num_in_queue;
 
     bool first_time = true;
@@ -55,8 +55,6 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     void solve_equations();
     void handle_current_state(const State &state);
     void handle_last_state(const State &state);
-    // std::pair<int,int> get_min();
-    int get_min();
     bool prop_is_part_of_s(PropID prop);
     int make_inf(int a);
     int make_op(OpID op);

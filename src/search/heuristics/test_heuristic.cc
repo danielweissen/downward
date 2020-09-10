@@ -59,7 +59,7 @@ void TestHeuristic::adjust_proposition(Proposition *prop) {
         }
         int min = std::min(prop->cost, prop->rhsq);
         prop->val_in_queue = min;
-        queue.push(min,get_prop_id(*prop));
+        queue.push(min, get_prop_id(*prop));
     } else if(prop->val_in_queue != -1) {
         prop->val_in_queue = -1;
         --num_in_queue;
@@ -73,7 +73,7 @@ void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
         }
         int min = std::min(un_op->cost, un_op->rhsq);
         un_op->val_in_queue = min;
-        queue.push(min,make_op(get_op_id(*un_op)));
+        queue.push(min, make_op(get_op_id(*un_op)));
     } else if(un_op->val_in_queue != -1) {
         un_op->val_in_queue = -1;
         --num_in_queue;

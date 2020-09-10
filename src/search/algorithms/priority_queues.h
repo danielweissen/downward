@@ -220,7 +220,7 @@ public:
         return std::make_pair(current_bucket_no, top_element);
     }
 
-    Entry top() {
+    virtual Entry top() {
         assert(num_entries > 0);
         update_current_bucket_no();
         Bucket &current_bucket = buckets[current_bucket_no];
