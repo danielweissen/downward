@@ -41,6 +41,7 @@ public:
     virtual ~EagerSearch() = default;
 
     virtual void print_statistics() const override;
+    void print_test_statistics() const;
 
     void dump_search_space() const;
 };

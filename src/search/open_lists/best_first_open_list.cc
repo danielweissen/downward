@@ -33,6 +33,7 @@ public:
     virtual ~BestFirstOpenList() override = default;
 
     virtual Entry remove_min() override;
+    virtual Evaluator* get_evaluators() override;
     virtual bool empty() const override;
     virtual void clear() override;
     virtual void get_path_dependent_evaluators(set<Evaluator *> &evals) override;
@@ -41,6 +42,11 @@ public:
     virtual bool is_reliable_dead_end(
         EvaluationContext &eval_context) const override;
 };
+
+template<class Entry>
+Evaluator* BestFirstOpenList<Entry>::get_evaluators() {
+    return nullptr;
+}
 
 
 template<class Entry>

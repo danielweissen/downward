@@ -1,4 +1,4 @@
-#include "test_heuristic.h"
+#include "pinch_tracking_heuristic.h"
 
 #include "../global_state.h"
 #include "../option_parser.h"
@@ -14,20 +14,20 @@
 
 using namespace std;
 
-namespace test_heuristic { 
+namespace pinch_tracking_heuristic { 
 
 
 
-const int TestHeuristic::MAX_COST_VALUE;
+const int PinchTrackingHeuristic::MAX_COST_VALUE;
 
 // construction and destruction
-TestHeuristic::TestHeuristic(const Options &opts)
+PinchTrackingHeuristic::PinchTrackingHeuristic(const Options &opts)
     : RelaxationHeuristic(opts),
       last_state(task_proxy.get_initial_state()) {
-    utils::g_log << "Initializing test heuristic..." << endl;
+    utils::g_log << "Initializing pinch tracking heuristic..." << endl;
 }
 
-void TestHeuristic::setup_exploration_queue() {
+void PinchTrackingHeuristic::setup_exploration_queue() {
     // for each q ∈ P ∪ O do set rhsq := xq := ∞
     for(Proposition &prop : propositions) {
         prop.cost = MAX_COST_VALUE;
@@ -53,7 +53,7 @@ void TestHeuristic::setup_exploration_queue() {
     }    
 }
 
-void TestHeuristic::adjust_proposition(Proposition *prop) {
+void PinchTrackingHeuristic::adjust_proposition(Proposition *prop) {
     if(prop->cost != prop->rhsq) {
         if(prop->val_in_queue == -1) {
             ++num_in_queue;
@@ -67,7 +67,7 @@ void TestHeuristic::adjust_proposition(Proposition *prop) {
     }
 }
 
-void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
+void PinchTrackingHeuristic::adjust_operator(UnaryOperator  *un_op) {
     if(un_op->cost != un_op->rhsq) {
         if(un_op->val_in_queue == -1) {
             ++num_in_queue;
@@ -81,7 +81,7 @@ void TestHeuristic::adjust_operator(UnaryOperator  *un_op) {
     }
 }
 
-int TestHeuristic::get_pre_condition_sum(OpID id) {
+int PinchTrackingHeuristic::get_pre_condition_sum(OpID id) {
     int sum = 0;
     for(PropID prop : get_preconditions(id)) {
         if(sum >= MAX_COST_VALUE) {
@@ -92,16 +92,16 @@ int TestHeuristic::get_pre_condition_sum(OpID id) {
     return sum;
 }
 
-bool TestHeuristic::prop_is_part_of_s(PropID prop) {
+bool PinchTrackingHeuristic::prop_is_part_of_s(PropID prop) {
     return current_state[prop];
 }
  
-int TestHeuristic::make_op(OpID op) {
+int PinchTrackingHeuristic::make_op(OpID op) {
     op++;
     return -op;
 }
 
-int TestHeuristic::get_min_operator_cost(Proposition *prop) {
+int PinchTrackingHeuristic::get_min_operator_cost(Proposition *prop) {
     if(prop->add_effects.empty()) {
         return MAX_COST_VALUE;
     }
@@ -115,11 +115,11 @@ int TestHeuristic::get_min_operator_cost(Proposition *prop) {
     return get_operator(min)->cost;
 }
 
-int TestHeuristic::make_inf(int a) {
+int PinchTrackingHeuristic::make_inf(int a) {
     return std::min(a, MAX_COST_VALUE);
 }
 
-void TestHeuristic::solve_equations() {
+void PinchTrackingHeuristic::solve_equations() {
     while(num_in_queue > 0) {
         std::pair<int,int> top = queue.top();
         int queue_val = top.first;
@@ -129,11 +129,12 @@ void TestHeuristic::solve_equations() {
             UnaryOperator *op = get_operator(index);
             if(op->val_in_queue == queue_val) {
                 if(op->rhsq < op->cost) {
+                    num_of_over_consistent_q++;
                     queue.pop();
                     op->val_in_queue = -1;
                     num_in_queue--;
                     op->cost = op->rhsq;
-                    //number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
+                    number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
@@ -142,10 +143,10 @@ void TestHeuristic::solve_equations() {
                     }
                     continue;
                 } else {
-                    //num_of_under_consitent_q++;
+                    num_of_under_consitent_q++;
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
-                    //number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
+                    number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
                     op->rhsq = make_inf(1 + get_pre_condition_sum(index));
                     adjust_operator(op);
                     PropID add = op->effect;
@@ -166,12 +167,13 @@ void TestHeuristic::solve_equations() {
             Proposition *prop = get_proposition(index);
             if(prop->val_in_queue == queue_val) {
                 if (prop->rhsq < prop->cost) {
+                    num_of_over_consistent_q++;
                     queue.pop();
                     prop->val_in_queue = -1;
                     num_in_queue--;
                     int old_cost = prop->cost;
                     prop->cost = prop->rhsq;
-                    //number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
+                    number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
                     for (OpID op_id : precondition_of_pool.get_slice(
                         prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator* op = get_operator(op_id);
@@ -184,9 +186,9 @@ void TestHeuristic::solve_equations() {
                     }
                     continue;
                 } else {
-                    //num_of_under_consitent_q++;
+                    num_of_under_consitent_q++;
                     prop->cost = MAX_COST_VALUE;
-                    //number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
+                    number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
                     if (!prop_is_part_of_s(index)) {
                         prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
                         adjust_proposition(prop);
@@ -207,20 +209,25 @@ void TestHeuristic::solve_equations() {
     }
 }
 
-int TestHeuristic::compute_heuristic(const State &state) {
+int PinchTrackingHeuristic::compute_heuristic(const State &state) {
+
+    num_of_different_state_variables = 0;
+    num_of_under_consitent_q = 0;
+    num_of_over_consistent_q = 0;
+    num_in_queue = 0;
+    current_state = vector<bool>(propositions.size(), false);
+    number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
+    number_of_op_cost_adjustments = vector<int>(unary_operators.size(), 0);
+
     if(first_time) {
-        //num_of_different_state_variables = 0;
-        //num_of_under_consitent_q = 0;
-        //num_of_true_state_variable = task_proxy.get_variables().size();
+        num_of_true_state_variable = task_proxy.get_variables().size();
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
-        //number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
-        //number_of_op_cost_adjustments = vector<int>(unary_operators.size(), 0);
         queue.clear();
         setup_exploration_queue();
         assert(state == task_proxy.get_initial_state());
         for(FactProxy fact : state) { 
-            //num_of_different_state_variables++;
+            num_of_different_state_variables++;
             PropID prop_id = get_prop_id(fact);
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
@@ -229,48 +236,30 @@ int TestHeuristic::compute_heuristic(const State &state) {
         }
         first_time = false;
     } else {
-        //num_of_different_state_variables = 0;
-        //num_of_under_consitent_q = 0;
-        num_in_queue = 0;
-        current_state = vector<bool>(propositions.size(), false);
-        //number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
-        //number_of_op_cost_adjustments = vector<int>(unary_operators.size(), 0);
         queue.clear();
         handle_current_state(state);
         handle_last_state(state);
     }
+
     solve_equations();
 
     int total_cost = compute_total_cost();
 
     last_state = State(state);
 
-
-
-    // NEVER USE THIS WHEN TESTING SPEED
-    //calc_means();
-
+    calc_means();
 
     return (total_cost);
 }
 
-void TestHeuristic::calc_means() {
+void PinchTrackingHeuristic::calc_means() {
     number_of_under_consistent_q.push_back(num_of_under_consitent_q);
+    number_of_over_consistent_q.push_back(num_of_over_consistent_q);
     number_of_state_variables_not_in_common.push_back(num_of_different_state_variables);
     update_adjustment_means();
-
-    cout << get_state_variables_not_in_common_mean() << endl;
-    cout << get_under_consisten_variables_mean() << endl;
-    cout << endl;
-
-    cout << endl;
-    cout << get_current_adjustment_mean(0) << endl;
-    cout << get_current_adjustment_mean(1) << endl;
-    cout << get_current_adjustment_mean(2) << endl;
-    cout << endl;
 }
 
-std::tuple<int,int,int> TestHeuristic::get_num_adjustments() {
+std::tuple<int,int,int> PinchTrackingHeuristic::get_num_adjustments() {
     int counter0 = 0;
     int counter1 = 0;
     int counter2 = 0;
@@ -295,99 +284,59 @@ std::tuple<int,int,int> TestHeuristic::get_num_adjustments() {
     return std::make_tuple(counter0,counter1,counter2);
 }
 
-void TestHeuristic::update_adjustment_means() {
+void PinchTrackingHeuristic::update_adjustment_means() {
     std::tuple<int,int,int> val = get_num_adjustments();
     adjustment_0.push_back(std::get<0>(val));
     adjustment_1.push_back(std::get<1>(val));
     adjustment_2.push_back(std::get<2>(val));
 }
 
-double TestHeuristic::get_current_adjustment_mean(int which) {
+double PinchTrackingHeuristic::get_state_variables_not_in_common_variance() {
+    double var = 0;
+    for(int n = 0; n < (int)number_of_state_variables_not_in_common.size(); n++ )    {
+        var += (number_of_state_variables_not_in_common[n] - number_of_state_variables_not_in_common_mean) * (number_of_state_variables_not_in_common[n] - number_of_state_variables_not_in_common_mean);
+    }
+    var /= number_of_state_variables_not_in_common.size();
+    number_of_state_variables_not_in_common_variance = var;
+    return var;
+    //sd = sqrt(var);
+}
+
+double PinchTrackingHeuristic::get_current_adjustment_mean(int which) {
     if(which == 0) {
-        return ((std::accumulate(std::begin(adjustment_0), std::end(adjustment_0), 0.0) / adjustment_0.size()) / (propositions.size() + unary_operators.size()));
+        adjustment_0_mean = ((std::accumulate(std::begin(adjustment_0), std::end(adjustment_0), 0.0) / adjustment_0.size()) / (propositions.size() + unary_operators.size()));
+        return adjustment_0_mean;
     } else if(which == 1) {
-         return ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()) / (propositions.size() + unary_operators.size()));
+        adjustment_1_mean = ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()) / (propositions.size() + unary_operators.size()));
+        return adjustment_1_mean;
     } else {
-         return ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()) / (propositions.size() + unary_operators.size()));
+        adjustment_2_mean = ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()) / (propositions.size() + unary_operators.size()));
+        return adjustment_2_mean;
     }
 }
 
 // number of state variables that change from one state to another in relation to total number of state variables
-double TestHeuristic::get_state_variables_not_in_common_mean() {
-    return ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
+double PinchTrackingHeuristic::get_state_variables_not_in_common_mean() {
+    number_of_state_variables_not_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
+    return number_of_state_variables_not_in_common_mean;
 }
 
 // number of q that are under consisten relation to total amount of q
-double TestHeuristic::get_under_consisten_variables_mean() {
-    return ((std::accumulate(std::begin(number_of_under_consistent_q), std::end(number_of_under_consistent_q), 0.0) / number_of_under_consistent_q.size()) / (propositions.size() + unary_operators.size()));
+double PinchTrackingHeuristic::get_under_consisten_variables_mean() {
+    number_of_under_consistent_q_mean = ((std::accumulate(std::begin(number_of_under_consistent_q), std::end(number_of_under_consistent_q), 0.0) / number_of_under_consistent_q.size()) / (propositions.size() + unary_operators.size()));
+    return number_of_under_consistent_q_mean;
 }
 
-/**int TestHeuristic::compute_heuristic(const State &state) {
-    if(first_time) {
-        setup_exploration_queue();
-        new_state.clear();
-        for(FactProxy fact : state) {
-            PropID init_prop = get_prop_id(fact);
-            Proposition *prop = get_proposition(init_prop);
-            new_state.push_back(init_prop);
-            prop->rhsq = 0;
-            adjust_variable(init_prop);
-        }
-        first_time = false;
-    } else {
-        //queue.clear();
-
-        new_state.clear();
-        for (FactProxy fact : state) {
-            new_state.push_back(get_prop_id(fact));
-        }
-
-        vector<int> p_in_s;
-        vector<int> p_in_s_strich;
-        
-        p_in_s = manage_state_comparison(new_state,old_state,1);
-        p_in_s_strich = manage_state_comparison(new_state,old_state,0);
-
-        for(int i : p_in_s) {
-            Proposition *prop = get_proposition(i);
-            prop->rhsq = 0;
-            adjust_variable(i);
-        }
-
-        for(int i : p_in_s_strich) {
-            Proposition *prop = get_proposition(i);
-            OpID min_op = getMinOperator(prop);
-            prop->rhsq = make_inf(1 + get_operator(min_op)->cost);
-            adjust_variable(i);
-        }
-    }
-
-    solve_equations();
-
-    int total_cost = 0;
-    for (PropID goal_id : goal_propositions) {
-        const Proposition *goal = get_proposition(goal_id);
-        int goal_cost = goal->cost;
-        if (goal_cost >= MAX_COST_VALUE)
-            return DEAD_END;
-        total_cost+=goal_cost;
-    }
-
-    old_state.clear();
-    for(int v : new_state) {
-        old_state.push_back(v);
-    }
-
-    return (total_cost/2);
+double PinchTrackingHeuristic::get_over_consisten_variables_mean() {
+    number_of_over_consistent_q_mean = ((std::accumulate(std::begin(number_of_over_consistent_q), std::end(number_of_over_consistent_q), 0.0) / number_of_over_consistent_q.size()) / (propositions.size() + unary_operators.size()));
+    return number_of_over_consistent_q_mean;
 }
- */
 
-
-int TestHeuristic::compute_heuristic(const GlobalState &global_state) {
+int PinchTrackingHeuristic::compute_heuristic(const GlobalState &global_state) {
     return compute_heuristic(convert_global_state(global_state));
 }
 
-int TestHeuristic::compute_total_cost() {
+int PinchTrackingHeuristic::compute_total_cost() {
     int total_cost = 0;
     for (PropID goal_id : goal_propositions) {
         const Proposition *goal = get_proposition(goal_id);
@@ -400,11 +349,11 @@ int TestHeuristic::compute_total_cost() {
  }
 
  // for each p ∈ s \ s' do rhsp := 0 AdjustVariable(p)
-void TestHeuristic::handle_current_state(const State &state) {
+void PinchTrackingHeuristic::handle_current_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         PropID prop_id = get_prop_id(state[i]);
         if (state[i].get_value() != last_state[i].get_value()) {
-            //num_of_different_state_variables++;
+            num_of_different_state_variables++;
             current_state[prop_id] = true;
             Proposition *prop = get_proposition(prop_id);
             prop->rhsq = 0;
@@ -416,7 +365,7 @@ void TestHeuristic::handle_current_state(const State &state) {
 }
 
 // for each p ∈ s' \ s do rhsp := 1 + mino∈O|p∈Add(o) xo AdjustVariable(p)
-void TestHeuristic::handle_last_state(const State &state) {
+void PinchTrackingHeuristic::handle_last_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         if (state[i].get_value() != last_state[i].get_value()) {
             PropID prop_id = get_prop_id(last_state[i]);
@@ -428,7 +377,7 @@ void TestHeuristic::handle_last_state(const State &state) {
 }
 
 static shared_ptr<Heuristic> _parse(OptionParser &parser) {
-    parser.document_synopsis("PINCH Additive heuristic", "");
+    parser.document_synopsis("PINCH tracking heuristic", "");
     parser.document_language_support("action costs", "supported");
     parser.document_language_support("conditional effects", "supported");
     parser.document_language_support(
@@ -446,10 +395,10 @@ static shared_ptr<Heuristic> _parse(OptionParser &parser) {
     if (parser.dry_run())
         return nullptr;
     else
-        return make_shared<TestHeuristic>(opts);
+        return make_shared<PinchTrackingHeuristic>(opts);
 }
 
-static Plugin<Evaluator> _plugin("test", _parse);
+static Plugin<Evaluator> _plugin("pinch_tracking", _parse);
 
 
 }

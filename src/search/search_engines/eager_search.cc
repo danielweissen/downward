@@ -17,7 +17,7 @@
 #include <optional.hh>
 #include <set>
 
-#include "../heuristics/test_heuristic.h"
+#include "../heuristics/pinch_tracking_heuristic.h"
 
 using namespace std;
 
@@ -46,7 +46,6 @@ void EagerSearch::initialize() {
 
     set<Evaluator *> evals;
     open_list->get_path_dependent_evaluators(evals);
-
     /*
       Collect path-dependent evaluators that are used for preferred operators
       (in case they are not also used in the open list).
@@ -78,7 +77,6 @@ void EagerSearch::initialize() {
     for (Evaluator *evaluator : path_dependent_evaluators) {
         evaluator->notify_initial_state(initial_state);
     }
-
     /*
       Note: we consider the initial state as reached by a preferred
       operator.
@@ -108,6 +106,28 @@ void EagerSearch::print_statistics() const {
     statistics.print_detailed_statistics();
     search_space.print_statistics();
     pruning_method->print_statistics();
+    print_test_statistics();
+}
+
+void EagerSearch::print_test_statistics() const {
+    if(open_list->get_evaluators()) {
+        pinch_tracking_heuristic::PinchTrackingHeuristic * a = (pinch_tracking_heuristic::PinchTrackingHeuristic*)open_list->get_evaluators();
+        utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " << a->get_current_adjustment_mean(0) << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << a->get_current_adjustment_mean(1) << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << a->get_current_adjustment_mean(2) << endl;
+        utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << a->get_over_consisten_variables_mean() << endl;
+        utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << a->get_under_consisten_variables_mean() << endl;
+        utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
+        utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
+    } else {
+        utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " "-1" << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << "-1" << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << "-1" << endl;
+        utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
+        utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
+        utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+        utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+    }
 }
 
 SearchStatus EagerSearch::step() {
@@ -233,7 +253,6 @@ SearchStatus EagerSearch::step() {
                 continue;
             }
             succ_node.open(*node, op, get_adjusted_cost(op));
-
             open_list->insert(succ_eval_context, succ_state.get_id());
             if (search_progress.check_progress(succ_eval_context)) {
                 statistics.print_checkpoint_line(succ_node.get_g());

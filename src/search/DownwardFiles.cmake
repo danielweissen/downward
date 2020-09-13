@@ -462,10 +462,17 @@ fast_downward_plugin(
 )
 
 fast_downward_plugin(
-    NAME TEST_HEURISTIC
-    HELP "The test heuristic"
+    NAME PINCH_HEURISTIC
+    HELP "The pinch heuristic"
     SOURCES
-        heuristics/test_heuristic
+        heuristics/pinch_heuristic
+    DEPENDS PRIORITY_QUEUES RELAXATION_HEURISTIC TASK_PROPERTIES
+)
+fast_downward_plugin(
+    NAME PINCH_TRACKING_HEURISTIC
+    HELP "The pinch tracking heuristic"
+    SOURCES
+        heuristics/pinch_tracking_heuristic
     DEPENDS PRIORITY_QUEUES RELAXATION_HEURISTIC TASK_PROPERTIES
 )
 

@@ -5,6 +5,7 @@
 
 #include "evaluation_context.h"
 #include "operator_id.h"
+#include "vector"
 
 class StateID;
 
@@ -45,8 +46,9 @@ public:
       do_insertion performing the bulk of the work. See comments for
       do_insertion.
     */
-    void insert(EvaluationContext &eval_context, const Entry &entry);
+    void insert(EvaluationContext &eval_context, const Entry &entry); 
 
+    virtual Evaluator* get_evaluators() = 0;
     /*
       Remove and return the entry that should be expanded next.
     */

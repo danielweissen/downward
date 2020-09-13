@@ -37,7 +37,7 @@ struct Proposition {
     int num_precondition_occurences;
     array_pool::ArrayPoolIndex precondition_of;
     //int bla;
-    std::vector<OpID> add_effects; // saves the OpID's of those operations where the proposition is part of the add effects of that operation
+    std::vector<OpID> add_effects; // saves the OpID's of those operations where the proposition is part of the add effects of that operationst
 };
 
 //static_assert(sizeof(Proposition) == 16, "Proposition has wrong size");

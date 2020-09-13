@@ -48,6 +48,7 @@ public:
     virtual ~ParetoOpenList() override = default;
 
     virtual Entry remove_min() override;
+    virtual Evaluator* get_evaluators() override;
     virtual bool empty() const override;
     virtual void clear() override;
     virtual void get_path_dependent_evaluators(set<Evaluator *> &evals) override;
@@ -58,6 +59,11 @@ public:
 
     static OpenList<Entry> *_parse(OptionParser &p);
 };
+
+template<class Entry>
+Evaluator* ParetoOpenList<Entry>::get_evaluators() {
+    return nullptr;
+}
 
 template<class Entry>
 ParetoOpenList<Entry>::ParetoOpenList(const Options &opts)

@@ -12,6 +12,7 @@
 #include <map>
 #include <utility>
 #include <vector>
+#include "../heuristics/pinch_tracking_heuristic.h"
 
 using namespace std;
 
@@ -42,6 +43,7 @@ public:
     virtual ~TieBreakingOpenList() override = default;
 
     virtual Entry remove_min() override;
+    virtual Evaluator* get_evaluators() override;
     virtual bool empty() const override;
     virtual void clear() override;
     virtual void get_path_dependent_evaluators(set<Evaluator *> &evals) override;
@@ -50,6 +52,17 @@ public:
     virtual bool is_reliable_dead_end(
         EvaluationContext &eval_context) const override;
 };
+
+template<class Entry>
+Evaluator* TieBreakingOpenList<Entry>::get_evaluators() {
+    for (const shared_ptr<Evaluator> &evaluator : evaluators) {
+        if(evaluator.get()->get_description() == "pinch_tracking") {
+            //pinch_tracking_heuristic::PinchTrackingHeuristic *a = (pinch_tracking_heuristic::PinchTrackingHeuristic*)evaluator.get();
+            return evaluator.get();
+        }
+    }
+    return nullptr;
+}
 
 
 template<class Entry>

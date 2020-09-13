@@ -30,6 +30,7 @@ public:
     virtual ~AlternationOpenList() override = default;
 
     virtual Entry remove_min() override;
+    virtual Evaluator* get_evaluators() override;
     virtual bool empty() const override;
     virtual void clear() override;
     virtual void boost_preferred() override;
@@ -40,6 +41,11 @@ public:
     virtual bool is_reliable_dead_end(
         EvaluationContext &eval_context) const override;
 };
+
+template<class Entry>
+Evaluator* AlternationOpenList<Entry>::get_evaluators() {
+    return nullptr;
+}
 
 
 template<class Entry>

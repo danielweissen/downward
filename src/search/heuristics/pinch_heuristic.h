@@ -1,5 +1,5 @@
-#ifndef HEURISTICS_TEST_HEURISTIC
-#define HEURISTICS_TEST_HEURISTIC
+#ifndef HEURISTICS_PINCH_HEURISTIC
+#define HEURISTICS_PINCH_HEURISTIC
 
 #include "relaxation_heuristic.h"
 
@@ -12,7 +12,7 @@
 
 class State;
 
-namespace test_heuristic {
+namespace pinch_heuristic {
 
 struct xq;
 
@@ -28,7 +28,7 @@ using relaxation_heuristic::UnaryOperator;
 
 
 
-class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
+class PinchHeuristic : public relaxation_heuristic::RelaxationHeuristic {
 
 
     /* Costs larger than MAX_COST_VALUE are clamped to max_value. The
@@ -40,20 +40,7 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
      */
     static const int MAX_COST_VALUE = 100000000;
     std::vector<bool> current_state;
-    State last_state;
-    int num_of_different_state_variables = 0;
-    int num_of_true_state_variable;
-    int num_of_under_consitent_q = 0;
-    double mean_of_state_variables_not_in_common = 0;
-    double mean_of_under_consistent_variables = 0;
-    std::vector<int> number_of_state_variables_not_in_common;
-    std::vector<int> number_of_under_consistent_q;
-    std::vector<int> number_of_prop_cost_adjustments;
-    std::vector<int> number_of_op_cost_adjustments;
-    std::vector<int> adjustment_0;
-    std::vector<int> adjustment_1;
-    std::vector<int> adjustment_2;
-    
+    State last_state;    
 
     priority_queues::BucketQueue<int> queue;
     int num_in_queue;
@@ -73,16 +60,10 @@ class TestHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     int make_op(OpID op);
     int compute_total_cost();
     int compute_heuristic(const State &state);
-    double get_state_variables_not_in_common_mean();
-    double get_under_consisten_variables_mean();
-    std::tuple<int,int,int> get_num_adjustments();
-    void update_adjustment_means();
-    double get_current_adjustment_mean(int which);
-    void calc_means();
 protected:
     virtual int compute_heuristic(const GlobalState &global_state) override;
 public:
-    explicit TestHeuristic(const options::Options &opts);
+    explicit PinchHeuristic(const options::Options &opts);
 };
 
 

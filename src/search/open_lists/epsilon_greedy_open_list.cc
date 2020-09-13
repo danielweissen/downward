@@ -50,6 +50,7 @@ public:
     virtual ~EpsilonGreedyOpenList() override = default;
 
     virtual Entry remove_min() override;
+    virtual Evaluator* get_evaluators() override;
     virtual bool is_dead_end(
         EvaluationContext &eval_context) const override;
     virtual bool is_reliable_dead_end(
@@ -58,6 +59,11 @@ public:
     virtual bool empty() const override;
     virtual void clear() override;
 };
+
+template<class Entry>
+Evaluator* EpsilonGreedyOpenList<Entry>::get_evaluators() {
+    return nullptr;
+}
 
 template<class HeapNode>
 static void adjust_heap_up(vector<HeapNode> &heap, size_t pos) {
