@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/schedule/probschedule-45-2.pddl

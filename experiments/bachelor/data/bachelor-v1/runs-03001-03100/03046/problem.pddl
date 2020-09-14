@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/visitall-sat11-strips/problem38.pddl

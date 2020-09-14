@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/trucks-strips/p27.pddl

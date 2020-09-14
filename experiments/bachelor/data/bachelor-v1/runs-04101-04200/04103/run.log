@@ -1,0 +1,156 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.005s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.010s wall-clock]
+Preparing model... [0.010s CPU, 0.004s wall-clock]
+Generated 126 rules.
+Computing model... [0.410s CPU, 0.421s wall-clock]
+17088 relevant atoms
+13758 auxiliary atoms
+30846 final queue length
+95346 total queue pushes
+Completing instantiation... [1.490s CPU, 1.493s wall-clock]
+Instantiating: [1.930s CPU, 1.938s wall-clock]
+Computing fact groups...
+Finding invariants...
+22 initial candidates
+Finding invariants: [0.060s CPU, 0.056s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.007s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Choosing groups...
+110 uncovered facts
+Choosing groups: [0.000s CPU, 0.002s wall-clock]
+Building translation key... [0.000s CPU, 0.001s wall-clock]
+Computing fact groups: [0.070s CPU, 0.073s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.001s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.080s CPU, 0.072s wall-clock]
+Translating task: [1.200s CPU, 1.193s wall-clock]
+5376 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+57 propositions removed
+Detecting unreachable propositions: [0.610s CPU, 0.609s wall-clock]
+Reordering and filtering variables...
+141 of 163 variables necessary.
+5 of 58 mutex groups necessary.
+15392 of 15392 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.220s CPU, 0.230s wall-clock]
+Translator variables: 141
+Translator derived variables: 0
+Translator facts: 892
+Translator goal facts: 6
+Translator mutex groups: 5
+Translator total mutex groups size: 110
+Translator operators: 15392
+Translator axioms: 0
+Translator task size: 143581
+Translator peak memory: 255692 KB
+Writing output... [0.220s CPU, 0.232s wall-clock]
+Done! [4.330s CPU, 4.362s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1795.55s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch_tracking()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=5.8426e-05s, 17204 KB] reading input...
+[t=0.127677s, 23144 KB] done reading input!
+[t=0.139616s, 27380 KB] Simplifying 65472 unary operators... done! [65472 unary operators]
+[t=0.301303s, 33464 KB] time to simplify: 0.166301s
+[t=0.310623s, 33464 KB] Initializing pinch tracking heuristic...
+[t=0.31082s, 33464 KB] Building successor generator...done!
+[t=0.322645s, 33464 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.322691s, 33464 KB] time for successor generation creation: 0.0116517s
+[t=0.322872s, 33464 KB] Variables: 141
+[t=0.322923s, 33464 KB] FactPairs: 892
+[t=0.322964s, 33464 KB] Bytes per state: 32
+[t=0.323112s, 33464 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.330495s, 33464 KB] New best heuristic value for pinch_tracking: 17
+[t=0.330586s, 33464 KB] g=0, 1 evaluated, 0 expanded
+[t=0.33064s, 33464 KB] Initial heuristic value for pinch_tracking: 17
+[t=0.330682s, 33464 KB] pruning method: none
+[t=0.333459s, 33464 KB] New best heuristic value for pinch_tracking: 16
+[t=0.333541s, 33464 KB] g=1, 2 evaluated, 1 expanded
+[t=0.339323s, 33464 KB] New best heuristic value for pinch_tracking: 14
+[t=0.339414s, 33464 KB] g=1, 3 evaluated, 1 expanded
+[t=0.433644s, 33884 KB] New best heuristic value for pinch_tracking: 11
+[t=0.433745s, 33884 KB] g=2, 34 evaluated, 2 expanded
+[t=0.485978s, 34140 KB] New best heuristic value for pinch_tracking: 10
+[t=0.486077s, 34140 KB] g=3, 53 evaluated, 3 expanded
+[t=0.490229s, 34140 KB] New best heuristic value for pinch_tracking: 8
+[t=0.490317s, 34140 KB] g=3, 55 evaluated, 3 expanded
+[t=0.502294s, 34140 KB] New best heuristic value for pinch_tracking: 7
+[t=0.502385s, 34140 KB] g=4, 58 evaluated, 4 expanded
+[t=0.617298s, 34140 KB] New best heuristic value for pinch_tracking: 5
+[t=0.617395s, 34140 KB] g=5, 101 evaluated, 5 expanded
+[t=0.705976s, 34140 KB] New best heuristic value for pinch_tracking: 3
+[t=0.706077s, 34140 KB] g=7, 131 evaluated, 7 expanded
+[t=1.02236s, 34652 KB] New best heuristic value for pinch_tracking: 2
+[t=1.02246s, 34652 KB] g=10, 246 evaluated, 14 expanded
+[t=32.2177s, 35644 KB] New best heuristic value for pinch_tracking: 0
+[t=32.2178s, 35644 KB] g=14, 7552 evaluated, 655 expanded
+[t=32.2599s, 35644 KB] Solution found!
+[t=32.26s, 35644 KB] Actual search time: 31.9293s
+pop-start s15 b4 a1 a5 b3 oc1b oc1b ta5-1-oc1b (1)
+push-start s13 b10 a1 a3 b13 gasoleo gasoleo ta1-1-gasoleo (1)
+pop-end s15 a1 a5 b14 b12 lco ta1-1-lco (1)
+push-end s13 a1 a3 b8 b13 rat-a ta3-1-rat-a (1)
+push-start s13 b14 a1 a3 b10 lco gasoleo ta1-1-lco (1)
+pop-start s15 b19 a1 a5 b4 lco oc1b ta5-1-lco (1)
+pop-end s15 a1 a5 b12 b7 gasoleo ta1-1-gasoleo (1)
+push-end s13 a1 a3 b13 b10 gasoleo ta3-1-gasoleo (1)
+pop-start s23 b13 a2 a3 b16 gasoleo oca1 ta3-1-gasoleo (1)
+pop-end s23 a2 a3 b6 b9 gasoleo ta2-1-gasoleo (1)
+pop-start s12 b6 a1 a2 b11 gasoleo gasoleo ta2-1-gasoleo (1)
+pop-end s12 a1 a2 b21 b11 rat-a ta1-1-rat-a (1)
+push-start s13 b21 a1 a3 b14 rat-a lco ta1-1-rat-a (1)
+push-end s13 a1 a3 b10 b14 gasoleo ta3-1-gasoleo (1)
+[t=32.2601s, 35644 KB] Plan length: 14 step(s).
+[t=32.2601s, 35644 KB] Plan cost: 14
+[t=32.2601s, 35644 KB] Expanded 656 state(s).
+[t=32.2601s, 35644 KB] Reopened 0 state(s).
+[t=32.2601s, 35644 KB] Evaluated 7567 state(s).
+[t=32.2601s, 35644 KB] Evaluations: 7567
+[t=32.2601s, 35644 KB] Generated 9697 state(s).
+[t=32.2601s, 35644 KB] Dead ends: 1 state(s).
+[t=32.2601s, 35644 KB] Number of registered states: 7567
+[t=32.2601s, 35644 KB] Int hash set load factor: 7567/8192 = 0.923706
+[t=32.2601s, 35644 KB] Int hash set resizes: 13
+[t=32.2601s, 35644 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=32.2601s, 35644 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=32.2601s, 35644 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=32.2601s, 35644 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=32.2601s, 35644 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=32.2601s, 35644 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=32.2601s, 35644 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=32.2601s, 35644 KB] Search time: 31.937s
+[t=32.2601s, 35644 KB] Total time: 32.2601s
+Solution found.
+Peak memory: 35644 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/miconic/s3-0.pddl

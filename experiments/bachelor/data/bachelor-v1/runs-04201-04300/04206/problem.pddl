@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/satellite/p04-pfile4.pddl

@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/pathways/p04.pddl

@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/gripper/prob11.pddl

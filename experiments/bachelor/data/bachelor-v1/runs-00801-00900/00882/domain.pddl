@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/parcprinter-sat11-strips/p12-domain.pddl

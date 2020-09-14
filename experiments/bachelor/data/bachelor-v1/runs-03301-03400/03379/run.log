@@ -1,0 +1,131 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.95s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.006s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.007s wall-clock]
+Preparing model... [0.010s CPU, 0.005s wall-clock]
+Generated 125 rules.
+Computing model... [0.440s CPU, 0.439s wall-clock]
+26226 relevant atoms
+6046 auxiliary atoms
+32272 final queue length
+114162 total queue pushes
+Completing instantiation... [2.010s CPU, 2.016s wall-clock]
+Instantiating: [2.470s CPU, 2.477s wall-clock]
+Computing fact groups...
+Finding invariants...
+15 initial candidates
+Finding invariants: [0.030s CPU, 0.031s wall-clock]
+Checking invariant weight... [0.010s CPU, 0.002s wall-clock]
+Instantiating groups... [0.020s CPU, 0.021s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Choosing groups...
+52 uncovered facts
+Choosing groups: [0.000s CPU, 0.003s wall-clock]
+Building translation key... [0.010s CPU, 0.001s wall-clock]
+Computing fact groups: [0.070s CPU, 0.063s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+not in strips_to_sas, left out: Atom bottomcol(c0)
+not in strips_to_sas, left out: Atom bottomcol(d0)
+not in strips_to_sas, left out: Atom bottomcol(h0)
+not in strips_to_sas, left out: Atom bottomcol(s0)
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.070s CPU, 0.068s wall-clock]
+Translating task: [1.690s CPU, 1.692s wall-clock]
+10728 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+14 propositions removed
+Detecting unreachable propositions: [0.910s CPU, 0.912s wall-clock]
+Reordering and filtering variables...
+110 of 110 variables necessary.
+106 of 210 mutex groups necessary.
+25380 of 25380 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.270s CPU, 0.263s wall-clock]
+Translator variables: 110
+Translator derived variables: 0
+Translator facts: 484
+Translator goal facts: 4
+Translator mutex groups: 106
+Translator total mutex groups size: 545
+Translator operators: 25380
+Translator axioms: 0
+Translator task size: 207659
+Translator peak memory: 294928 KB
+Writing output... [0.300s CPU, 0.337s wall-clock]
+Done! [5.780s CPU, 5.827s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1794.07s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch_tracking()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.1001e-05s, 17204 KB] reading input...
+[t=0.176604s, 25796 KB] done reading input!
+[t=0.191853s, 31712 KB] Simplifying 94284 unary operators... done! [94284 unary operators]
+[t=0.363837s, 40436 KB] time to simplify: 0.180174s
+[t=0.376843s, 40436 KB] Initializing pinch tracking heuristic...
+[t=0.377038s, 40436 KB] Building successor generator...done!
+[t=0.389434s, 40436 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.389486s, 40436 KB] time for successor generation creation: 0.0120067s
+[t=0.389752s, 40436 KB] Variables: 110
+[t=0.389804s, 40436 KB] FactPairs: 484
+[t=0.389844s, 40436 KB] Bytes per state: 28
+[t=0.390002s, 40436 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.400941s, 40436 KB] New best heuristic value for pinch_tracking: 196
+[t=0.401041s, 40436 KB] g=0, 1 evaluated, 0 expanded
+[t=0.401098s, 40436 KB] Initial heuristic value for pinch_tracking: 196
+[t=0.40114s, 40436 KB] pruning method: none
+[t=0.402463s, 40436 KB] New best heuristic value for pinch_tracking: 189
+[t=0.402532s, 40436 KB] g=1, 2 evaluated, 1 expanded
+[t=0.490385s, 40436 KB] New best heuristic value for pinch_tracking: 184
+[t=0.49049s, 40436 KB] g=2, 12 evaluated, 2 expanded
+[t=0.507154s, 40436 KB] New best heuristic value for pinch_tracking: 183
+[t=0.507252s, 40436 KB] g=2, 13 evaluated, 2 expanded
+[t=0.566857s, 40436 KB] New best heuristic value for pinch_tracking: 178
+[t=0.566947s, 40436 KB] g=3, 21 evaluated, 3 expanded
+[t=0.610885s, 40436 KB] New best heuristic value for pinch_tracking: 177
+[t=0.610979s, 40436 KB] g=3, 27 evaluated, 3 expanded
+[t=0.635956s, 40436 KB] New best heuristic value for pinch_tracking: 172
+[t=0.63605s, 40436 KB] g=4, 30 evaluated, 4 expanded
+[t=0.68939s, 40436 KB] New best heuristic value for pinch_tracking: 171
+[t=0.689474s, 40436 KB] g=4, 38 evaluated, 4 expanded
+[t=0.868078s, 40436 KB] New best heuristic value for pinch_tracking: 167
+[t=0.868173s, 40436 KB] g=5, 50 evaluated, 6 expanded
+[t=1.12774s, 40652 KB] New best heuristic value for pinch_tracking: 166
+[t=1.12784s, 40652 KB] g=6, 63 evaluated, 7 expanded
+[t=3.18358s, 42288 KB] New best heuristic value for pinch_tracking: 165
+[t=3.18368s, 42288 KB] g=8, 191 evaluated, 23 expanded
+[t=226.231s, 47712 KB] New best heuristic value for pinch_tracking: 164
+[t=226.231s, 47712 KB] g=16, 11930 evaluated, 2580 expanded, 581 reopened
+[t=226.257s, 47712 KB] New best heuristic value for pinch_tracking: 163
+[t=226.257s, 47712 KB] g=16, 11936 evaluated, 2580 expanded, 581 reopened
+[t=230.56s, 47712 KB] New best heuristic value for pinch_tracking: 161
+[t=230.56s, 47712 KB] g=20, 12232 evaluated, 2621 expanded, 581 reopened
+[t=250.83s, 47712 KB] New best heuristic value for pinch_tracking: 160
+[t=250.831s, 47712 KB] g=19, 13507 evaluated, 2837 expanded, 605 reopened
+[t=615.927s, 50868 KB] New best heuristic value for pinch_tracking: 159
+[t=615.927s, 50868 KB] g=25, 36082 evaluated, 7665 expanded, 1484 reopened
+Peak memory: 57384 KB
+caught signal 24 -- exiting
+Time limit has been reached.
+Remove intermediate file output.sas
+search exit code: 23
+
+Driver aborting after search

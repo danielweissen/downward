@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/satellite/p12-pfile12.pddl

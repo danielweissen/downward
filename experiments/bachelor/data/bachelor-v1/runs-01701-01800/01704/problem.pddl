@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/childsnack-sat14-strips/child-snack_pfile12.pddl

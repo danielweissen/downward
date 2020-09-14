@@ -1,0 +1,40 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.95s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.010s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.007s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.014s wall-clock]
+Preparing model... [0.020s CPU, 0.016s wall-clock]
+Generated 285 rules.
+Computing model... [185.090s CPU, 185.590s wall-clock]
+5327634 relevant atoms
+104954 auxiliary atoms
+5432588 final queue length
+49691323 total queue pushes
+Completing instantiation... 
+Translator ran out of memory, traceback:
+===============================================================================
+Traceback (most recent call last):
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 728, in <module>
+    main()
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 699, in main
+    sas_task = pddl_to_sas(task)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 527, in pddl_to_sas
+    reachable_action_params) = instantiate.explore(task)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/instantiate.py", line 84, in explore
+    return instantiate(task, model)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/instantiate.py", line 58, in instantiate
+    reachable_action_parameters[action].append(inst_parameters)
+MemoryError
+===============================================================================
+translate exit code: 20
+
+Driver aborting after translate
+search time limit missing -> can't compute time scores
+search memory limit missing -> can't compute memory score

@@ -1,0 +1,317 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.95s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.050s CPU, 0.046s wall-clock]
+Normalizing task... [0.000s CPU, 0.006s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.005s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.030s CPU, 0.030s wall-clock]
+Preparing model... [0.020s CPU, 0.022s wall-clock]
+Generated 1368 rules.
+Computing model... [0.040s CPU, 0.044s wall-clock]
+1288 relevant atoms
+2577 auxiliary atoms
+3865 final queue length
+5416 total queue pushes
+Completing instantiation... [0.040s CPU, 0.047s wall-clock]
+Instantiating: [0.150s CPU, 0.153s wall-clock]
+Computing fact groups...
+Finding invariants...
+26 initial candidates
+Finding invariants: [0.090s CPU, 0.083s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.001s wall-clock]
+Instantiating groups... [0.000s CPU, 0.005s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+427 uncovered facts
+Choosing groups: [0.010s CPU, 0.001s wall-clock]
+Building translation key... [0.000s CPU, 0.002s wall-clock]
+Computing fact groups: [0.100s CPU, 0.100s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.001s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.001s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.010s CPU, 0.002s wall-clock]
+Translating task: [0.060s CPU, 0.052s wall-clock]
+1410 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+35 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.028s wall-clock]
+Reordering and filtering variables...
+212 of 426 variables necessary.
+44 of 63 mutex groups necessary.
+498 of 498 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.060s CPU, 0.059s wall-clock]
+Translator variables: 212
+Translator derived variables: 0
+Translator facts: 603
+Translator goal facts: 4
+Translator mutex groups: 44
+Translator total mutex groups size: 215
+Translator operators: 498
+Translator axioms: 0
+Translator task size: 6287
+Translator peak memory: 149840 KB
+Writing output... [0.000s CPU, 0.015s wall-clock]
+Done! [0.450s CPU, 0.466s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1799.42s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=7.7054e-05s, 17204 KB] reading input...
+[t=0.00734028s, 17608 KB] done reading input!
+[t=0.0096165s, 18000 KB] Simplifying 1939 unary operators... done! [1924 unary operators]
+[t=0.010907s, 18264 KB] time to simplify: 0.00140948s
+[t=0.0114003s, 18264 KB] Initializing pinch heuristic...
+[t=0.0115578s, 18264 KB] Building successor generator...done!
+[t=0.0122039s, 18264 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0122449s, 18264 KB] time for successor generation creation: 0.000509737s
+[t=0.0122987s, 18264 KB] Variables: 212
+[t=0.0123399s, 18264 KB] FactPairs: 603
+[t=0.0123804s, 18264 KB] Bytes per state: 32
+[t=0.0125304s, 18264 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.0129879s, 18264 KB] New best heuristic value for pinch: 244
+[t=0.0130369s, 18264 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0130869s, 18264 KB] Initial heuristic value for pinch: 244
+[t=0.0131296s, 18264 KB] pruning method: none
+[t=0.0132444s, 18264 KB] New best heuristic value for pinch: 229
+[t=0.0132872s, 18264 KB] g=1, 2 evaluated, 1 expanded
+[t=0.0146812s, 18264 KB] New best heuristic value for pinch: 215
+[t=0.0147331s, 18264 KB] g=2, 13 evaluated, 2 expanded
+[t=0.0161416s, 18264 KB] New best heuristic value for pinch: 201
+[t=0.0161928s, 18264 KB] g=3, 24 evaluated, 3 expanded
+[t=0.0179228s, 18264 KB] New best heuristic value for pinch: 190
+[t=0.0179776s, 18264 KB] g=4, 37 evaluated, 4 expanded
+[t=0.0285143s, 18264 KB] New best heuristic value for pinch: 189
+[t=0.0285993s, 18264 KB] g=11, 123 evaluated, 15 expanded
+[t=0.0296176s, 18264 KB] New best heuristic value for pinch: 184
+[t=0.0296684s, 18264 KB] g=12, 131 evaluated, 16 expanded
+[t=0.0306656s, 18264 KB] New best heuristic value for pinch: 179
+[t=0.0307153s, 18264 KB] g=13, 139 evaluated, 17 expanded
+[t=0.0317128s, 18264 KB] New best heuristic value for pinch: 174
+[t=0.0317645s, 18264 KB] g=14, 147 evaluated, 18 expanded
+[t=0.0327624s, 18264 KB] New best heuristic value for pinch: 172
+[t=0.0328144s, 18264 KB] g=15, 155 evaluated, 19 expanded
+[t=0.113381s, 18264 KB] New best heuristic value for pinch: 166
+[t=0.113496s, 18264 KB] g=21, 869 evaluated, 109 expanded
+[t=0.114259s, 18264 KB] New best heuristic value for pinch: 162
+[t=0.114314s, 18264 KB] g=22, 874 evaluated, 110 expanded
+[t=0.115116s, 18264 KB] New best heuristic value for pinch: 158
+[t=0.115167s, 18264 KB] g=23, 880 evaluated, 111 expanded
+[t=0.115966s, 18264 KB] New best heuristic value for pinch: 154
+[t=0.116018s, 18264 KB] g=24, 886 evaluated, 112 expanded
+[t=0.116828s, 18264 KB] New best heuristic value for pinch: 150
+[t=0.11688s, 18264 KB] g=25, 892 evaluated, 113 expanded
+[t=0.117681s, 18264 KB] New best heuristic value for pinch: 146
+[t=0.117731s, 18264 KB] g=26, 898 evaluated, 114 expanded
+[t=0.11853s, 18264 KB] New best heuristic value for pinch: 142
+[t=0.118581s, 18264 KB] g=27, 904 evaluated, 115 expanded
+[t=0.119388s, 18264 KB] New best heuristic value for pinch: 140
+[t=0.119438s, 18264 KB] g=28, 910 evaluated, 116 expanded
+[t=0.119589s, 18264 KB] New best heuristic value for pinch: 139
+[t=0.119641s, 18264 KB] g=28, 911 evaluated, 116 expanded
+[t=0.120322s, 18264 KB] New best heuristic value for pinch: 137
+[t=0.12037s, 18264 KB] g=29, 916 evaluated, 117 expanded
+[t=0.12122s, 18264 KB] New best heuristic value for pinch: 131
+[t=0.12127s, 18264 KB] g=30, 922 evaluated, 118 expanded
+[t=0.122101s, 18264 KB] New best heuristic value for pinch: 130
+[t=0.122151s, 18264 KB] g=31, 928 evaluated, 119 expanded
+[t=0.12299s, 18264 KB] New best heuristic value for pinch: 127
+[t=0.12304s, 18264 KB] g=32, 934 evaluated, 120 expanded
+[t=0.124618s, 18264 KB] New best heuristic value for pinch: 120
+[t=0.12467s, 18264 KB] g=33, 946 evaluated, 121 expanded
+[t=0.125934s, 18264 KB] New best heuristic value for pinch: 119
+[t=0.125987s, 18264 KB] g=36, 957 evaluated, 124 expanded
+[t=0.126589s, 18264 KB] New best heuristic value for pinch: 116
+[t=0.126638s, 18264 KB] g=37, 962 evaluated, 125 expanded
+[t=0.12735s, 18264 KB] New best heuristic value for pinch: 109
+[t=0.127407s, 18264 KB] g=38, 969 evaluated, 126 expanded
+[t=0.127973s, 18264 KB] New best heuristic value for pinch: 108
+[t=0.128021s, 18264 KB] g=39, 974 evaluated, 127 expanded
+[t=0.683386s, 18660 KB] New best heuristic value for pinch: 104
+[t=0.683506s, 18660 KB] g=45, 6009 evaluated, 1079 expanded
+[t=0.683897s, 18660 KB] New best heuristic value for pinch: 100
+[t=0.683946s, 18660 KB] g=46, 6013 evaluated, 1080 expanded
+[t=0.684306s, 18660 KB] New best heuristic value for pinch: 96
+[t=0.684354s, 18660 KB] g=47, 6017 evaluated, 1081 expanded
+[t=0.684718s, 18660 KB] New best heuristic value for pinch: 92
+[t=0.684767s, 18660 KB] g=48, 6021 evaluated, 1082 expanded
+[t=0.685121s, 18660 KB] New best heuristic value for pinch: 88
+[t=0.685168s, 18660 KB] g=49, 6025 evaluated, 1083 expanded
+[t=0.685519s, 18660 KB] New best heuristic value for pinch: 84
+[t=0.685566s, 18660 KB] g=50, 6029 evaluated, 1084 expanded
+[t=0.685925s, 18660 KB] New best heuristic value for pinch: 80
+[t=0.685973s, 18660 KB] g=51, 6033 evaluated, 1085 expanded
+[t=0.686325s, 18660 KB] New best heuristic value for pinch: 76
+[t=0.686372s, 18660 KB] g=52, 6037 evaluated, 1086 expanded
+[t=0.686726s, 18660 KB] New best heuristic value for pinch: 72
+[t=0.686772s, 18660 KB] g=53, 6041 evaluated, 1087 expanded
+[t=0.687118s, 18660 KB] New best heuristic value for pinch: 68
+[t=0.687164s, 18660 KB] g=54, 6045 evaluated, 1088 expanded
+[t=0.687514s, 18660 KB] New best heuristic value for pinch: 65
+[t=0.687561s, 18660 KB] g=55, 6049 evaluated, 1089 expanded
+[t=0.687942s, 18660 KB] New best heuristic value for pinch: 60
+[t=0.687988s, 18660 KB] g=56, 6053 evaluated, 1090 expanded
+[t=0.688347s, 18660 KB] New best heuristic value for pinch: 59
+[t=0.688392s, 18660 KB] g=57, 6057 evaluated, 1091 expanded
+[t=0.688747s, 18660 KB] New best heuristic value for pinch: 57
+[t=0.688798s, 18660 KB] g=58, 6061 evaluated, 1092 expanded
+[t=0.689345s, 18660 KB] New best heuristic value for pinch: 53
+[t=0.689393s, 18660 KB] g=59, 6067 evaluated, 1093 expanded
+[t=0.696981s, 18660 KB] New best heuristic value for pinch: 51
+[t=0.697069s, 18660 KB] g=64, 6178 evaluated, 1127 expanded
+[t=0.697177s, 18660 KB] New best heuristic value for pinch: 47
+[t=0.697221s, 18660 KB] g=65, 6179 evaluated, 1128 expanded
+[t=0.697318s, 18660 KB] New best heuristic value for pinch: 43
+[t=0.697362s, 18660 KB] g=66, 6180 evaluated, 1129 expanded
+[t=0.697462s, 18660 KB] New best heuristic value for pinch: 39
+[t=0.697504s, 18660 KB] g=67, 6181 evaluated, 1130 expanded
+[t=0.697585s, 18660 KB] New best heuristic value for pinch: 35
+[t=0.697628s, 18660 KB] g=68, 6182 evaluated, 1131 expanded
+[t=0.697705s, 18660 KB] New best heuristic value for pinch: 31
+[t=0.697747s, 18660 KB] g=69, 6183 evaluated, 1132 expanded
+[t=0.697822s, 18660 KB] New best heuristic value for pinch: 27
+[t=0.697864s, 18660 KB] g=70, 6184 evaluated, 1133 expanded
+[t=0.697939s, 18660 KB] New best heuristic value for pinch: 23
+[t=0.697981s, 18660 KB] g=71, 6185 evaluated, 1134 expanded
+[t=0.698063s, 18660 KB] New best heuristic value for pinch: 19
+[t=0.698105s, 18660 KB] g=72, 6186 evaluated, 1135 expanded
+[t=0.698179s, 18660 KB] New best heuristic value for pinch: 15
+[t=0.698221s, 18660 KB] g=73, 6187 evaluated, 1136 expanded
+[t=0.698296s, 18660 KB] New best heuristic value for pinch: 11
+[t=0.698337s, 18660 KB] g=74, 6188 evaluated, 1137 expanded
+[t=0.69841s, 18660 KB] New best heuristic value for pinch: 7
+[t=0.698451s, 18660 KB] g=75, 6189 evaluated, 1138 expanded
+[t=0.698562s, 18660 KB] New best heuristic value for pinch: 3
+[t=0.698603s, 18660 KB] g=76, 6190 evaluated, 1139 expanded
+[t=0.698683s, 18660 KB] New best heuristic value for pinch: 2
+[t=0.698725s, 18660 KB] g=77, 6191 evaluated, 1140 expanded
+[t=0.698787s, 18660 KB] New best heuristic value for pinch: 1
+[t=0.698828s, 18660 KB] g=78, 6192 evaluated, 1141 expanded
+[t=0.69895s, 18660 KB] New best heuristic value for pinch: 0
+[t=0.698997s, 18660 KB] g=79, 6194 evaluated, 1142 expanded
+[t=0.699038s, 18660 KB] Solution found!
+[t=0.699085s, 18660 KB] Actual search time: 0.685952s
+move_seg_rwy_0_1300_seg_27_0_150_south_south_medium airplane_cfbeg (1)
+pushback_seg_a02_0_100_seg_c5_c_a02_0_100_south_south_medium airplane_daewh (1)
+pushback_seg_a01_0_100_seg_c3_c_a01_0_100_south_south_medium airplane_wurst (1)
+move_seg_27_0_150_seg_b_27_0_100_south_north_medium airplane_cfbeg (1)
+move_seg_b_27_0_100_seg_n6_b_0_100_north_north_medium airplane_cfbeg (1)
+move_seg_n6_b_0_100_seg_n5_n6_0_100_north_north_medium airplane_cfbeg (1)
+move_seg_n5_n6_0_100_seg_n4_n5_0_86_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_0_86_seg_n4_n5_6_0_86_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_6_0_86_seg_n4_n5_5_0_86_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_5_0_86_seg_n4_n5_4_0_85_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_4_0_85_seg_n4_n5_3_0_86_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_3_0_86_seg_n4_n5_2_0_86_north_north_medium airplane_cfbeg (1)
+move_seg_n4_n5_2_0_86_seg_n4_n5_1_0_85_north_north_medium airplane_cfbeg (1)
+pushback_seg_c3_c_a01_0_100_seg_c3_c4_0_50_south_north_medium airplane_wurst (1)
+startup_seg_c3_c4_0_50_north_medium airplane_wurst (1)
+move_seg_c3_c4_0_50_seg_c2_c3_0_100_north_north_medium airplane_wurst (1)
+move_seg_c2_c3_0_100_seg_c_c2_0_100_north_north_medium airplane_wurst (1)
+move_seg_c_c2_0_100_seg_n_c_0_100_north_north_medium airplane_wurst (1)
+move_seg_n_c_0_100_seg_n3_n_0_100_north_north_medium airplane_wurst (1)
+move_seg_n3_n_0_100_seg_n2_n3_0_85_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_0_85_seg_n2_n3_6_0_86_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_6_0_86_seg_n2_n3_5_0_86_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_5_0_86_seg_n2_n3_4_0_85_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_4_0_85_seg_n2_n3_3_0_86_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_3_0_86_seg_n2_n3_2_0_86_north_north_medium airplane_wurst (1)
+move_seg_n2_n3_2_0_86_seg_n2_n3_1_0_86_north_north_medium airplane_wurst (1)
+move_seg_n4_n5_1_0_85_seg_n_n4_0_100_north_north_medium airplane_cfbeg (1)
+move_seg_n2_n3_1_0_86_seg_n1_n2_0_100_north_north_medium airplane_wurst (1)
+move_seg_n1_n2_0_100_seg_n1_a_0_100_north_south_medium airplane_wurst (1)
+move_seg_n1_a_0_100_seg_a_09_0_100_south_south_medium airplane_wurst (1)
+move_seg_a_09_0_100_seg_09_0_150_south_south_medium airplane_wurst (1)
+takeoff_seg_09_0_150_south airplane_wurst (1)
+move_seg_n_n4_0_100_seg_n_c_0_100_north_south_medium airplane_cfbeg (1)
+move_seg_n_c_0_100_seg_c_c2_0_100_south_south_medium airplane_cfbeg (1)
+move_seg_c_c2_0_100_seg_c2_c3_0_100_south_south_medium airplane_cfbeg (1)
+move_seg_c2_c3_0_100_seg_c3_c_a01_0_100_south_south_medium airplane_cfbeg (1)
+move_seg_c3_c_a01_0_100_seg_a01_0_100_south_south_medium airplane_cfbeg (1)
+park_seg_a01_0_100_south airplane_cfbeg (1)
+pushback_seg_c5_c_a02_0_100_seg_c5_c6_0_50_south_north_medium airplane_daewh (1)
+startup_seg_c5_c6_0_50_north_medium airplane_daewh (1)
+move_seg_c5_c6_0_50_seg_c4_c5_0_50_north_north_medium airplane_daewh (1)
+move_seg_c4_c5_0_50_seg_c3_c4_0_50_north_north_medium airplane_daewh (1)
+pushback_seg_b02_0_100_seg_c5_c_b02_0_100_south_south_medium airplane_dfboy (1)
+move_seg_c3_c4_0_50_seg_c2_c3_0_100_north_north_medium airplane_daewh (1)
+move_seg_c2_c3_0_100_seg_c_c2_0_100_north_north_medium airplane_daewh (1)
+move_seg_c_c2_0_100_seg_n_c_0_100_north_north_medium airplane_daewh (1)
+move_seg_n_c_0_100_seg_n3_n_0_100_north_north_medium airplane_daewh (1)
+move_seg_n3_n_0_100_seg_n2_n3_0_85_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_0_85_seg_n2_n3_6_0_86_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_6_0_86_seg_n2_n3_5_0_86_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_5_0_86_seg_n2_n3_4_0_85_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_4_0_85_seg_n2_n3_3_0_86_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_3_0_86_seg_n2_n3_2_0_86_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_2_0_86_seg_n2_n3_1_0_86_north_north_medium airplane_daewh (1)
+move_seg_n2_n3_1_0_86_seg_n1_n2_0_100_north_north_medium airplane_daewh (1)
+move_seg_n1_n2_0_100_seg_n1_a_0_100_north_south_medium airplane_daewh (1)
+move_seg_n1_a_0_100_seg_a_09_0_100_south_south_medium airplane_daewh (1)
+move_seg_a_09_0_100_seg_09_0_150_south_south_medium airplane_daewh (1)
+takeoff_seg_09_0_150_south airplane_daewh (1)
+pushback_seg_c5_c_b02_0_100_seg_c5_c6_0_50_south_north_medium airplane_dfboy (1)
+startup_seg_c5_c6_0_50_north_medium airplane_dfboy (1)
+move_seg_c5_c6_0_50_seg_c4_c5_0_50_north_north_medium airplane_dfboy (1)
+move_seg_c4_c5_0_50_seg_c3_c4_0_50_north_north_medium airplane_dfboy (1)
+move_seg_c3_c4_0_50_seg_c2_c3_0_100_north_north_medium airplane_dfboy (1)
+move_seg_c2_c3_0_100_seg_c_c2_0_100_north_north_medium airplane_dfboy (1)
+move_seg_c_c2_0_100_seg_n_c_0_100_north_north_medium airplane_dfboy (1)
+move_seg_n_c_0_100_seg_n3_n_0_100_north_north_medium airplane_dfboy (1)
+move_seg_n3_n_0_100_seg_n2_n3_0_85_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_0_85_seg_n2_n3_6_0_86_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_6_0_86_seg_n2_n3_5_0_86_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_5_0_86_seg_n2_n3_4_0_85_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_4_0_85_seg_n2_n3_3_0_86_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_3_0_86_seg_n2_n3_2_0_86_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_2_0_86_seg_n2_n3_1_0_86_north_north_medium airplane_dfboy (1)
+move_seg_n2_n3_1_0_86_seg_n1_n2_0_100_north_north_medium airplane_dfboy (1)
+move_seg_n1_n2_0_100_seg_n1_a_0_100_north_south_medium airplane_dfboy (1)
+move_seg_n1_a_0_100_seg_a_09_0_100_south_south_medium airplane_dfboy (1)
+move_seg_a_09_0_100_seg_09_0_150_south_south_medium airplane_dfboy (1)
+takeoff_seg_09_0_150_south airplane_dfboy (1)
+[t=0.69913s, 18660 KB] Plan length: 79 step(s).
+[t=0.69913s, 18660 KB] Plan cost: 79
+[t=0.69913s, 18660 KB] Expanded 1143 state(s).
+[t=0.69913s, 18660 KB] Reopened 0 state(s).
+[t=0.69913s, 18660 KB] Evaluated 6194 state(s).
+[t=0.69913s, 18660 KB] Evaluations: 6194
+[t=0.69913s, 18660 KB] Generated 7499 state(s).
+[t=0.69913s, 18660 KB] Dead ends: 3306 state(s).
+[t=0.69913s, 18660 KB] Number of registered states: 6194
+[t=0.69913s, 18660 KB] Int hash set load factor: 6194/8192 = 0.756104
+[t=0.69913s, 18660 KB] Int hash set resizes: 13
+[t=0.69913s, 18660 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=0.69913s, 18660 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=0.69913s, 18660 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=0.69913s, 18660 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=0.69913s, 18660 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=0.69913s, 18660 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=0.69913s, 18660 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=0.69913s, 18660 KB] Search time: 0.686601s
+[t=0.69913s, 18660 KB] Total time: 0.69913s
+Solution found.
+Peak memory: 18660 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

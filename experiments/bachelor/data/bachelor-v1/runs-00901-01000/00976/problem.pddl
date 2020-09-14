@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/pipesworld-tankage/p06-net1-b10-g6-t50.pddl

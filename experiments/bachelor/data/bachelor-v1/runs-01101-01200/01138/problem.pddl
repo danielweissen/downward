@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/satellite/p28-HC-pfile8.pddl

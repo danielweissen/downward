@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/storage/p06.pddl

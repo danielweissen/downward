@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/nurikabe-sat18-adl/p19.pddl

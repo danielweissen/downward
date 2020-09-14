@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/rovers/p39.pddl

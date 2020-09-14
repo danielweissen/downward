@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/thoughtful-sat14-strips/domain.pddl

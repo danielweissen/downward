@@ -1,0 +1,133 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [3.970s CPU, 3.982s wall-clock]
+Normalizing task... [1.230s CPU, 1.238s wall-clock]
+Instantiating...
+Generating Datalog program... [0.990s CPU, 0.984s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [1.310s CPU, 1.315s wall-clock]
+Preparing model... [2.050s CPU, 2.049s wall-clock]
+Generated 88684 rules.
+Computing model... [0.450s CPU, 0.464s wall-clock]
+32675 relevant atoms
+0 auxiliary atoms
+32675 final queue length
+88710 total queue pushes
+Completing instantiation... [1.220s CPU, 1.227s wall-clock]
+Instantiating: [6.130s CPU, 6.145s wall-clock]
+Computing fact groups...
+Finding invariants...
+2874 initial candidates
+Finding invariants: [30.940s CPU, 31.024s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.001s wall-clock]
+Choosing groups...
+2856 uncovered facts
+Choosing groups: [0.000s CPU, 0.001s wall-clock]
+Building translation key... [0.010s CPU, 0.011s wall-clock]
+Computing fact groups: [30.990s CPU, 31.070s wall-clock]
+Building STRIPS to SAS dictionary... [0.010s CPU, 0.005s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.004s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.004s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.070s CPU, 0.068s wall-clock]
+Translating task: [1.770s CPU, 1.771s wall-clock]
+30051 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+1 propositions removed
+Detecting unreachable propositions: [1.230s CPU, 1.239s wall-clock]
+Reordering and filtering variables...
+257 of 2858 variables necessary.
+0 of 11 mutex groups necessary.
+29799 of 29799 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.240s CPU, 0.245s wall-clock]
+Translator variables: 257
+Translator derived variables: 0
+Translator facts: 529
+Translator goal facts: 17
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 29799
+Translator axioms: 0
+Translator task size: 129365
+Translator peak memory: 547260 KB
+Writing output... [0.250s CPU, 0.272s wall-clock]
+Done! [45.880s CPU, 46.030s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1753.92s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([add()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.0289e-05s, 17204 KB] reading input...
+[t=0.148883s, 24100 KB] done reading input!
+[t=0.157467s, 26392 KB] Simplifying 34881 unary operators... done! [7903 unary operators]
+[t=0.168493s, 27076 KB] time to simplify: 0.0113632s
+[t=0.169426s, 27076 KB] Initializing additive heuristic...
+[t=0.169594s, 27076 KB] Building successor generator...done!
+[t=0.178897s, 29072 KB] peak memory difference for successor generator creation: 1996 KB
+[t=0.178945s, 29072 KB] time for successor generation creation: 0.00890243s
+[t=0.179227s, 29072 KB] Variables: 257
+[t=0.179281s, 29072 KB] FactPairs: 529
+[t=0.17932s, 29072 KB] Bytes per state: 36
+[t=0.179473s, 29072 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.179686s, 29072 KB] New best heuristic value for add: 101
+[t=0.179732s, 29072 KB] g=0, 1 evaluated, 0 expanded
+[t=0.179785s, 29072 KB] Initial heuristic value for add: 101
+[t=0.179826s, 29072 KB] pruning method: none
+[t=0.179971s, 29072 KB] New best heuristic value for add: 81
+[t=0.180013s, 29072 KB] g=1, 2 evaluated, 1 expanded
+[t=0.180219s, 29072 KB] New best heuristic value for add: 78
+[t=0.180261s, 29072 KB] g=1, 4 evaluated, 1 expanded
+[t=0.180474s, 29072 KB] New best heuristic value for add: 72
+[t=0.180517s, 29072 KB] g=1, 6 evaluated, 1 expanded
+[t=0.182722s, 29072 KB] New best heuristic value for add: 71
+[t=0.182773s, 29072 KB] g=2, 32 evaluated, 2 expanded
+[t=33.7932s, 54280 KB] New best heuristic value for add: 68
+[t=33.7933s, 54280 KB] g=6, 408592 evaluated, 12219 expanded, 2 reopened
+[t=33.797s, 54280 KB] New best heuristic value for add: 67
+[t=33.7971s, 54280 KB] g=7, 408636 evaluated, 12220 expanded, 2 reopened
+[t=77.482s, 101056 KB] New best heuristic value for add: 66
+[t=77.4822s, 101056 KB] g=8, 945544 evaluated, 29491 expanded, 10 reopened
+[t=77.4855s, 101056 KB] New best heuristic value for add: 64
+[t=77.4856s, 101056 KB] g=9, 945585 evaluated, 29492 expanded, 10 reopened
+[t=77.4869s, 101056 KB] New best heuristic value for add: 63
+[t=77.4869s, 101056 KB] g=10, 945601 evaluated, 29493 expanded, 10 reopened
+[t=177.315s, 188312 KB] New best heuristic value for add: 60
+[t=177.315s, 188312 KB] g=14, 2210822 evaluated, 72298 expanded, 1918 reopened
+[t=177.317s, 188312 KB] New best heuristic value for add: 59
+[t=177.317s, 188312 KB] g=15, 2210851 evaluated, 72299 expanded, 1918 reopened
+[t=219.435s, 220392 KB] New best heuristic value for add: 58
+[t=219.435s, 220392 KB] g=17, 2756568 evaluated, 92886 expanded, 2690 reopened
+[t=224.23s, 224140 KB] New best heuristic value for add: 56
+[t=224.23s, 224140 KB] g=18, 2821076 evaluated, 94791 expanded, 2690 reopened
+[t=224.232s, 224140 KB] New best heuristic value for add: 55
+[t=224.232s, 224140 KB] g=19, 2821101 evaluated, 94792 expanded, 2690 reopened
+[t=249.298s, 243652 KB] New best heuristic value for add: 54
+[t=249.298s, 243652 KB] g=26, 3152953 evaluated, 107445 expanded, 2708 reopened
+[t=249.299s, 243652 KB] New best heuristic value for add: 53
+[t=249.299s, 243652 KB] g=27, 3152967 evaluated, 107446 expanded, 2708 reopened
+[t=306.807s, 325868 KB] New best heuristic value for add: 52
+[t=306.807s, 325868 KB] g=27, 3909188 evaluated, 138596 expanded, 3002 reopened
+[t=306.809s, 325868 KB] New best heuristic value for add: 51
+[t=306.809s, 325868 KB] g=28, 3909213 evaluated, 138597 expanded, 3002 reopened
+Peak memory: 1598528 KB
+caught signal 24 -- exiting
+Time limit has been reached.
+Remove intermediate file output.sas
+search exit code: 23
+
+Driver aborting after search

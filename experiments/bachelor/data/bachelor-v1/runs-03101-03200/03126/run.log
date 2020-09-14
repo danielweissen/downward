@@ -1,0 +1,1063 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.95s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.360s CPU, 0.359s wall-clock]
+Normalizing task... [0.050s CPU, 0.047s wall-clock]
+Instantiating...
+Generating Datalog program... [0.070s CPU, 0.069s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.200s CPU, 0.203s wall-clock]
+Preparing model... [0.280s CPU, 0.285s wall-clock]
+Generated 8932 rules.
+Computing model... [0.950s CPU, 0.947s wall-clock]
+16877 relevant atoms
+38144 auxiliary atoms
+55021 final queue length
+81880 total queue pushes
+Completing instantiation... [1.110s CPU, 1.111s wall-clock]
+Instantiating: [2.650s CPU, 2.669s wall-clock]
+Computing fact groups...
+Finding invariants...
+26 initial candidates
+Finding invariants: [0.430s CPU, 0.426s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.005s wall-clock]
+Instantiating groups... [0.160s CPU, 0.158s wall-clock]
+Collecting mutex groups... [0.010s CPU, 0.007s wall-clock]
+Choosing groups...
+6160 uncovered facts
+Choosing groups: [0.020s CPU, 0.022s wall-clock]
+Building translation key... [0.040s CPU, 0.034s wall-clock]
+Computing fact groups: [0.790s CPU, 0.787s wall-clock]
+Building STRIPS to SAS dictionary... [0.010s CPU, 0.012s wall-clock]
+Building dictionary for full mutex groups... [0.030s CPU, 0.016s wall-clock]
+Building mutex information...
+Building mutex information: [0.010s CPU, 0.017s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.040s CPU, 0.039s wall-clock]
+Translating task: [1.230s CPU, 1.229s wall-clock]
+22149 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+2201 propositions removed
+Detecting unreachable propositions: [0.650s CPU, 0.658s wall-clock]
+Reordering and filtering variables...
+2361 of 5105 variables necessary.
+205 of 257 mutex groups necessary.
+7224 of 7224 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [8.340s CPU, 8.368s wall-clock]
+Translator variables: 2361
+Translator derived variables: 0
+Translator facts: 7194
+Translator goal facts: 11
+Translator mutex groups: 205
+Translator total mutex groups size: 2369
+Translator operators: 7224
+Translator axioms: 0
+Translator task size: 118455
+Translator peak memory: 289248 KB
+Writing output... [0.180s CPU, 0.207s wall-clock]
+Done! [14.370s CPU, 14.439s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1785.48s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch_tracking()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.7416e-05s, 17204 KB] reading input...
+[t=0.122162s, 23344 KB] done reading input!
+[t=0.132602s, 27956 KB] Simplifying 31233 unary operators... done! [30961 unary operators]
+[t=0.172517s, 31216 KB] time to simplify: 0.0400225s
+[t=0.182883s, 35116 KB] Initializing pinch tracking heuristic...
+[t=0.183193s, 35116 KB] Building successor generator...done!
+[t=0.190194s, 35116 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.190242s, 35116 KB] time for successor generation creation: 0.00680362s
+[t=0.19038s, 35116 KB] Variables: 2361
+[t=0.190426s, 35116 KB] FactPairs: 7194
+[t=0.190467s, 35116 KB] Bytes per state: 312
+[t=0.190622s, 35116 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.20025s, 35116 KB] New best heuristic value for pinch_tracking: 1174
+[t=0.20036s, 35116 KB] g=0, 1 evaluated, 0 expanded
+[t=0.200417s, 35116 KB] Initial heuristic value for pinch_tracking: 1174
+[t=0.20046s, 35116 KB] pruning method: none
+[t=0.202892s, 35116 KB] New best heuristic value for pinch_tracking: 1166
+[t=0.203s, 35116 KB] g=1, 2 evaluated, 1 expanded
+[t=0.205479s, 35116 KB] New best heuristic value for pinch_tracking: 1140
+[t=0.205584s, 35116 KB] g=1, 4 evaluated, 1 expanded
+[t=0.236301s, 35116 KB] New best heuristic value for pinch_tracking: 1132
+[t=0.236404s, 35116 KB] g=2, 29 evaluated, 2 expanded
+[t=0.240804s, 35116 KB] New best heuristic value for pinch_tracking: 1110
+[t=0.240908s, 35116 KB] g=2, 32 evaluated, 2 expanded
+[t=0.270234s, 35116 KB] New best heuristic value for pinch_tracking: 1102
+[t=0.270338s, 35116 KB] g=3, 56 evaluated, 3 expanded
+[t=0.275611s, 35116 KB] New best heuristic value for pinch_tracking: 1096
+[t=0.275716s, 35116 KB] g=3, 59 evaluated, 3 expanded
+[t=0.277015s, 35116 KB] New best heuristic value for pinch_tracking: 1089
+[t=0.277105s, 35116 KB] g=3, 60 evaluated, 3 expanded
+[t=0.278144s, 35116 KB] New best heuristic value for pinch_tracking: 1087
+[t=0.278214s, 35116 KB] g=3, 61 evaluated, 3 expanded
+[t=0.286969s, 35116 KB] New best heuristic value for pinch_tracking: 1085
+[t=0.287079s, 35116 KB] g=3, 65 evaluated, 3 expanded
+[t=0.308491s, 35116 KB] New best heuristic value for pinch_tracking: 1077
+[t=0.308596s, 35116 KB] g=4, 83 evaluated, 4 expanded
+[t=0.313946s, 35116 KB] New best heuristic value for pinch_tracking: 1071
+[t=0.314046s, 35116 KB] g=4, 86 evaluated, 4 expanded
+[t=0.315344s, 35116 KB] New best heuristic value for pinch_tracking: 1064
+[t=0.315434s, 35116 KB] g=4, 87 evaluated, 4 expanded
+[t=0.31648s, 35116 KB] New best heuristic value for pinch_tracking: 1062
+[t=0.316555s, 35116 KB] g=4, 88 evaluated, 4 expanded
+[t=0.347071s, 35116 KB] New best heuristic value for pinch_tracking: 1054
+[t=0.347174s, 35116 KB] g=5, 110 evaluated, 5 expanded
+[t=0.352517s, 35116 KB] New best heuristic value for pinch_tracking: 1048
+[t=0.352626s, 35116 KB] g=5, 113 evaluated, 5 expanded
+[t=0.353913s, 35116 KB] New best heuristic value for pinch_tracking: 1041
+[t=0.353998s, 35116 KB] g=5, 114 evaluated, 5 expanded
+[t=0.389053s, 35116 KB] New best heuristic value for pinch_tracking: 1033
+[t=0.38917s, 35116 KB] g=6, 137 evaluated, 6 expanded
+[t=0.394589s, 35116 KB] New best heuristic value for pinch_tracking: 1027
+[t=0.394684s, 35116 KB] g=6, 140 evaluated, 6 expanded
+[t=0.405377s, 35116 KB] New best heuristic value for pinch_tracking: 1024
+[t=0.405471s, 35116 KB] g=6, 145 evaluated, 6 expanded
+[t=0.414252s, 35116 KB] New best heuristic value for pinch_tracking: 1022
+[t=0.414358s, 35116 KB] g=6, 151 evaluated, 6 expanded
+[t=0.433258s, 35116 KB] New best heuristic value for pinch_tracking: 1014
+[t=0.433369s, 35116 KB] g=7, 164 evaluated, 7 expanded
+[t=0.438625s, 35116 KB] New best heuristic value for pinch_tracking: 1008
+[t=0.438733s, 35116 KB] g=7, 167 evaluated, 7 expanded
+[t=0.449187s, 35116 KB] New best heuristic value for pinch_tracking: 1005
+[t=0.449296s, 35116 KB] g=7, 172 evaluated, 7 expanded
+[t=0.477265s, 35116 KB] New best heuristic value for pinch_tracking: 997
+[t=0.477373s, 35116 KB] g=8, 191 evaluated, 8 expanded
+[t=0.482814s, 35116 KB] New best heuristic value for pinch_tracking: 991
+[t=0.482919s, 35116 KB] g=8, 194 evaluated, 8 expanded
+[t=0.520021s, 35116 KB] New best heuristic value for pinch_tracking: 983
+[t=0.520127s, 35116 KB] g=9, 218 evaluated, 9 expanded
+[t=0.525918s, 35116 KB] New best heuristic value for pinch_tracking: 980
+[t=0.526023s, 35116 KB] g=9, 221 evaluated, 9 expanded
+[t=0.529684s, 35116 KB] New best heuristic value for pinch_tracking: 979
+[t=0.529791s, 35116 KB] g=9, 223 evaluated, 9 expanded
+[t=0.535983s, 35116 KB] New best heuristic value for pinch_tracking: 978
+[t=0.536097s, 35116 KB] g=9, 227 evaluated, 9 expanded
+[t=0.566465s, 35116 KB] New best heuristic value for pinch_tracking: 970
+[t=0.566575s, 35116 KB] g=10, 245 evaluated, 10 expanded
+[t=0.574659s, 35116 KB] New best heuristic value for pinch_tracking: 967
+[t=0.57476s, 35116 KB] g=10, 249 evaluated, 10 expanded
+[t=0.57847s, 35116 KB] New best heuristic value for pinch_tracking: 966
+[t=0.578575s, 35116 KB] g=10, 251 evaluated, 10 expanded
+[t=0.590648s, 35116 KB] New best heuristic value for pinch_tracking: 936
+[t=0.590738s, 35116 KB] g=10, 259 evaluated, 10 expanded
+[t=0.614066s, 35116 KB] New best heuristic value for pinch_tracking: 928
+[t=0.614167s, 35116 KB] g=11, 272 evaluated, 11 expanded
+[t=0.61983s, 35116 KB] New best heuristic value for pinch_tracking: 925
+[t=0.619926s, 35116 KB] g=11, 275 evaluated, 11 expanded
+[t=0.623494s, 35116 KB] New best heuristic value for pinch_tracking: 924
+[t=0.623598s, 35116 KB] g=11, 277 evaluated, 11 expanded
+[t=0.657676s, 35116 KB] New best heuristic value for pinch_tracking: 916
+[t=0.657786s, 35116 KB] g=12, 297 evaluated, 12 expanded
+[t=0.665262s, 35116 KB] New best heuristic value for pinch_tracking: 913
+[t=0.665357s, 35116 KB] g=12, 301 evaluated, 12 expanded
+[t=0.669199s, 35116 KB] New best heuristic value for pinch_tracking: 912
+[t=0.669289s, 35116 KB] g=12, 303 evaluated, 12 expanded
+[t=0.688451s, 35116 KB] New best heuristic value for pinch_tracking: 888
+[t=0.688545s, 35116 KB] g=12, 313 evaluated, 12 expanded
+[t=0.70595s, 35116 KB] New best heuristic value for pinch_tracking: 880
+[t=0.706042s, 35116 KB] g=13, 322 evaluated, 13 expanded
+[t=0.713957s, 35116 KB] New best heuristic value for pinch_tracking: 877
+[t=0.71405s, 35116 KB] g=13, 326 evaluated, 13 expanded
+[t=0.717897s, 35116 KB] New best heuristic value for pinch_tracking: 876
+[t=0.717989s, 35116 KB] g=13, 328 evaluated, 13 expanded
+[t=0.748508s, 35116 KB] New best heuristic value for pinch_tracking: 868
+[t=0.748609s, 35116 KB] g=14, 345 evaluated, 14 expanded
+[t=0.757788s, 35116 KB] New best heuristic value for pinch_tracking: 865
+[t=0.757887s, 35116 KB] g=14, 350 evaluated, 14 expanded
+[t=0.765556s, 35116 KB] New best heuristic value for pinch_tracking: 864
+[t=0.765656s, 35116 KB] g=14, 354 evaluated, 14 expanded
+[t=0.776112s, 35116 KB] New best heuristic value for pinch_tracking: 826
+[t=0.776217s, 35116 KB] g=14, 360 evaluated, 14 expanded
+[t=0.791083s, 35116 KB] New best heuristic value for pinch_tracking: 818
+[t=0.791183s, 35116 KB] g=15, 368 evaluated, 15 expanded
+[t=0.800247s, 35116 KB] New best heuristic value for pinch_tracking: 815
+[t=0.800354s, 35116 KB] g=15, 373 evaluated, 15 expanded
+[t=0.808045s, 35116 KB] New best heuristic value for pinch_tracking: 814
+[t=0.808152s, 35116 KB] g=15, 377 evaluated, 15 expanded
+[t=0.829182s, 35116 KB] New best heuristic value for pinch_tracking: 806
+[t=0.829289s, 35116 KB] g=16, 389 evaluated, 16 expanded
+[t=0.841453s, 35116 KB] New best heuristic value for pinch_tracking: 803
+[t=0.841553s, 35116 KB] g=16, 395 evaluated, 16 expanded
+[t=0.849319s, 35116 KB] New best heuristic value for pinch_tracking: 782
+[t=0.849419s, 35116 KB] g=16, 399 evaluated, 16 expanded
+[t=0.870504s, 35116 KB] New best heuristic value for pinch_tracking: 774
+[t=0.870613s, 35116 KB] g=17, 410 evaluated, 17 expanded
+[t=0.879789s, 35116 KB] New best heuristic value for pinch_tracking: 771
+[t=0.879889s, 35116 KB] g=17, 415 evaluated, 17 expanded
+[t=0.909491s, 35116 KB] New best heuristic value for pinch_tracking: 763
+[t=0.909595s, 35116 KB] g=18, 429 evaluated, 18 expanded
+[t=0.918351s, 35116 KB] New best heuristic value for pinch_tracking: 761
+[t=0.918448s, 35116 KB] g=18, 434 evaluated, 18 expanded
+[t=0.926392s, 35116 KB] New best heuristic value for pinch_tracking: 760
+[t=0.926491s, 35116 KB] g=18, 437 evaluated, 18 expanded
+[t=0.949956s, 35116 KB] New best heuristic value for pinch_tracking: 752
+[t=0.950063s, 35116 KB] g=19, 448 evaluated, 19 expanded
+[t=0.960631s, 35116 KB] New best heuristic value for pinch_tracking: 750
+[t=0.960741s, 35116 KB] g=19, 454 evaluated, 19 expanded
+[t=0.985196s, 35116 KB] New best heuristic value for pinch_tracking: 742
+[t=0.985304s, 35116 KB] g=19, 466 evaluated, 19 expanded
+[t=0.987511s, 35116 KB] New best heuristic value for pinch_tracking: 734
+[t=0.98762s, 35116 KB] g=20, 467 evaluated, 20 expanded
+[t=0.996071s, 35116 KB] New best heuristic value for pinch_tracking: 732
+[t=0.99618s, 35116 KB] g=20, 472 evaluated, 20 expanded
+[t=1.01971s, 35116 KB] New best heuristic value for pinch_tracking: 724
+[t=1.01982s, 35116 KB] g=21, 483 evaluated, 21 expanded
+[t=1.04124s, 35116 KB] New best heuristic value for pinch_tracking: 723
+[t=1.04135s, 35116 KB] g=21, 493 evaluated, 21 expanded
+[t=1.047s, 35116 KB] New best heuristic value for pinch_tracking: 716
+[t=1.04711s, 35116 KB] g=21, 496 evaluated, 21 expanded
+[t=1.0548s, 35116 KB] New best heuristic value for pinch_tracking: 708
+[t=1.05491s, 35116 KB] g=22, 499 evaluated, 22 expanded
+[t=1.07483s, 35116 KB] New best heuristic value for pinch_tracking: 707
+[t=1.07495s, 35116 KB] g=22, 509 evaluated, 22 expanded
+[t=1.08224s, 35116 KB] New best heuristic value for pinch_tracking: 699
+[t=1.08235s, 35116 KB] g=23, 513 evaluated, 23 expanded
+[t=1.10879s, 35116 KB] New best heuristic value for pinch_tracking: 682
+[t=1.10889s, 35116 KB] g=23, 526 evaluated, 23 expanded
+[t=1.11112s, 35116 KB] New best heuristic value for pinch_tracking: 674
+[t=1.11122s, 35116 KB] g=24, 527 evaluated, 24 expanded
+[t=1.13429s, 35116 KB] New best heuristic value for pinch_tracking: 666
+[t=1.1344s, 35116 KB] g=25, 540 evaluated, 25 expanded
+[t=1.15527s, 35116 KB] New best heuristic value for pinch_tracking: 658
+[t=1.15539s, 35116 KB] g=26, 551 evaluated, 26 expanded
+[t=1.17784s, 35116 KB] New best heuristic value for pinch_tracking: 650
+[t=1.17794s, 35116 KB] g=27, 564 evaluated, 27 expanded
+[t=1.19914s, 35116 KB] New best heuristic value for pinch_tracking: 643
+[t=1.19925s, 35116 KB] g=28, 575 evaluated, 28 expanded
+[t=1.22825s, 35116 KB] New best heuristic value for pinch_tracking: 638
+[t=1.22836s, 35116 KB] g=29, 592 evaluated, 29 expanded
+[t=1.23173s, 35116 KB] New best heuristic value for pinch_tracking: 636
+[t=1.23183s, 35116 KB] g=29, 593 evaluated, 29 expanded
+[t=1.2503s, 35116 KB] New best heuristic value for pinch_tracking: 631
+[t=1.2504s, 35116 KB] g=30, 604 evaluated, 30 expanded
+[t=1.26186s, 35116 KB] New best heuristic value for pinch_tracking: 630
+[t=1.26197s, 35116 KB] g=30, 609 evaluated, 30 expanded
+[t=1.27215s, 35116 KB] New best heuristic value for pinch_tracking: 625
+[t=1.27225s, 35116 KB] g=31, 616 evaluated, 31 expanded
+[t=1.29178s, 35116 KB] New best heuristic value for pinch_tracking: 614
+[t=1.29188s, 35116 KB] g=32, 628 evaluated, 32 expanded
+[t=1.39554s, 35116 KB] New best heuristic value for pinch_tracking: 611
+[t=1.39565s, 35116 KB] g=34, 688 evaluated, 38 expanded
+[t=1.44519s, 35116 KB] New best heuristic value for pinch_tracking: 608
+[t=1.44531s, 35116 KB] g=36, 719 evaluated, 41 expanded
+[t=1.49522s, 35116 KB] New best heuristic value for pinch_tracking: 605
+[t=1.49533s, 35116 KB] g=38, 752 evaluated, 44 expanded
+[t=1.55225s, 35116 KB] New best heuristic value for pinch_tracking: 602
+[t=1.55236s, 35116 KB] g=40, 785 evaluated, 47 expanded
+[t=1.63714s, 35116 KB] New best heuristic value for pinch_tracking: 599
+[t=1.63726s, 35116 KB] g=42, 836 evaluated, 52 expanded
+[t=1.72405s, 35116 KB] New best heuristic value for pinch_tracking: 596
+[t=1.72416s, 35116 KB] g=44, 888 evaluated, 57 expanded
+[t=1.81323s, 35116 KB] New best heuristic value for pinch_tracking: 593
+[t=1.81334s, 35116 KB] g=46, 940 evaluated, 62 expanded
+[t=1.9404s, 35116 KB] New best heuristic value for pinch_tracking: 589
+[t=1.9405s, 35116 KB] g=52, 1011 evaluated, 69 expanded
+[t=2.08511s, 35116 KB] New best heuristic value for pinch_tracking: 586
+[t=2.08523s, 35116 KB] g=54, 1086 evaluated, 76 expanded
+[t=2.21993s, 35116 KB] New best heuristic value for pinch_tracking: 583
+[t=2.22003s, 35116 KB] g=56, 1158 evaluated, 83 expanded
+[t=3.62155s, 35116 KB] New best heuristic value for pinch_tracking: 573
+[t=3.62167s, 35116 KB] g=54, 1884 evaluated, 161 expanded
+[t=7.70274s, 35116 KB] New best heuristic value for pinch_tracking: 572
+[t=7.70286s, 35116 KB] g=68, 3889 evaluated, 373 expanded
+[t=7.72225s, 35116 KB] New best heuristic value for pinch_tracking: 568
+[t=7.72236s, 35116 KB] g=69, 3900 evaluated, 374 expanded
+[t=7.7412s, 35116 KB] New best heuristic value for pinch_tracking: 564
+[t=7.74132s, 35116 KB] g=70, 3911 evaluated, 375 expanded
+[t=7.80124s, 35116 KB] New best heuristic value for pinch_tracking: 563
+[t=7.80136s, 35116 KB] g=73, 3944 evaluated, 378 expanded
+[t=7.82182s, 35116 KB] New best heuristic value for pinch_tracking: 560
+[t=7.82194s, 35116 KB] g=74, 3955 evaluated, 379 expanded
+[t=7.84098s, 35116 KB] New best heuristic value for pinch_tracking: 557
+[t=7.84109s, 35116 KB] g=75, 3966 evaluated, 380 expanded
+[t=15.4932s, 35116 KB] New best heuristic value for pinch_tracking: 556
+[t=15.4933s, 35116 KB] g=88, 7585 evaluated, 815 expanded
+[t=15.5141s, 35116 KB] New best heuristic value for pinch_tracking: 552
+[t=15.5142s, 35116 KB] g=89, 7597 evaluated, 816 expanded
+[t=15.6894s, 35260 KB] New best heuristic value for pinch_tracking: 550
+[t=15.6895s, 35260 KB] g=93, 7692 evaluated, 825 expanded
+[t=39.1459s, 39504 KB] New best heuristic value for pinch_tracking: 543
+[t=39.146s, 39504 KB] g=79, 18442 evaluated, 2232 expanded
+[t=39.1828s, 39504 KB] New best heuristic value for pinch_tracking: 520
+[t=39.1829s, 39504 KB] g=80, 18461 evaluated, 2233 expanded
+[t=41.2316s, 39776 KB] New best heuristic value for pinch_tracking: 519
+[t=41.2317s, 39776 KB] g=93, 19507 evaluated, 2368 expanded
+[t=41.2469s, 39776 KB] New best heuristic value for pinch_tracking: 515
+[t=41.2471s, 39776 KB] g=94, 19517 evaluated, 2369 expanded
+[t=41.2942s, 39912 KB] New best heuristic value for pinch_tracking: 514
+[t=41.2943s, 39912 KB] g=97, 19547 evaluated, 2372 expanded
+[t=41.3112s, 39912 KB] New best heuristic value for pinch_tracking: 511
+[t=41.3113s, 39912 KB] g=98, 19557 evaluated, 2373 expanded
+[t=41.3268s, 39912 KB] New best heuristic value for pinch_tracking: 508
+[t=41.3269s, 39912 KB] g=99, 19567 evaluated, 2374 expanded
+[t=41.4337s, 39912 KB] New best heuristic value for pinch_tracking: 506
+[t=41.4339s, 39912 KB] g=103, 19627 evaluated, 2380 expanded
+[t=55.1782s, 42080 KB] New best heuristic value for pinch_tracking: 505
+[t=55.1783s, 42080 KB] g=115, 26413 evaluated, 3339 expanded
+[t=61.3406s, 43044 KB] New best heuristic value for pinch_tracking: 495
+[t=61.3407s, 43044 KB] g=103, 29379 evaluated, 3772 expanded
+[t=61.3709s, 43044 KB] New best heuristic value for pinch_tracking: 475
+[t=61.371s, 43044 KB] g=104, 29397 evaluated, 3773 expanded
+[t=61.4332s, 43044 KB] New best heuristic value for pinch_tracking: 473
+[t=61.4333s, 43044 KB] g=108, 29435 evaluated, 3778 expanded
+[t=64.2969s, 43888 KB] New best heuristic value for pinch_tracking: 472
+[t=64.297s, 43888 KB] g=120, 30962 evaluated, 4011 expanded
+[t=64.3367s, 43888 KB] New best heuristic value for pinch_tracking: 471
+[t=64.3368s, 43888 KB] g=123, 30989 evaluated, 4014 expanded
+[t=64.3506s, 43888 KB] New best heuristic value for pinch_tracking: 468
+[t=64.3507s, 43888 KB] g=124, 30998 evaluated, 4015 expanded
+[t=64.364s, 43888 KB] New best heuristic value for pinch_tracking: 465
+[t=64.3641s, 43888 KB] g=125, 31007 evaluated, 4016 expanded
+[t=70.9138s, 45824 KB] New best heuristic value for pinch_tracking: 464
+[t=70.914s, 45824 KB] g=128, 34468 evaluated, 4562 expanded
+[t=70.9219s, 45824 KB] New best heuristic value for pinch_tracking: 453
+[t=70.922s, 45824 KB] g=129, 34472 evaluated, 4563 expanded
+[t=70.9467s, 45824 KB] New best heuristic value for pinch_tracking: 436
+[t=70.9468s, 45824 KB] g=130, 34488 evaluated, 4564 expanded
+[t=73.0772s, 46200 KB] New best heuristic value for pinch_tracking: 433
+[t=73.0773s, 46200 KB] g=147, 35724 evaluated, 4771 expanded
+[t=75.2697s, 46736 KB] New best heuristic value for pinch_tracking: 425
+[t=75.2698s, 46736 KB] g=146, 37056 evaluated, 4995 expanded
+[t=75.5591s, 46736 KB] New best heuristic value for pinch_tracking: 423
+[t=75.5592s, 46736 KB] g=150, 37244 evaluated, 5022 expanded
+[t=75.619s, 46736 KB] New best heuristic value for pinch_tracking: 421
+[t=75.6191s, 46736 KB] g=152, 37283 evaluated, 5027 expanded
+[t=76.0517s, 46872 KB] New best heuristic value for pinch_tracking: 420
+[t=76.0518s, 46872 KB] g=160, 37563 evaluated, 5072 expanded
+[t=76.0615s, 46872 KB] New best heuristic value for pinch_tracking: 416
+[t=76.0616s, 46872 KB] g=161, 37571 evaluated, 5073 expanded
+[t=76.0713s, 46872 KB] New best heuristic value for pinch_tracking: 412
+[t=76.0714s, 46872 KB] g=162, 37579 evaluated, 5074 expanded
+[t=76.1018s, 46872 KB] New best heuristic value for pinch_tracking: 411
+[t=76.1019s, 46872 KB] g=165, 37603 evaluated, 5077 expanded
+[t=76.1124s, 46872 KB] New best heuristic value for pinch_tracking: 408
+[t=76.1125s, 46872 KB] g=166, 37611 evaluated, 5078 expanded
+[t=76.1222s, 46872 KB] New best heuristic value for pinch_tracking: 405
+[t=76.1223s, 46872 KB] g=167, 37619 evaluated, 5079 expanded
+[t=76.3881s, 47004 KB] New best heuristic value for pinch_tracking: 389
+[t=76.3882s, 47004 KB] g=171, 37788 evaluated, 5104 expanded
+[t=76.5876s, 47004 KB] New best heuristic value for pinch_tracking: 388
+[t=76.5877s, 47004 KB] g=176, 37910 evaluated, 5121 expanded
+[t=76.8934s, 47004 KB] New best heuristic value for pinch_tracking: 385
+[t=76.8935s, 47004 KB] g=180, 38087 evaluated, 5152 expanded
+[t=76.9054s, 47004 KB] New best heuristic value for pinch_tracking: 381
+[t=76.9055s, 47004 KB] g=181, 38096 evaluated, 5153 expanded
+[t=76.9152s, 47004 KB] New best heuristic value for pinch_tracking: 380
+[t=76.9153s, 47004 KB] g=182, 38103 evaluated, 5154 expanded
+[t=77.0059s, 47004 KB] New best heuristic value for pinch_tracking: 379
+[t=77.006s, 47004 KB] g=184, 38164 evaluated, 5162 expanded
+[t=78.0732s, 47272 KB] New best heuristic value for pinch_tracking: 377
+[t=78.0733s, 47272 KB] g=190, 38799 evaluated, 5266 expanded
+[t=78.1299s, 47272 KB] New best heuristic value for pinch_tracking: 376
+[t=78.1301s, 47272 KB] g=192, 38839 evaluated, 5272 expanded
+[t=78.1845s, 47272 KB] New best heuristic value for pinch_tracking: 374
+[t=78.1846s, 47272 KB] g=192, 38876 evaluated, 5277 expanded
+[t=78.2409s, 47272 KB] New best heuristic value for pinch_tracking: 373
+[t=78.241s, 47272 KB] g=194, 38916 evaluated, 5283 expanded
+[t=78.2957s, 47272 KB] New best heuristic value for pinch_tracking: 371
+[t=78.2959s, 47272 KB] g=194, 38953 evaluated, 5288 expanded
+[t=78.3525s, 47404 KB] New best heuristic value for pinch_tracking: 370
+[t=78.3526s, 47404 KB] g=196, 38993 evaluated, 5294 expanded
+[t=78.407s, 47404 KB] New best heuristic value for pinch_tracking: 369
+[t=78.4071s, 47404 KB] g=196, 39029 evaluated, 5299 expanded
+[t=78.4653s, 47404 KB] New best heuristic value for pinch_tracking: 368
+[t=78.4654s, 47404 KB] g=198, 39070 evaluated, 5305 expanded
+[t=78.8639s, 47404 KB] New best heuristic value for pinch_tracking: 367
+[t=78.864s, 47404 KB] g=200, 39314 evaluated, 5343 expanded
+[t=78.922s, 47404 KB] New best heuristic value for pinch_tracking: 366
+[t=78.9221s, 47404 KB] g=202, 39355 evaluated, 5349 expanded
+[t=78.9754s, 47536 KB] New best heuristic value for pinch_tracking: 365
+[t=78.9755s, 47536 KB] g=202, 39391 evaluated, 5354 expanded
+[t=79.0333s, 47536 KB] New best heuristic value for pinch_tracking: 364
+[t=79.0335s, 47536 KB] g=204, 39432 evaluated, 5360 expanded
+[t=79.3518s, 47536 KB] New best heuristic value for pinch_tracking: 349
+[t=79.3519s, 47536 KB] g=206, 39620 evaluated, 5390 expanded
+[t=79.6203s, 47672 KB] New best heuristic value for pinch_tracking: 347
+[t=79.6204s, 47672 KB] g=211, 39784 evaluated, 5413 expanded
+[t=79.9633s, 47672 KB] New best heuristic value for pinch_tracking: 344
+[t=79.9634s, 47672 KB] g=212, 39989 evaluated, 5442 expanded
+[t=80.0501s, 47672 KB] New best heuristic value for pinch_tracking: 341
+[t=80.0502s, 47672 KB] g=214, 40042 evaluated, 5449 expanded
+[t=80.137s, 47804 KB] New best heuristic value for pinch_tracking: 338
+[t=80.1372s, 47804 KB] g=216, 40095 evaluated, 5456 expanded
+[t=80.2232s, 47804 KB] New best heuristic value for pinch_tracking: 336
+[t=80.2233s, 47804 KB] g=218, 40148 evaluated, 5463 expanded
+[t=80.56s, 47804 KB] New best heuristic value for pinch_tracking: 334
+[t=80.5601s, 47804 KB] g=223, 40352 evaluated, 5492 expanded
+[t=80.9003s, 47940 KB] New best heuristic value for pinch_tracking: 332
+[t=80.9004s, 47940 KB] g=224, 40557 evaluated, 5521 expanded
+[t=81.2487s, 47940 KB] New best heuristic value for pinch_tracking: 330
+[t=81.2488s, 47940 KB] g=229, 40761 evaluated, 5550 expanded
+[t=82.5413s, 48212 KB] New best heuristic value for pinch_tracking: 316
+[t=82.5414s, 48212 KB] g=231, 41493 evaluated, 5671 expanded
+[t=83.1708s, 48344 KB] New best heuristic value for pinch_tracking: 314
+[t=83.1709s, 48344 KB] g=234, 41824 evaluated, 5725 expanded
+[t=83.181s, 48344 KB] New best heuristic value for pinch_tracking: 305
+[t=83.1811s, 48344 KB] g=235, 41830 evaluated, 5726 expanded
+[t=83.2024s, 48344 KB] New best heuristic value for pinch_tracking: 291
+[t=83.2026s, 48344 KB] g=236, 41844 evaluated, 5727 expanded
+[t=83.2237s, 48344 KB] New best heuristic value for pinch_tracking: 288
+[t=83.2238s, 48344 KB] g=239, 41861 evaluated, 5730 expanded
+[t=83.2336s, 48344 KB] New best heuristic value for pinch_tracking: 285
+[t=83.2338s, 48344 KB] g=240, 41869 evaluated, 5731 expanded
+[t=83.4939s, 48476 KB] New best heuristic value for pinch_tracking: 282
+[t=83.494s, 48476 KB] g=246, 42036 evaluated, 5757 expanded
+[t=83.507s, 48476 KB] New best heuristic value for pinch_tracking: 278
+[t=83.5071s, 48476 KB] g=247, 42045 evaluated, 5758 expanded
+[t=83.5173s, 48476 KB] New best heuristic value for pinch_tracking: 276
+[t=83.5174s, 48476 KB] g=248, 42052 evaluated, 5759 expanded
+[t=83.8718s, 48612 KB] New best heuristic value for pinch_tracking: 273
+[t=83.8719s, 48612 KB] g=253, 42269 evaluated, 5793 expanded
+[t=86.9335s, 49156 KB] New best heuristic value for pinch_tracking: 270
+[t=86.9336s, 49156 KB] g=256, 43920 evaluated, 6166 expanded
+[t=86.9398s, 49156 KB] New best heuristic value for pinch_tracking: 263
+[t=86.9399s, 49156 KB] g=257, 43925 evaluated, 6167 expanded
+[t=86.9556s, 49156 KB] New best heuristic value for pinch_tracking: 252
+[t=86.9557s, 49156 KB] g=258, 43935 evaluated, 6168 expanded
+[t=86.9717s, 49156 KB] New best heuristic value for pinch_tracking: 250
+[t=86.9718s, 49156 KB] g=261, 43948 evaluated, 6171 expanded
+[t=86.9793s, 49156 KB] New best heuristic value for pinch_tracking: 247
+[t=86.9794s, 49156 KB] g=262, 43954 evaluated, 6172 expanded
+[t=86.9873s, 49156 KB] New best heuristic value for pinch_tracking: 246
+[t=86.9874s, 49156 KB] g=263, 43960 evaluated, 6173 expanded
+[t=87.1304s, 49156 KB] New best heuristic value for pinch_tracking: 244
+[t=87.1305s, 49156 KB] g=269, 44053 evaluated, 6192 expanded
+[t=87.1389s, 49156 KB] New best heuristic value for pinch_tracking: 240
+[t=87.139s, 49156 KB] g=270, 44059 evaluated, 6193 expanded
+[t=87.1476s, 49156 KB] New best heuristic value for pinch_tracking: 237
+[t=87.1477s, 49156 KB] g=271, 44065 evaluated, 6194 expanded
+[t=87.1882s, 49156 KB] New best heuristic value for pinch_tracking: 233
+[t=87.1883s, 49156 KB] g=274, 44092 evaluated, 6199 expanded
+[t=88.2808s, 49428 KB] New best heuristic value for pinch_tracking: 230
+[t=88.2809s, 49428 KB] g=276, 44732 evaluated, 6360 expanded
+[t=88.2862s, 49428 KB] New best heuristic value for pinch_tracking: 225
+[t=88.2863s, 49428 KB] g=277, 44737 evaluated, 6361 expanded
+[t=88.2965s, 49428 KB] New best heuristic value for pinch_tracking: 217
+[t=88.2967s, 49428 KB] g=278, 44745 evaluated, 6362 expanded
+[t=88.3067s, 49428 KB] New best heuristic value for pinch_tracking: 216
+[t=88.3068s, 49428 KB] g=281, 44756 evaluated, 6365 expanded
+[t=88.3121s, 49428 KB] New best heuristic value for pinch_tracking: 213
+[t=88.3122s, 49428 KB] g=282, 44761 evaluated, 6366 expanded
+[t=88.3174s, 49428 KB] New best heuristic value for pinch_tracking: 211
+[t=88.3175s, 49428 KB] g=283, 44766 evaluated, 6367 expanded
+[t=88.4565s, 49564 KB] New best heuristic value for pinch_tracking: 210
+[t=88.4566s, 49564 KB] g=289, 44872 evaluated, 6392 expanded
+[t=88.4626s, 49564 KB] New best heuristic value for pinch_tracking: 206
+[t=88.4627s, 49564 KB] g=290, 44877 evaluated, 6393 expanded
+[t=88.4686s, 49564 KB] New best heuristic value for pinch_tracking: 202
+[t=88.4687s, 49564 KB] g=291, 44882 evaluated, 6394 expanded
+[t=88.8922s, 49564 KB] New best heuristic value for pinch_tracking: 199
+[t=88.8923s, 49564 KB] g=293, 45168 evaluated, 6475 expanded
+[t=88.8961s, 49564 KB] New best heuristic value for pinch_tracking: 196
+[t=88.8962s, 49564 KB] g=294, 45172 evaluated, 6476 expanded
+[t=88.9039s, 49696 KB] New best heuristic value for pinch_tracking: 191
+[t=88.904s, 49696 KB] g=295, 45179 evaluated, 6477 expanded
+[t=88.9158s, 49696 KB] New best heuristic value for pinch_tracking: 188
+[t=88.9159s, 49696 KB] g=299, 45192 evaluated, 6481 expanded
+[t=88.9197s, 49696 KB] New best heuristic value for pinch_tracking: 185
+[t=88.9198s, 49696 KB] g=300, 45196 evaluated, 6482 expanded
+[t=89.1663s, 49696 KB] New best heuristic value for pinch_tracking: 182
+[t=89.1664s, 49696 KB] g=302, 45371 evaluated, 6534 expanded
+[t=89.169s, 49696 KB] New best heuristic value for pinch_tracking: 181
+[t=89.1691s, 49696 KB] g=303, 45374 evaluated, 6535 expanded
+[t=89.1751s, 49696 KB] New best heuristic value for pinch_tracking: 179
+[t=89.1752s, 49696 KB] g=304, 45380 evaluated, 6536 expanded
+[t=89.4171s, 49696 KB] New best heuristic value for pinch_tracking: 177
+[t=89.4172s, 49696 KB] g=311, 45548 evaluated, 6590 expanded
+[t=89.42s, 49696 KB] New best heuristic value for pinch_tracking: 170
+[t=89.4201s, 49696 KB] g=312, 45551 evaluated, 6591 expanded
+[t=89.4396s, 49832 KB] New best heuristic value for pinch_tracking: 169
+[t=89.4397s, 49832 KB] g=317, 45573 evaluated, 6599 expanded
+[t=89.4414s, 49832 KB] New best heuristic value for pinch_tracking: 163
+[t=89.4415s, 49832 KB] g=318, 45575 evaluated, 6600 expanded
+[t=89.4703s, 49832 KB] New best heuristic value for pinch_tracking: 161
+[t=89.4704s, 49832 KB] g=324, 45605 evaluated, 6612 expanded
+[t=89.4732s, 49832 KB] New best heuristic value for pinch_tracking: 155
+[t=89.4733s, 49832 KB] g=325, 45608 evaluated, 6613 expanded
+[t=89.4797s, 49832 KB] New best heuristic value for pinch_tracking: 151
+[t=89.4798s, 49832 KB] g=327, 45615 evaluated, 6615 expanded
+[t=89.4825s, 49832 KB] New best heuristic value for pinch_tracking: 150
+[t=89.4826s, 49832 KB] g=328, 45618 evaluated, 6616 expanded
+[t=89.4869s, 49832 KB] New best heuristic value for pinch_tracking: 148
+[t=89.487s, 49832 KB] g=329, 45623 evaluated, 6617 expanded
+[t=89.4892s, 49832 KB] New best heuristic value for pinch_tracking: 147
+[t=89.4893s, 49832 KB] g=330, 45626 evaluated, 6618 expanded
+[t=89.4921s, 49832 KB] New best heuristic value for pinch_tracking: 143
+[t=89.4922s, 49832 KB] g=331, 45630 evaluated, 6619 expanded
+[t=89.4944s, 49832 KB] New best heuristic value for pinch_tracking: 139
+[t=89.4945s, 49832 KB] g=332, 45633 evaluated, 6620 expanded
+[t=89.4973s, 49832 KB] New best heuristic value for pinch_tracking: 137
+[t=89.4974s, 49832 KB] g=333, 45637 evaluated, 6621 expanded
+[t=89.4995s, 49832 KB] New best heuristic value for pinch_tracking: 136
+[t=89.4996s, 49832 KB] g=334, 45640 evaluated, 6622 expanded
+[t=89.5024s, 49832 KB] New best heuristic value for pinch_tracking: 134
+[t=89.5025s, 49832 KB] g=335, 45644 evaluated, 6623 expanded
+[t=89.5047s, 49832 KB] New best heuristic value for pinch_tracking: 133
+[t=89.5048s, 49832 KB] g=336, 45647 evaluated, 6624 expanded
+[t=89.5071s, 49832 KB] New best heuristic value for pinch_tracking: 129
+[t=89.5072s, 49832 KB] g=337, 45650 evaluated, 6625 expanded
+[t=89.5092s, 49832 KB] New best heuristic value for pinch_tracking: 125
+[t=89.5093s, 49832 KB] g=338, 45653 evaluated, 6626 expanded
+[t=89.5122s, 49832 KB] New best heuristic value for pinch_tracking: 124
+[t=89.5123s, 49832 KB] g=339, 45657 evaluated, 6627 expanded
+[t=89.5713s, 49832 KB] New best heuristic value for pinch_tracking: 120
+[t=89.5714s, 49832 KB] g=346, 45733 evaluated, 6655 expanded
+[t=89.5731s, 49832 KB] New best heuristic value for pinch_tracking: 115
+[t=89.5732s, 49832 KB] g=347, 45735 evaluated, 6656 expanded
+[t=89.5827s, 49832 KB] New best heuristic value for pinch_tracking: 111
+[t=89.5828s, 49832 KB] g=353, 45747 evaluated, 6662 expanded
+[t=89.5845s, 49832 KB] New best heuristic value for pinch_tracking: 107
+[t=89.5846s, 49832 KB] g=354, 45749 evaluated, 6663 expanded
+[t=89.5864s, 49832 KB] New best heuristic value for pinch_tracking: 105
+[t=89.5865s, 49832 KB] g=355, 45751 evaluated, 6664 expanded
+[t=89.5879s, 49832 KB] New best heuristic value for pinch_tracking: 103
+[t=89.588s, 49832 KB] g=356, 45753 evaluated, 6665 expanded
+[t=89.5897s, 49832 KB] New best heuristic value for pinch_tracking: 102
+[t=89.5898s, 49832 KB] g=357, 45755 evaluated, 6666 expanded
+[t=89.5924s, 49832 KB] New best heuristic value for pinch_tracking: 100
+[t=89.5925s, 49832 KB] g=358, 45759 evaluated, 6667 expanded
+[t=89.5939s, 49832 KB] New best heuristic value for pinch_tracking: 99
+[t=89.5939s, 49832 KB] g=359, 45761 evaluated, 6668 expanded
+[t=89.5953s, 49832 KB] New best heuristic value for pinch_tracking: 95
+[t=89.5954s, 49832 KB] g=360, 45763 evaluated, 6669 expanded
+[t=89.5965s, 49832 KB] New best heuristic value for pinch_tracking: 91
+[t=89.5966s, 49832 KB] g=361, 45765 evaluated, 6670 expanded
+[t=89.5978s, 49832 KB] New best heuristic value for pinch_tracking: 90
+[t=89.5979s, 49832 KB] g=362, 45768 evaluated, 6671 expanded
+[t=89.7229s, 49964 KB] New best heuristic value for pinch_tracking: 84
+[t=89.723s, 49964 KB] g=365, 45964 evaluated, 6751 expanded
+[t=990.552s, 331692 KB] New best heuristic value for pinch_tracking: 75
+[t=990.552s, 331692 KB] g=370, 812565 evaluated, 286259 expanded
+[t=990.553s, 331692 KB] New best heuristic value for pinch_tracking: 72
+[t=990.553s, 331692 KB] g=372, 812567 evaluated, 286261 expanded
+[t=990.556s, 331692 KB] New best heuristic value for pinch_tracking: 63
+[t=990.556s, 331692 KB] g=380, 812575 evaluated, 286269 expanded
+[t=990.559s, 331832 KB] New best heuristic value for pinch_tracking: 56
+[t=990.559s, 331832 KB] g=386, 812581 evaluated, 286275 expanded
+[t=990.562s, 331832 KB] New best heuristic value for pinch_tracking: 47
+[t=990.562s, 331832 KB] g=394, 812589 evaluated, 286283 expanded
+[t=990.565s, 331832 KB] New best heuristic value for pinch_tracking: 39
+[t=990.565s, 331832 KB] g=401, 812596 evaluated, 286290 expanded
+[t=990.566s, 331832 KB] New best heuristic value for pinch_tracking: 35
+[t=990.566s, 331832 KB] g=403, 812598 evaluated, 286292 expanded
+[t=990.566s, 331832 KB] New best heuristic value for pinch_tracking: 34
+[t=990.566s, 331832 KB] g=404, 812599 evaluated, 286293 expanded
+[t=990.567s, 331832 KB] New best heuristic value for pinch_tracking: 32
+[t=990.567s, 331832 KB] g=405, 812601 evaluated, 286294 expanded
+[t=990.568s, 331832 KB] New best heuristic value for pinch_tracking: 31
+[t=990.568s, 331832 KB] g=406, 812602 evaluated, 286295 expanded
+[t=990.569s, 331832 KB] New best heuristic value for pinch_tracking: 29
+[t=990.569s, 331832 KB] g=407, 812604 evaluated, 286296 expanded
+[t=990.569s, 331832 KB] New best heuristic value for pinch_tracking: 28
+[t=990.57s, 331832 KB] g=408, 812605 evaluated, 286297 expanded
+[t=990.57s, 331832 KB] New best heuristic value for pinch_tracking: 26
+[t=990.57s, 331832 KB] g=409, 812607 evaluated, 286298 expanded
+[t=990.571s, 331832 KB] New best heuristic value for pinch_tracking: 25
+[t=990.571s, 331832 KB] g=410, 812608 evaluated, 286299 expanded
+[t=990.572s, 331832 KB] New best heuristic value for pinch_tracking: 23
+[t=990.572s, 331832 KB] g=411, 812610 evaluated, 286300 expanded
+[t=990.572s, 331832 KB] New best heuristic value for pinch_tracking: 22
+[t=990.572s, 331832 KB] g=412, 812611 evaluated, 286301 expanded
+[t=990.573s, 331832 KB] New best heuristic value for pinch_tracking: 20
+[t=990.573s, 331832 KB] g=413, 812613 evaluated, 286302 expanded
+[t=990.574s, 331832 KB] New best heuristic value for pinch_tracking: 19
+[t=990.574s, 331832 KB] g=414, 812614 evaluated, 286303 expanded
+[t=990.575s, 331832 KB] New best heuristic value for pinch_tracking: 17
+[t=990.575s, 331832 KB] g=415, 812616 evaluated, 286304 expanded
+[t=990.575s, 331832 KB] New best heuristic value for pinch_tracking: 16
+[t=990.575s, 331832 KB] g=416, 812617 evaluated, 286305 expanded
+[t=990.576s, 331832 KB] New best heuristic value for pinch_tracking: 14
+[t=990.577s, 331832 KB] g=417, 812620 evaluated, 286306 expanded
+[t=990.577s, 331832 KB] New best heuristic value for pinch_tracking: 13
+[t=990.577s, 331832 KB] g=418, 812621 evaluated, 286307 expanded
+[t=990.578s, 331832 KB] New best heuristic value for pinch_tracking: 11
+[t=990.578s, 331832 KB] g=419, 812624 evaluated, 286308 expanded
+[t=990.579s, 331832 KB] New best heuristic value for pinch_tracking: 10
+[t=990.579s, 331832 KB] g=420, 812625 evaluated, 286309 expanded
+[t=990.58s, 331832 KB] New best heuristic value for pinch_tracking: 8
+[t=990.58s, 331832 KB] g=421, 812628 evaluated, 286310 expanded
+[t=990.58s, 331832 KB] New best heuristic value for pinch_tracking: 7
+[t=990.58s, 331832 KB] g=422, 812629 evaluated, 286311 expanded
+[t=990.581s, 331832 KB] New best heuristic value for pinch_tracking: 5
+[t=990.582s, 331832 KB] g=423, 812632 evaluated, 286312 expanded
+[t=990.582s, 331832 KB] New best heuristic value for pinch_tracking: 4
+[t=990.582s, 331832 KB] g=424, 812633 evaluated, 286313 expanded
+[t=990.583s, 331832 KB] New best heuristic value for pinch_tracking: 2
+[t=990.583s, 331832 KB] g=425, 812634 evaluated, 286314 expanded
+[t=990.584s, 331832 KB] New best heuristic value for pinch_tracking: 1
+[t=990.584s, 331832 KB] g=426, 812636 evaluated, 286315 expanded
+[t=990.584s, 331832 KB] New best heuristic value for pinch_tracking: 0
+[t=990.584s, 331832 KB] g=427, 812637 evaluated, 286316 expanded
+[t=990.584s, 331832 KB] Solution found!
+[t=990.584s, 331832 KB] Actual search time: 990.384s
+move_seg_08l_a3a4_0_450_seg_08l_a4d_0_80_south_north_medium airplane_4xekd (1)
+pushback_seg_p118_0_76_seg_o1_118b_0_60_south_south_medium airplane_daew7 (1)
+pushback_seg_p112_0_76_seg_o1_c3b_0_60_south_south_medium airplane_daew2 (1)
+pushback_seg_p154_0_75_seg_w1_154b_0_45_south_south_medium airplane_daew5 (1)
+pushback_seg_p153_0_75_seg_w1_153b_0_45_south_south_medium airplane_daew4 (1)
+pushback_seg_p131_0_75_seg_o1_108d_0_45_south_south_medium airplane_daew3 (1)
+pushback_seg_p107_0_76_seg_o1_c2b_0_60_south_south_medium airplane_daew1 (1)
+pushback_seg_p141_0_75_seg_w1_141b_0_45_south_south_medium airplane_daew6 (1)
+pushback_seg_o1_c3b_0_60_seg_o1_c3d_0_60_south_north_medium airplane_daew2 (1)
+startup_seg_o1_c3d_0_60_north_medium airplane_daew2 (1)
+pushback_seg_w1_154b_0_45_seg_w1_154c_0_34_south_north_medium airplane_daew5 (1)
+startup_seg_w1_154c_0_34_north_medium airplane_daew5 (1)
+pushback_seg_o1_118b_0_60_seg_o1_118c_0_34_south_north_medium airplane_daew7 (1)
+startup_seg_o1_118c_0_34_north_medium airplane_daew7 (1)
+pushback_seg_o1_c2b_0_60_seg_o1_c2d_0_60_south_north_medium airplane_daew1 (1)
+startup_seg_o1_c2d_0_60_north_medium airplane_daew1 (1)
+pushback_seg_p101_0_76_seg_o1_c1a_0_60_south_south_medium airplane_daewh (1)
+pushback_seg_w1_153b_0_45_seg_w1_153c_0_34_south_north_medium airplane_daew4 (1)
+startup_seg_w1_153c_0_34_north_medium airplane_daew4 (1)
+pushback_seg_w1_141b_0_45_seg_w1_141c_0_34_south_north_medium airplane_daew6 (1)
+startup_seg_w1_141c_0_34_north_medium airplane_daew6 (1)
+pushback_seg_o1_108d_0_45_seg_o1_108c_0_34_south_north_medium airplane_daew3 (1)
+startup_seg_o1_108c_0_34_north_medium airplane_daew3 (1)
+move_seg_n_a7a6a_0_85_seg_n_a7b_0_60_north_north_medium airplane_cfbeg (1)
+move_seg_n_a6a8d_0_75_seg_n_a6a8c_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a6a8c_0_75_seg_n_a6a8b_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a6a8b_0_75_seg_n_a6a8a_0_115_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a6a8a_0_115_seg_n_a6b_0_60_north_north_medium airplane_cfbe1 (1)
+pushback_seg_o1_c1a_0_60_seg_o1_c1b_0_34_south_north_medium airplane_daewh (1)
+startup_seg_o1_c1b_0_34_north_medium airplane_daewh (1)
+move_seg_w1_153c_0_34_seg_w1_153a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_153a_0_34_seg_w1_152c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_152c_0_34_seg_w1_152a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_152a_0_34_seg_w1_151c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_151c_0_34_seg_w1_151a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_151a_0_34_seg_w1_c2c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_c2c_0_34_seg_w1_c2a_0_60_north_south_medium airplane_daew4 (1)
+move_seg_w1_c2a_0_60_seg_w1_143c_0_60_south_north_medium airplane_daew4 (1)
+move_seg_w1_154c_0_34_seg_w1_154a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_154a_0_34_seg_w1_153c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_o1_118c_0_34_seg_o1_118a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_118a_0_34_seg_o1_117c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_w1_153c_0_34_seg_w1_153a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_153a_0_34_seg_w1_152c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_w1_152c_0_34_seg_w1_152a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_152a_0_34_seg_w1_151c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_o1_117c_0_34_seg_o1_117a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_117a_0_34_seg_o1_116c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_116c_0_34_seg_o1_116a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_116a_0_34_seg_o1_115c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_c1b_0_34_seg_o1_c1c_0_80_north_south_medium airplane_daewh (1)
+move_seg_o1_c1c_0_80_seg_c1_n2b_0_80_south_north_medium airplane_daewh (1)
+move_seg_c1_n2b_0_80_seg_c1_n2c_0_60_north_south_medium airplane_daewh (1)
+move_seg_c1_n2c_0_60_seg_w1_c1b_0_60_south_north_medium airplane_daewh (1)
+move_seg_w1_c1b_0_60_seg_w1_c1a_0_60_north_south_medium airplane_daewh (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daewh (1)
+move_seg_w1_151c_0_34_seg_w1_151a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_151a_0_34_seg_w1_c2c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_w1_143c_0_60_seg_w1_143a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_143a_0_34_seg_w1_142c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_141c_0_34_seg_w1_141a_0_34_north_south_medium airplane_daew6 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daewh (1)
+move_seg_w1_141a_0_34_seg_w1_c1c_0_34_south_north_medium airplane_daew6 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daewh (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daewh (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daewh (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daewh (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daewh (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daewh (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daewh (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daewh (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daewh (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daewh (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daewh (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daewh (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daewh (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daewh (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daewh (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daewh (1)
+takeoff_seg_08l_0_80_north airplane_daewh (1)
+move_seg_w1_c2c_0_34_seg_w1_c2a_0_60_north_south_medium airplane_daew5 (1)
+move_seg_w1_c2a_0_60_seg_w1_143c_0_60_south_north_medium airplane_daew5 (1)
+move_seg_w1_142c_0_34_seg_w1_142a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_142a_0_34_seg_w1_141c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_c1c_0_34_seg_w1_c1a_0_60_north_south_medium airplane_daew6 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew6 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew6 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew6 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew6 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew6 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew6 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew6 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew6 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew6 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew6 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew6 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew6 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew6 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew6 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew6 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew6 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew6 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew6 (1)
+takeoff_seg_08l_0_80_north airplane_daew6 (1)
+move_seg_w1_143c_0_60_seg_w1_143a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_143a_0_34_seg_w1_142c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_w1_141c_0_34_seg_w1_141a_0_34_north_south_medium airplane_daew4 (1)
+move_seg_w1_141a_0_34_seg_w1_c1c_0_34_south_north_medium airplane_daew4 (1)
+move_seg_w1_142c_0_34_seg_w1_142a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_142a_0_34_seg_w1_141c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_w1_c1c_0_34_seg_w1_c1a_0_60_north_south_medium airplane_daew4 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew4 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew4 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew4 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew4 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew4 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew4 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew4 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew4 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew4 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew4 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew4 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew4 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew4 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew4 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew4 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew4 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew4 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew4 (1)
+takeoff_seg_08l_0_80_north airplane_daew4 (1)
+move_seg_o1_c2d_0_60_seg_o1_c2a_0_60_north_south_medium airplane_daew1 (1)
+move_seg_o1_c2a_0_60_seg_o1_104c_0_60_south_north_medium airplane_daew1 (1)
+move_seg_o1_104c_0_60_seg_o1_104a_0_34_north_south_medium airplane_daew1 (1)
+move_seg_o1_104a_0_34_seg_o1_103c_0_34_south_north_medium airplane_daew1 (1)
+move_seg_o1_103c_0_34_seg_o1_103a_0_34_north_south_medium airplane_daew1 (1)
+move_seg_o1_103a_0_34_seg_o1_102c_0_34_south_north_medium airplane_daew1 (1)
+move_seg_o1_102c_0_34_seg_o1_102a_0_34_north_south_medium airplane_daew1 (1)
+move_seg_o1_102a_0_34_seg_o1_c1b_0_34_south_north_medium airplane_daew1 (1)
+move_seg_o1_108c_0_34_seg_o1_108a_0_34_north_south_medium airplane_daew3 (1)
+move_seg_o1_108a_0_34_seg_o1_c2c_0_34_south_north_medium airplane_daew3 (1)
+move_seg_o1_c2c_0_34_seg_o1_c2a_0_60_north_south_medium airplane_daew3 (1)
+move_seg_o1_c2a_0_60_seg_o1_104c_0_60_south_north_medium airplane_daew3 (1)
+move_seg_o1_c1b_0_34_seg_o1_c1c_0_80_north_south_medium airplane_daew1 (1)
+move_seg_o1_c1c_0_80_seg_c1_n2b_0_80_south_north_medium airplane_daew1 (1)
+move_seg_c1_n2b_0_80_seg_c1_n2c_0_60_north_south_medium airplane_daew1 (1)
+move_seg_c1_n2c_0_60_seg_w1_c1b_0_60_south_north_medium airplane_daew1 (1)
+move_seg_o1_104c_0_60_seg_o1_104a_0_34_north_south_medium airplane_daew3 (1)
+move_seg_o1_104a_0_34_seg_o1_103c_0_34_south_north_medium airplane_daew3 (1)
+move_seg_o1_103c_0_34_seg_o1_103a_0_34_north_south_medium airplane_daew3 (1)
+move_seg_o1_103a_0_34_seg_o1_102c_0_34_south_north_medium airplane_daew3 (1)
+move_seg_o1_102c_0_34_seg_o1_102a_0_34_north_south_medium airplane_daew3 (1)
+move_seg_o1_102a_0_34_seg_o1_c1b_0_34_south_north_medium airplane_daew3 (1)
+move_seg_w1_c1b_0_60_seg_w1_c1a_0_60_north_south_medium airplane_daew1 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew1 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew1 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew1 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew1 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew1 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew1 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew1 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew1 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew1 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew1 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew1 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew1 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew1 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew1 (1)
+move_seg_o1_c1b_0_34_seg_o1_c1c_0_80_north_south_medium airplane_daew3 (1)
+move_seg_o1_c1c_0_80_seg_c1_n2b_0_80_south_north_medium airplane_daew3 (1)
+move_seg_c1_n2b_0_80_seg_c1_n2c_0_60_north_south_medium airplane_daew3 (1)
+move_seg_c1_n2c_0_60_seg_w1_c1b_0_60_south_north_medium airplane_daew3 (1)
+move_seg_w1_c1b_0_60_seg_w1_c1a_0_60_north_south_medium airplane_daew3 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew3 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew3 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew3 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew3 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew3 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew3 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew3 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew3 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew3 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew3 (1)
+move_seg_o1_c3d_0_60_seg_o1_c3a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_c3a_0_34_seg_o1_111c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_111c_0_34_seg_o1_111a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_111a_0_34_seg_o1_110c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_115c_0_34_seg_o1_115a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_115a_0_34_seg_o1_c3c_0_48_south_north_medium airplane_daew7 (1)
+move_seg_o1_110c_0_34_seg_o1_110a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_110a_0_34_seg_o1_109c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_109c_0_34_seg_o1_109a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_109a_0_34_seg_o1_108c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_108c_0_34_seg_o1_108a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_108a_0_34_seg_o1_c2c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_c2c_0_34_seg_o1_c2a_0_60_north_south_medium airplane_daew2 (1)
+move_seg_o1_c2a_0_60_seg_o1_104c_0_60_south_north_medium airplane_daew2 (1)
+move_seg_o1_104c_0_60_seg_o1_104a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_104a_0_34_seg_o1_103c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_103c_0_34_seg_o1_103a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_103a_0_34_seg_o1_102c_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_102c_0_34_seg_o1_102a_0_34_north_south_medium airplane_daew2 (1)
+move_seg_o1_102a_0_34_seg_o1_c1b_0_34_south_north_medium airplane_daew2 (1)
+move_seg_o1_c1b_0_34_seg_o1_c1c_0_80_north_south_medium airplane_daew2 (1)
+move_seg_o1_c1c_0_80_seg_c1_n2b_0_80_south_north_medium airplane_daew2 (1)
+move_seg_c1_n2b_0_80_seg_c1_n2c_0_60_north_south_medium airplane_daew2 (1)
+move_seg_c1_n2c_0_60_seg_w1_c1b_0_60_south_north_medium airplane_daew2 (1)
+move_seg_o1_c3c_0_48_seg_o1_c3a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_c3a_0_34_seg_o1_111c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_111c_0_34_seg_o1_111a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_111a_0_34_seg_o1_110c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_110c_0_34_seg_o1_110a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_110a_0_34_seg_o1_109c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_109c_0_34_seg_o1_109a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_109a_0_34_seg_o1_108c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_108c_0_34_seg_o1_108a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_108a_0_34_seg_o1_c2c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_c2c_0_34_seg_o1_c2a_0_60_north_south_medium airplane_daew7 (1)
+move_seg_o1_c2a_0_60_seg_o1_104c_0_60_south_north_medium airplane_daew7 (1)
+move_seg_o1_104c_0_60_seg_o1_104a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_104a_0_34_seg_o1_103c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_103c_0_34_seg_o1_103a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_103a_0_34_seg_o1_102c_0_34_south_north_medium airplane_daew7 (1)
+move_seg_o1_102c_0_34_seg_o1_102a_0_34_north_south_medium airplane_daew7 (1)
+move_seg_o1_102a_0_34_seg_o1_c1b_0_34_south_north_medium airplane_daew7 (1)
+move_seg_w1_c1b_0_60_seg_w1_c1a_0_60_north_south_medium airplane_daew2 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew2 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew2 (1)
+move_seg_o1_c1b_0_34_seg_o1_c1c_0_80_north_south_medium airplane_daew7 (1)
+move_seg_o1_c1c_0_80_seg_c1_n2b_0_80_south_north_medium airplane_daew7 (1)
+move_seg_c1_n2b_0_80_seg_c1_n2c_0_60_north_south_medium airplane_daew7 (1)
+move_seg_c1_n2c_0_60_seg_w1_c1b_0_60_south_north_medium airplane_daew7 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew1 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew1 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew1 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew1 (1)
+takeoff_seg_08l_0_80_north airplane_daew1 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew3 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew3 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew3 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew3 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew2 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew2 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew2 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew2 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew2 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew2 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew2 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew2 (1)
+move_seg_w1_c1b_0_60_seg_w1_c1a_0_60_north_south_medium airplane_daew7 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew7 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew7 (1)
+move_seg_w1_141c_0_34_seg_w1_141a_0_34_north_south_medium airplane_daew5 (1)
+move_seg_w1_141a_0_34_seg_w1_c1c_0_34_south_north_medium airplane_daew5 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew3 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew3 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew3 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew3 (1)
+takeoff_seg_08l_0_80_north airplane_daew3 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew2 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew2 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew2 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew2 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew2 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew7 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew7 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew7 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew7 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew7 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew7 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew7 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew7 (1)
+move_seg_w1_c1c_0_34_seg_w1_c1a_0_60_north_south_medium airplane_daew5 (1)
+move_seg_w1_c1a_0_60_seg_n1_0_108_south_north_medium airplane_daew5 (1)
+move_seg_n1_0_108_seg_n_a3c_0_60_north_north_medium airplane_daew5 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew2 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew2 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew2 (1)
+takeoff_seg_08l_0_80_north airplane_daew2 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew7 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew7 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew7 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew7 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew7 (1)
+move_seg_n_a3c_0_60_seg_n_a3d_0_60_north_south_medium airplane_daew5 (1)
+move_seg_n_a3d_0_60_seg_n_a2a3f_0_115_south_north_medium airplane_daew5 (1)
+move_seg_n_a2a3f_0_115_seg_n_a2a3e_0_75_north_north_medium airplane_daew5 (1)
+move_seg_n_a2a3e_0_75_seg_n_a2a3d_0_75_north_north_medium airplane_daew5 (1)
+move_seg_n_a2a3d_0_75_seg_n_a2a3c_0_75_north_north_medium airplane_daew5 (1)
+move_seg_n_a2a3c_0_75_seg_n_a2a3b_0_75_north_north_medium airplane_daew5 (1)
+move_seg_n_a2a3b_0_75_seg_n_a2a3a_0_75_north_north_medium airplane_daew5 (1)
+move_seg_n_a2a3a_0_75_seg_n_a2b_0_60_north_north_medium airplane_daew5 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew7 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew7 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew7 (1)
+takeoff_seg_08l_0_80_north airplane_daew7 (1)
+move_seg_n_a2b_0_60_seg_n_a2a_0_60_north_south_medium airplane_daew5 (1)
+move_seg_n_a2a_0_60_seg_a2_c_0_100_south_north_medium airplane_daew5 (1)
+move_seg_a2_c_0_100_seg_a2_b_0_90_north_north_medium airplane_daew5 (1)
+move_seg_a2_b_0_90_seg_a2_a_0_90_north_north_medium airplane_daew5 (1)
+move_seg_a2_a_0_90_seg_08l_a2b_0_80_north_north_medium airplane_daew5 (1)
+move_seg_08l_a2b_0_80_seg_08l_a2a_0_80_north_south_medium airplane_daew5 (1)
+move_seg_08l_a2a_0_80_seg_08l_a2a3_0_970_south_south_medium airplane_daew5 (1)
+move_seg_08l_a2a3_0_970_seg_08l_0_80_south_north_medium airplane_daew5 (1)
+takeoff_seg_08l_0_80_north airplane_daew5 (1)
+move_seg_n_a7b_0_60_seg_n_a7c_0_60_north_south_medium airplane_cfbeg (1)
+move_seg_n_a7c_0_60_seg_n_a4a7f_0_75_south_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7f_0_75_seg_n_a4a7e_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7e_0_75_seg_n_a4a7d_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7d_0_75_seg_n_a4a7c_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7c_0_75_seg_n_a4a7b_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7b_0_75_seg_n_a4a7a_0_115_north_north_medium airplane_cfbeg (1)
+move_seg_n_a4a7a_0_115_seg_n_a4b_0_60_north_north_medium airplane_cfbeg (1)
+move_seg_n_a6b_0_60_seg_n_a6c_0_60_north_south_medium airplane_cfbe1 (1)
+move_seg_n_a6c_0_60_seg_n_a7a6d_0_75_south_north_medium airplane_cfbe1 (1)
+move_seg_n_a7a6d_0_75_seg_n_a7a6c_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a7a6c_0_75_seg_n_a7a6b_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a7a6b_0_75_seg_n_a7a6a_0_85_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a7a6a_0_85_seg_n_a7b_0_60_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4b_0_60_seg_n_a4c_0_60_north_south_medium airplane_cfbeg (1)
+move_seg_n_a4c_0_60_seg_n_n2a4e_0_75_south_north_medium airplane_cfbeg (1)
+move_seg_n_n2a4e_0_75_seg_n_n2a4d_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_n2a4d_0_75_seg_n_n2a4c_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_n2a4c_0_75_seg_n_n2a4b_0_75_north_north_medium airplane_cfbeg (1)
+move_seg_n_n2a4b_0_75_seg_n_n2a4a_0_70_north_north_medium airplane_cfbeg (1)
+move_seg_n_n2a4a_0_70_seg_n_n2a_0_60_north_north_medium airplane_cfbeg (1)
+move_seg_n_n2a_0_60_seg_n_n2b_0_60_north_south_medium airplane_cfbeg (1)
+move_seg_n_n2b_0_60_seg_n2_0_108_south_south_medium airplane_cfbeg (1)
+move_seg_n2_0_108_seg_c1_n2a_0_60_south_north_medium airplane_cfbeg (1)
+move_seg_c1_n2a_0_60_seg_c1_n2b_0_80_north_south_medium airplane_cfbeg (1)
+move_seg_c1_n2b_0_80_seg_o1_c1c_0_80_south_north_medium airplane_cfbeg (1)
+move_seg_o1_c1c_0_80_seg_o1_c1b_0_34_north_south_medium airplane_cfbeg (1)
+move_seg_o1_c1b_0_34_seg_o1_102a_0_34_south_north_medium airplane_cfbeg (1)
+move_seg_o1_102a_0_34_seg_o1_102c_0_34_north_south_medium airplane_cfbeg (1)
+move_seg_o1_102c_0_34_seg_o1_103a_0_34_south_north_medium airplane_cfbeg (1)
+move_seg_o1_103a_0_34_seg_o1_103c_0_34_north_south_medium airplane_cfbeg (1)
+move_seg_o1_103c_0_34_seg_o1_104a_0_34_south_north_medium airplane_cfbeg (1)
+move_seg_o1_104a_0_34_seg_o1_104b_0_60_north_south_medium airplane_cfbeg (1)
+move_seg_o1_104b_0_60_seg_p104_0_76_south_south_medium airplane_cfbeg (1)
+park_seg_p104_0_76_south airplane_cfbeg (1)
+move_seg_n_a7b_0_60_seg_n_a7c_0_60_north_south_medium airplane_cfbe1 (1)
+move_seg_n_a7c_0_60_seg_n_a4a7f_0_75_south_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7f_0_75_seg_n_a4a7e_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7e_0_75_seg_n_a4a7d_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7d_0_75_seg_n_a4a7c_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7c_0_75_seg_n_a4a7b_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7b_0_75_seg_n_a4a7a_0_115_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4a7a_0_115_seg_n_a4b_0_60_north_north_medium airplane_cfbe1 (1)
+move_seg_n_a4b_0_60_seg_n_a4c_0_60_north_south_medium airplane_cfbe1 (1)
+move_seg_n_a4c_0_60_seg_n_n2a4e_0_75_south_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a4e_0_75_seg_n_n2a4d_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a4d_0_75_seg_n_n2a4c_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a4c_0_75_seg_n_n2a4b_0_75_north_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a4b_0_75_seg_n_n2a4a_0_70_north_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a4a_0_70_seg_n_n2a_0_60_north_north_medium airplane_cfbe1 (1)
+move_seg_n_n2a_0_60_seg_n_n2b_0_60_north_south_medium airplane_cfbe1 (1)
+move_seg_n_n2b_0_60_seg_n2_0_108_south_south_medium airplane_cfbe1 (1)
+move_seg_n2_0_108_seg_c1_n2a_0_60_south_north_medium airplane_cfbe1 (1)
+move_seg_c1_n2a_0_60_seg_c1_n2b_0_80_north_south_medium airplane_cfbe1 (1)
+move_seg_c1_n2b_0_80_seg_o1_c1c_0_80_south_north_medium airplane_cfbe1 (1)
+move_seg_o1_c1c_0_80_seg_o1_c1a_0_60_north_south_medium airplane_cfbe1 (1)
+move_seg_o1_c1a_0_60_seg_p101_0_76_south_south_medium airplane_cfbe1 (1)
+park_seg_p101_0_76_south airplane_cfbe1 (1)
+move_seg_08l_a4d_0_80_seg_08l_a4a_0_80_north_south_medium airplane_4xekd (1)
+move_seg_08l_a4a_0_80_seg_08l_a6a7_0_450_south_south_medium airplane_4xekd (1)
+move_seg_08l_a6a7_0_450_seg_08l_a7d_0_80_south_north_medium airplane_4xekd (1)
+move_seg_08l_a7d_0_80_seg_08l_a7b_0_161_245_north_south_medium airplane_4xekd (1)
+move_seg_08l_a7b_0_161_245_seg_a8_a_0_157_785_south_south_medium airplane_4xekd (1)
+move_seg_a8_a_0_157_785_seg_a8_b_1_0_79_7559_south_south_medium airplane_4xekd (1)
+move_seg_a8_b_1_0_79_7559_seg_a8_b_0_80_6226_south_south_medium airplane_4xekd (1)
+move_seg_a8_b_0_80_6226_seg_m_a8d_0_120_934_south_north_medium airplane_4xekd (1)
+move_seg_m_a8d_0_120_934_seg_m_a8b_0_60_north_south_medium airplane_4xekd (1)
+move_seg_m_a8b_0_60_seg_n_a8a_0_60_south_north_medium airplane_4xekd (1)
+move_seg_n_a8a_0_60_seg_n_a8c_0_60_north_south_medium airplane_4xekd (1)
+move_seg_n_a8c_0_60_seg_n_a6a8f_0_75_south_north_medium airplane_4xekd (1)
+move_seg_n_a6a8f_0_75_seg_n_a6a8e_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a6a8e_0_75_seg_n_a6a8d_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a6a8d_0_75_seg_n_a6a8c_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a6a8c_0_75_seg_n_a6a8b_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a6a8b_0_75_seg_n_a6a8a_0_115_north_north_medium airplane_4xekd (1)
+move_seg_n_a6a8a_0_115_seg_n_a6b_0_60_north_north_medium airplane_4xekd (1)
+move_seg_n_a6b_0_60_seg_n_a6c_0_60_north_south_medium airplane_4xekd (1)
+move_seg_n_a6c_0_60_seg_n_a7a6d_0_75_south_north_medium airplane_4xekd (1)
+move_seg_n_a7a6d_0_75_seg_n_a7a6c_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a7a6c_0_75_seg_n_a7a6b_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a7a6b_0_75_seg_n_a7a6a_0_85_north_north_medium airplane_4xekd (1)
+move_seg_n_a7a6a_0_85_seg_n_a7b_0_60_north_north_medium airplane_4xekd (1)
+move_seg_n_a7b_0_60_seg_n_a7c_0_60_north_south_medium airplane_4xekd (1)
+move_seg_n_a7c_0_60_seg_n_a4a7f_0_75_south_north_medium airplane_4xekd (1)
+move_seg_n_a4a7f_0_75_seg_n_a4a7e_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a4a7e_0_75_seg_n_a4a7d_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a4a7d_0_75_seg_n_a4a7c_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a4a7c_0_75_seg_n_a4a7b_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_a4a7b_0_75_seg_n_a4a7a_0_115_north_north_medium airplane_4xekd (1)
+move_seg_n_a4a7a_0_115_seg_n_a4b_0_60_north_north_medium airplane_4xekd (1)
+move_seg_n_a4b_0_60_seg_n_a4c_0_60_north_south_medium airplane_4xekd (1)
+move_seg_n_a4c_0_60_seg_n_n2a4e_0_75_south_north_medium airplane_4xekd (1)
+move_seg_n_n2a4e_0_75_seg_n_n2a4d_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_n2a4d_0_75_seg_n_n2a4c_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_n2a4c_0_75_seg_n_n2a4b_0_75_north_north_medium airplane_4xekd (1)
+move_seg_n_n2a4b_0_75_seg_n_n2a4a_0_70_north_north_medium airplane_4xekd (1)
+move_seg_n_n2a4a_0_70_seg_n_n2a_0_60_north_north_medium airplane_4xekd (1)
+move_seg_n_n2a_0_60_seg_n_n2b_0_60_north_south_medium airplane_4xekd (1)
+move_seg_n_n2b_0_60_seg_n2_0_108_south_south_medium airplane_4xekd (1)
+move_seg_n2_0_108_seg_c1_n2a_0_60_south_north_medium airplane_4xekd (1)
+move_seg_c1_n2a_0_60_seg_c1_n2b_0_80_north_south_medium airplane_4xekd (1)
+move_seg_c1_n2b_0_80_seg_o1_c1c_0_80_south_north_medium airplane_4xekd (1)
+move_seg_o1_c1c_0_80_seg_o1_c1b_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_c1b_0_34_seg_o1_102a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_102a_0_34_seg_o1_102c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_102c_0_34_seg_o1_103a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_103a_0_34_seg_o1_103c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_103c_0_34_seg_o1_104a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_104a_0_34_seg_o1_104c_0_60_north_south_medium airplane_4xekd (1)
+move_seg_o1_104c_0_60_seg_o1_c2a_0_60_south_north_medium airplane_4xekd (1)
+move_seg_o1_c2a_0_60_seg_o1_c2c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_c2c_0_34_seg_o1_108a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_108a_0_34_seg_o1_108c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_108c_0_34_seg_o1_109a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_109a_0_34_seg_o1_109c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_109c_0_34_seg_o1_110a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_110a_0_34_seg_o1_110c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_110c_0_34_seg_o1_111a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_111a_0_34_seg_o1_111c_0_34_north_south_medium airplane_4xekd (1)
+move_seg_o1_111c_0_34_seg_o1_c3a_0_34_south_north_medium airplane_4xekd (1)
+move_seg_o1_c3a_0_34_seg_o1_c3b_0_60_north_south_medium airplane_4xekd (1)
+move_seg_o1_c3b_0_60_seg_p112_0_76_south_south_medium airplane_4xekd (1)
+park_seg_p112_0_76_south airplane_4xekd (1)
+[t=990.584s, 331832 KB] Plan length: 427 step(s).
+[t=990.584s, 331832 KB] Plan cost: 427
+[t=990.584s, 331832 KB] Expanded 286317 state(s).
+[t=990.584s, 331832 KB] Reopened 0 state(s).
+[t=990.584s, 331832 KB] Evaluated 812637 state(s).
+[t=990.584s, 331832 KB] Evaluations: 812637
+[t=990.584s, 331832 KB] Generated 1594731 state(s).
+[t=990.584s, 331832 KB] Dead ends: 265727 state(s).
+[t=990.584s, 331832 KB] Number of registered states: 812637
+[t=990.584s, 331832 KB] Int hash set load factor: 812637/1048576 = 0.774991
+[t=990.584s, 331832 KB] Int hash set resizes: 20
+[t=990.584s, 331832 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=990.584s, 331832 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=990.584s, 331832 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=990.584s, 331832 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=990.584s, 331832 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=990.584s, 331832 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=990.584s, 331832 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=990.584s, 331832 KB] Search time: 990.394s
+[t=990.584s, 331832 KB] Total time: 990.584s
+Solution found.
+Peak memory: 331832 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

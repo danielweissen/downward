@@ -1,0 +1,825 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.95s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.006s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.002s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.004s wall-clock]
+Preparing model... [0.000s CPU, 0.006s wall-clock]
+Generated 44 rules.
+Computing model... [2.260s CPU, 2.262s wall-clock]
+244566 relevant atoms
+11111 auxiliary atoms
+255677 final queue length
+494473 total queue pushes
+Completing instantiation... [9.630s CPU, 9.651s wall-clock]
+Instantiating: [11.980s CPU, 12.021s wall-clock]
+Computing fact groups...
+Finding invariants...
+12 initial candidates
+Finding invariants: [0.040s CPU, 0.039s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.010s CPU, 0.005s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.002s wall-clock]
+Choosing groups...
+702 uncovered facts
+Choosing groups: [0.000s CPU, 0.005s wall-clock]
+Building translation key... [0.000s CPU, 0.006s wall-clock]
+Computing fact groups: [0.080s CPU, 0.081s wall-clock]
+Building STRIPS to SAS dictionary... [0.010s CPU, 0.003s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.002s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.002s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.270s CPU, 0.267s wall-clock]
+Translating task: [7.010s CPU, 7.042s wall-clock]
+93 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+15 propositions removed
+Detecting unreachable propositions: [4.740s CPU, 4.741s wall-clock]
+Reordering and filtering variables...
+200 of 717 variables necessary.
+0 of 15 mutex groups necessary.
+233797 of 239468 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.680s CPU, 0.684s wall-clock]
+Translator variables: 200
+Translator derived variables: 0
+Translator facts: 2245
+Translator goal facts: 114
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 233797
+Translator axioms: 0
+Translator task size: 706482
+Translator peak memory: 849448 KB
+Writing output... [1.600s CPU, 1.738s wall-clock]
+Done! [26.430s CPU, 26.645s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1773.3s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch_tracking()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.6284e-05s, 17204 KB] reading input...
+[t=1.07136s, 75964 KB] done reading input!
+[t=1.11416s, 86212 KB] Simplifying 233890 unary operators... done! [233874 unary operators]
+[t=1.30626s, 109464 KB] time to simplify: 0.223027s
+[t=1.3439s, 109464 KB] Initializing pinch tracking heuristic...
+[t=1.34414s, 109464 KB] Building successor generator...done!
+[t=1.43692s, 109904 KB] peak memory difference for successor generator creation: 440 KB
+[t=1.43699s, 109904 KB] time for successor generation creation: 0.0824826s
+[t=1.43903s, 109904 KB] Variables: 200
+[t=1.43912s, 109904 KB] FactPairs: 2245
+[t=1.43916s, 109904 KB] Bytes per state: 40
+[t=1.43932s, 109904 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=1.46309s, 109904 KB] New best heuristic value for pinch_tracking: 647
+[t=1.4632s, 109904 KB] g=0, 1 evaluated, 0 expanded
+[t=1.46326s, 109904 KB] Initial heuristic value for pinch_tracking: 647
+[t=1.46332s, 109904 KB] pruning method: none
+[t=1.46366s, 109904 KB] New best heuristic value for pinch_tracking: 517
+[t=1.46372s, 109904 KB] g=1, 2 evaluated, 1 expanded
+[t=1.46755s, 109904 KB] New best heuristic value for pinch_tracking: 503
+[t=1.46765s, 109904 KB] g=1, 22 evaluated, 1 expanded
+[t=1.46828s, 109904 KB] New best heuristic value for pinch_tracking: 496
+[t=1.46835s, 109904 KB] g=1, 25 evaluated, 1 expanded
+[t=1.46859s, 109904 KB] New best heuristic value for pinch_tracking: 495
+[t=1.46864s, 109904 KB] g=1, 26 evaluated, 1 expanded
+[t=1.87029s, 109904 KB] New best heuristic value for pinch_tracking: 463
+[t=1.8704s, 109904 KB] g=2, 1893 evaluated, 2 expanded
+[t=1.87377s, 109904 KB] New best heuristic value for pinch_tracking: 438
+[t=1.87387s, 109904 KB] g=2, 1911 evaluated, 2 expanded
+[t=2.21986s, 109904 KB] New best heuristic value for pinch_tracking: 417
+[t=2.21998s, 109904 KB] g=2, 3506 evaluated, 2 expanded
+[t=2.28064s, 109904 KB] New best heuristic value for pinch_tracking: 385
+[t=2.28073s, 109904 KB] g=3, 3782 evaluated, 3 expanded
+[t=2.2841s, 109904 KB] New best heuristic value for pinch_tracking: 360
+[t=2.2842s, 109904 KB] g=3, 3800 evaluated, 3 expanded
+[t=2.28519s, 109904 KB] New best heuristic value for pinch_tracking: 339
+[t=2.28527s, 109904 KB] g=3, 3805 evaluated, 3 expanded
+[t=2.66224s, 109904 KB] New best heuristic value for pinch_tracking: 307
+[t=2.66236s, 109904 KB] g=4, 5548 evaluated, 4 expanded
+[t=2.66573s, 109904 KB] New best heuristic value for pinch_tracking: 282
+[t=2.66583s, 109904 KB] g=4, 5566 evaluated, 4 expanded
+[t=3.06832s, 109904 KB] New best heuristic value for pinch_tracking: 281
+[t=3.06844s, 109904 KB] g=5, 7441 evaluated, 5 expanded
+[t=3.28687s, 109904 KB] New best heuristic value for pinch_tracking: 252
+[t=3.28698s, 109904 KB] g=5, 8457 evaluated, 5 expanded
+[t=3.47657s, 109904 KB] New best heuristic value for pinch_tracking: 222
+[t=3.47668s, 109904 KB] g=6, 9342 evaluated, 6 expanded
+[t=3.86032s, 109904 KB] New best heuristic value for pinch_tracking: 221
+[t=3.86044s, 109904 KB] g=7, 11131 evaluated, 7 expanded
+[t=4.35475s, 109904 KB] New best heuristic value for pinch_tracking: 220
+[t=4.35487s, 109904 KB] g=8, 13410 evaluated, 8 expanded
+[t=4.75656s, 109904 KB] New best heuristic value for pinch_tracking: 219
+[t=4.75667s, 109904 KB] g=9, 15276 evaluated, 9 expanded
+[t=5.20932s, 109904 KB] New best heuristic value for pinch_tracking: 218
+[t=5.20944s, 109904 KB] g=10, 17387 evaluated, 10 expanded
+[t=5.59131s, 109904 KB] New best heuristic value for pinch_tracking: 217
+[t=5.59143s, 109904 KB] g=11, 19165 evaluated, 11 expanded
+[t=5.78032s, 109904 KB] New best heuristic value for pinch_tracking: 216
+[t=5.78043s, 109904 KB] g=12, 20048 evaluated, 12 expanded
+[t=6.37399s, 109904 KB] New best heuristic value for pinch_tracking: 215
+[t=6.37411s, 109904 KB] g=13, 22818 evaluated, 13 expanded
+[t=6.56281s, 109904 KB] New best heuristic value for pinch_tracking: 214
+[t=6.56293s, 109904 KB] g=14, 23700 evaluated, 14 expanded
+[t=7.15819s, 109904 KB] New best heuristic value for pinch_tracking: 213
+[t=7.15831s, 109904 KB] g=15, 26476 evaluated, 15 expanded
+[t=7.34919s, 109904 KB] New best heuristic value for pinch_tracking: 212
+[t=7.34932s, 109904 KB] g=16, 27353 evaluated, 16 expanded
+[t=7.94719s, 109904 KB] New best heuristic value for pinch_tracking: 211
+[t=7.9473s, 109904 KB] g=17, 30130 evaluated, 17 expanded
+[t=8.13746s, 109904 KB] New best heuristic value for pinch_tracking: 210
+[t=8.13757s, 109904 KB] g=18, 31006 evaluated, 18 expanded
+[t=8.73475s, 109904 KB] New best heuristic value for pinch_tracking: 209
+[t=8.73487s, 109904 KB] g=19, 33785 evaluated, 19 expanded
+[t=8.92224s, 109904 KB] New best heuristic value for pinch_tracking: 208
+[t=8.92235s, 109904 KB] g=20, 34659 evaluated, 20 expanded
+[t=9.51929s, 109904 KB] New best heuristic value for pinch_tracking: 207
+[t=9.5194s, 109904 KB] g=21, 37440 evaluated, 21 expanded
+[t=9.70645s, 109904 KB] New best heuristic value for pinch_tracking: 206
+[t=9.70657s, 109904 KB] g=22, 38312 evaluated, 22 expanded
+[t=10.3035s, 109904 KB] New best heuristic value for pinch_tracking: 205
+[t=10.3036s, 109904 KB] g=23, 41094 evaluated, 23 expanded
+[t=10.4902s, 109904 KB] New best heuristic value for pinch_tracking: 204
+[t=10.4903s, 109904 KB] g=24, 41965 evaluated, 24 expanded
+[t=11.0871s, 109904 KB] New best heuristic value for pinch_tracking: 203
+[t=11.0872s, 109904 KB] g=25, 44748 evaluated, 25 expanded
+[t=11.2736s, 109904 KB] New best heuristic value for pinch_tracking: 202
+[t=11.2737s, 109904 KB] g=26, 45618 evaluated, 26 expanded
+[t=11.8713s, 109904 KB] New best heuristic value for pinch_tracking: 201
+[t=11.8714s, 109904 KB] g=27, 48403 evaluated, 27 expanded
+[t=12.0573s, 109904 KB] New best heuristic value for pinch_tracking: 200
+[t=12.0574s, 109904 KB] g=28, 49271 evaluated, 28 expanded
+[t=12.6617s, 109904 KB] New best heuristic value for pinch_tracking: 199
+[t=12.6618s, 109904 KB] g=29, 52061 evaluated, 29 expanded
+[t=12.8472s, 109904 KB] New best heuristic value for pinch_tracking: 198
+[t=12.8473s, 109904 KB] g=30, 52924 evaluated, 30 expanded
+[t=13.4468s, 109904 KB] New best heuristic value for pinch_tracking: 197
+[t=13.4469s, 109904 KB] g=31, 55720 evaluated, 31 expanded
+[t=13.6305s, 109904 KB] New best heuristic value for pinch_tracking: 196
+[t=13.6306s, 109904 KB] g=32, 56577 evaluated, 32 expanded
+[t=14.2352s, 109904 KB] New best heuristic value for pinch_tracking: 195
+[t=14.2354s, 109904 KB] g=33, 59374 evaluated, 33 expanded
+[t=14.4188s, 109904 KB] New best heuristic value for pinch_tracking: 194
+[t=14.4189s, 109904 KB] g=34, 60230 evaluated, 34 expanded
+[t=15.0193s, 109904 KB] New best heuristic value for pinch_tracking: 193
+[t=15.0194s, 109904 KB] g=35, 63028 evaluated, 35 expanded
+[t=15.2025s, 109904 KB] New best heuristic value for pinch_tracking: 192
+[t=15.2026s, 109904 KB] g=36, 63883 evaluated, 36 expanded
+[t=15.8052s, 109904 KB] New best heuristic value for pinch_tracking: 191
+[t=15.8053s, 109904 KB] g=37, 66682 evaluated, 37 expanded
+[t=15.9884s, 109904 KB] New best heuristic value for pinch_tracking: 190
+[t=15.9885s, 109904 KB] g=38, 67536 evaluated, 38 expanded
+[t=16.5897s, 109904 KB] New best heuristic value for pinch_tracking: 189
+[t=16.5898s, 109904 KB] g=39, 70337 evaluated, 39 expanded
+[t=16.7725s, 109904 KB] New best heuristic value for pinch_tracking: 188
+[t=16.7727s, 109904 KB] g=40, 71189 evaluated, 40 expanded
+[t=17.3748s, 109904 KB] New best heuristic value for pinch_tracking: 187
+[t=17.3749s, 109904 KB] g=41, 73994 evaluated, 41 expanded
+[t=17.5568s, 109904 KB] New best heuristic value for pinch_tracking: 186
+[t=17.5569s, 109904 KB] g=42, 74842 evaluated, 42 expanded
+[t=18.1593s, 109904 KB] New best heuristic value for pinch_tracking: 185
+[t=18.1594s, 109904 KB] g=43, 77649 evaluated, 43 expanded
+[t=18.3409s, 109904 KB] New best heuristic value for pinch_tracking: 184
+[t=18.341s, 109904 KB] g=44, 78495 evaluated, 44 expanded
+[t=18.9438s, 109904 KB] New best heuristic value for pinch_tracking: 183
+[t=18.9439s, 109904 KB] g=45, 81303 evaluated, 45 expanded
+[t=19.1251s, 109904 KB] New best heuristic value for pinch_tracking: 182
+[t=19.1252s, 109904 KB] g=46, 82148 evaluated, 46 expanded
+[t=19.7284s, 109904 KB] New best heuristic value for pinch_tracking: 181
+[t=19.7285s, 109904 KB] g=47, 84958 evaluated, 47 expanded
+[t=19.9092s, 109904 KB] New best heuristic value for pinch_tracking: 180
+[t=19.9093s, 109904 KB] g=48, 85801 evaluated, 48 expanded
+[t=20.5131s, 109904 KB] New best heuristic value for pinch_tracking: 179
+[t=20.5133s, 109904 KB] g=49, 88614 evaluated, 49 expanded
+[t=20.9949s, 109904 KB] New best heuristic value for pinch_tracking: 178
+[t=20.995s, 109904 KB] g=50, 90829 evaluated, 50 expanded
+[t=21.0798s, 109904 KB] New best heuristic value for pinch_tracking: 177
+[t=21.0799s, 109904 KB] g=51, 91222 evaluated, 51 expanded
+[t=21.7792s, 109904 KB] New best heuristic value for pinch_tracking: 176
+[t=21.7793s, 109904 KB] g=52, 94481 evaluated, 52 expanded
+[t=21.8633s, 109904 KB] New best heuristic value for pinch_tracking: 175
+[t=21.8634s, 109904 KB] g=53, 94874 evaluated, 53 expanded
+[t=22.5628s, 109904 KB] New best heuristic value for pinch_tracking: 174
+[t=22.5629s, 109904 KB] g=54, 98135 evaluated, 54 expanded
+[t=22.6468s, 109904 KB] New best heuristic value for pinch_tracking: 173
+[t=22.6469s, 109904 KB] g=55, 98527 evaluated, 55 expanded
+[t=23.3469s, 109904 KB] New best heuristic value for pinch_tracking: 172
+[t=23.3471s, 109904 KB] g=56, 101791 evaluated, 56 expanded
+[t=23.4303s, 109904 KB] New best heuristic value for pinch_tracking: 171
+[t=23.4304s, 109904 KB] g=57, 102180 evaluated, 57 expanded
+[t=24.1311s, 109904 KB] New best heuristic value for pinch_tracking: 170
+[t=24.1313s, 109904 KB] g=58, 105445 evaluated, 58 expanded
+[t=24.2149s, 109904 KB] New best heuristic value for pinch_tracking: 169
+[t=24.215s, 109904 KB] g=59, 105833 evaluated, 59 expanded
+[t=24.9171s, 109904 KB] New best heuristic value for pinch_tracking: 168
+[t=24.9172s, 109904 KB] g=60, 109099 evaluated, 60 expanded
+[t=25s, 109904 KB] New best heuristic value for pinch_tracking: 167
+[t=25.0001s, 109904 KB] g=61, 109486 evaluated, 61 expanded
+[t=25.7031s, 109904 KB] New best heuristic value for pinch_tracking: 166
+[t=25.7032s, 109904 KB] g=62, 112758 evaluated, 62 expanded
+[t=25.7847s, 109904 KB] New best heuristic value for pinch_tracking: 165
+[t=25.7848s, 109904 KB] g=63, 113139 evaluated, 63 expanded
+[t=26.498s, 109904 KB] New best heuristic value for pinch_tracking: 164
+[t=26.4981s, 109904 KB] g=64, 116417 evaluated, 64 expanded
+[t=26.5783s, 109904 KB] New best heuristic value for pinch_tracking: 163
+[t=26.5784s, 109904 KB] g=65, 116792 evaluated, 65 expanded
+[t=27.2831s, 109904 KB] New best heuristic value for pinch_tracking: 162
+[t=27.2832s, 109904 KB] g=66, 120071 evaluated, 66 expanded
+[t=27.3634s, 109904 KB] New best heuristic value for pinch_tracking: 161
+[t=27.3635s, 109904 KB] g=67, 120445 evaluated, 67 expanded
+[t=28.0682s, 109904 KB] New best heuristic value for pinch_tracking: 160
+[t=28.0683s, 109904 KB] g=68, 123725 evaluated, 68 expanded
+[t=28.1482s, 109904 KB] New best heuristic value for pinch_tracking: 159
+[t=28.1483s, 109904 KB] g=69, 124098 evaluated, 69 expanded
+[t=28.8532s, 109904 KB] New best heuristic value for pinch_tracking: 158
+[t=28.8533s, 109904 KB] g=70, 127379 evaluated, 70 expanded
+[t=28.9329s, 109904 KB] New best heuristic value for pinch_tracking: 157
+[t=28.933s, 109904 KB] g=71, 127751 evaluated, 71 expanded
+[t=29.6385s, 109904 KB] New best heuristic value for pinch_tracking: 156
+[t=29.6386s, 109904 KB] g=72, 131035 evaluated, 72 expanded
+[t=29.7206s, 111028 KB] New best heuristic value for pinch_tracking: 155
+[t=29.7207s, 111028 KB] g=73, 131404 evaluated, 73 expanded
+[t=30.427s, 111028 KB] New best heuristic value for pinch_tracking: 154
+[t=30.4271s, 111028 KB] g=74, 134690 evaluated, 74 expanded
+[t=30.5057s, 111028 KB] New best heuristic value for pinch_tracking: 153
+[t=30.5058s, 111028 KB] g=75, 135057 evaluated, 75 expanded
+[t=31.2136s, 111028 KB] New best heuristic value for pinch_tracking: 152
+[t=31.2137s, 111028 KB] g=76, 138349 evaluated, 76 expanded
+[t=31.2912s, 111028 KB] New best heuristic value for pinch_tracking: 151
+[t=31.2913s, 111028 KB] g=77, 138710 evaluated, 77 expanded
+[t=31.999s, 111028 KB] New best heuristic value for pinch_tracking: 150
+[t=31.9991s, 111028 KB] g=78, 142004 evaluated, 78 expanded
+[t=32.076s, 111028 KB] New best heuristic value for pinch_tracking: 149
+[t=32.0761s, 111028 KB] g=79, 142363 evaluated, 79 expanded
+[t=32.7842s, 111028 KB] New best heuristic value for pinch_tracking: 148
+[t=32.7843s, 111028 KB] g=80, 145658 evaluated, 80 expanded
+[t=32.8609s, 111028 KB] New best heuristic value for pinch_tracking: 147
+[t=32.861s, 111028 KB] g=81, 146016 evaluated, 81 expanded
+[t=33.5691s, 111028 KB] New best heuristic value for pinch_tracking: 146
+[t=33.5692s, 111028 KB] g=82, 149312 evaluated, 82 expanded
+[t=33.6476s, 111028 KB] New best heuristic value for pinch_tracking: 145
+[t=33.6477s, 111028 KB] g=83, 149669 evaluated, 83 expanded
+[t=34.361s, 111028 KB] New best heuristic value for pinch_tracking: 144
+[t=34.3612s, 111028 KB] g=84, 152967 evaluated, 84 expanded
+[t=34.4372s, 111028 KB] New best heuristic value for pinch_tracking: 143
+[t=34.4373s, 111028 KB] g=85, 153322 evaluated, 85 expanded
+[t=35.1478s, 111028 KB] New best heuristic value for pinch_tracking: 142
+[t=35.1479s, 111028 KB] g=86, 156623 evaluated, 86 expanded
+[t=35.2232s, 111028 KB] New best heuristic value for pinch_tracking: 141
+[t=35.2233s, 111028 KB] g=87, 156975 evaluated, 87 expanded
+[t=35.932s, 111028 KB] New best heuristic value for pinch_tracking: 140
+[t=35.9321s, 111028 KB] g=88, 160278 evaluated, 88 expanded
+[t=36.0069s, 111028 KB] New best heuristic value for pinch_tracking: 139
+[t=36.007s, 111028 KB] g=89, 160628 evaluated, 89 expanded
+[t=36.7161s, 111028 KB] New best heuristic value for pinch_tracking: 138
+[t=36.7162s, 111028 KB] g=90, 163932 evaluated, 90 expanded
+[t=36.7908s, 111028 KB] New best heuristic value for pinch_tracking: 137
+[t=36.7909s, 111028 KB] g=91, 164281 evaluated, 91 expanded
+[t=37.5001s, 111028 KB] New best heuristic value for pinch_tracking: 136
+[t=37.5002s, 111028 KB] g=92, 167587 evaluated, 92 expanded
+[t=37.5743s, 111028 KB] New best heuristic value for pinch_tracking: 135
+[t=37.5744s, 111028 KB] g=93, 167934 evaluated, 93 expanded
+[t=38.2858s, 111944 KB] New best heuristic value for pinch_tracking: 134
+[t=38.2859s, 111944 KB] g=94, 171242 evaluated, 94 expanded
+[t=38.3596s, 111944 KB] New best heuristic value for pinch_tracking: 133
+[t=38.3597s, 111944 KB] g=95, 171587 evaluated, 95 expanded
+[t=39.0699s, 111944 KB] New best heuristic value for pinch_tracking: 132
+[t=39.07s, 111944 KB] g=96, 174896 evaluated, 96 expanded
+[t=39.1435s, 111944 KB] New best heuristic value for pinch_tracking: 131
+[t=39.1436s, 111944 KB] g=97, 175240 evaluated, 97 expanded
+[t=39.8538s, 111944 KB] New best heuristic value for pinch_tracking: 130
+[t=39.854s, 111944 KB] g=98, 178550 evaluated, 98 expanded
+[t=39.9272s, 111944 KB] New best heuristic value for pinch_tracking: 129
+[t=39.9274s, 111944 KB] g=99, 178893 evaluated, 99 expanded
+[t=40.6378s, 111944 KB] New best heuristic value for pinch_tracking: 128
+[t=40.6379s, 111944 KB] g=100, 182204 evaluated, 100 expanded
+[t=40.711s, 111944 KB] New best heuristic value for pinch_tracking: 127
+[t=40.7111s, 111944 KB] g=101, 182546 evaluated, 101 expanded
+[t=41.4218s, 111944 KB] New best heuristic value for pinch_tracking: 126
+[t=41.422s, 111944 KB] g=102, 185858 evaluated, 102 expanded
+[t=41.4949s, 111944 KB] New best heuristic value for pinch_tracking: 125
+[t=41.495s, 111944 KB] g=103, 186199 evaluated, 103 expanded
+[t=42.2061s, 112988 KB] New best heuristic value for pinch_tracking: 124
+[t=42.2062s, 112988 KB] g=104, 189512 evaluated, 104 expanded
+[t=42.279s, 112988 KB] New best heuristic value for pinch_tracking: 123
+[t=42.2791s, 112988 KB] g=105, 189852 evaluated, 105 expanded
+[t=42.9898s, 112988 KB] New best heuristic value for pinch_tracking: 122
+[t=42.9899s, 112988 KB] g=106, 193167 evaluated, 106 expanded
+[t=43.0621s, 112988 KB] New best heuristic value for pinch_tracking: 121
+[t=43.0623s, 112988 KB] g=107, 193505 evaluated, 107 expanded
+[t=43.7738s, 112988 KB] New best heuristic value for pinch_tracking: 120
+[t=43.774s, 112988 KB] g=108, 196823 evaluated, 108 expanded
+[t=43.8455s, 112988 KB] New best heuristic value for pinch_tracking: 119
+[t=43.8456s, 112988 KB] g=109, 197158 evaluated, 109 expanded
+[t=44.5577s, 112988 KB] New best heuristic value for pinch_tracking: 118
+[t=44.5578s, 112988 KB] g=110, 200478 evaluated, 110 expanded
+[t=44.6296s, 113892 KB] New best heuristic value for pinch_tracking: 117
+[t=44.6297s, 113892 KB] g=111, 200811 evaluated, 111 expanded
+[t=45.3423s, 113892 KB] New best heuristic value for pinch_tracking: 116
+[t=45.3424s, 113892 KB] g=112, 204132 evaluated, 112 expanded
+[t=45.4134s, 113892 KB] New best heuristic value for pinch_tracking: 115
+[t=45.4135s, 113892 KB] g=113, 204464 evaluated, 113 expanded
+[t=46.1262s, 113892 KB] New best heuristic value for pinch_tracking: 114
+[t=46.1263s, 113892 KB] g=114, 207786 evaluated, 114 expanded
+[t=46.1972s, 113892 KB] New best heuristic value for pinch_tracking: 113
+[t=46.1973s, 113892 KB] g=115, 208117 evaluated, 115 expanded
+[t=46.9102s, 113892 KB] New best heuristic value for pinch_tracking: 112
+[t=46.9103s, 113892 KB] g=116, 211440 evaluated, 116 expanded
+[t=46.9808s, 113892 KB] New best heuristic value for pinch_tracking: 111
+[t=46.981s, 113892 KB] g=117, 211770 evaluated, 117 expanded
+[t=47.6942s, 113892 KB] New best heuristic value for pinch_tracking: 110
+[t=47.6943s, 113892 KB] g=118, 215094 evaluated, 118 expanded
+[t=47.7653s, 114836 KB] New best heuristic value for pinch_tracking: 109
+[t=47.7654s, 114836 KB] g=119, 215423 evaluated, 119 expanded
+[t=48.4946s, 118948 KB] New best heuristic value for pinch_tracking: 108
+[t=48.4948s, 118948 KB] g=120, 218748 evaluated, 120 expanded
+[t=48.5648s, 118948 KB] New best heuristic value for pinch_tracking: 107
+[t=48.565s, 118948 KB] g=121, 219076 evaluated, 121 expanded
+[t=49.2792s, 118948 KB] New best heuristic value for pinch_tracking: 106
+[t=49.2793s, 118948 KB] g=122, 222402 evaluated, 122 expanded
+[t=49.3492s, 118948 KB] New best heuristic value for pinch_tracking: 105
+[t=49.3493s, 118948 KB] g=123, 222729 evaluated, 123 expanded
+[t=50.0645s, 118948 KB] New best heuristic value for pinch_tracking: 104
+[t=50.0646s, 118948 KB] g=124, 226056 evaluated, 124 expanded
+[t=50.1345s, 118948 KB] New best heuristic value for pinch_tracking: 103
+[t=50.1346s, 118948 KB] g=125, 226382 evaluated, 125 expanded
+[t=50.8496s, 118948 KB] New best heuristic value for pinch_tracking: 102
+[t=50.8497s, 118948 KB] g=126, 229710 evaluated, 126 expanded
+[t=50.9195s, 118948 KB] New best heuristic value for pinch_tracking: 101
+[t=50.9196s, 118948 KB] g=127, 230035 evaluated, 127 expanded
+[t=51.6345s, 118948 KB] New best heuristic value for pinch_tracking: 100
+[t=51.6346s, 118948 KB] g=128, 233365 evaluated, 128 expanded
+[t=51.7039s, 118948 KB] New best heuristic value for pinch_tracking: 99
+[t=51.7041s, 118948 KB] g=129, 233688 evaluated, 129 expanded
+[t=52.4191s, 118948 KB] New best heuristic value for pinch_tracking: 98
+[t=52.4192s, 118948 KB] g=130, 237019 evaluated, 130 expanded
+[t=52.488s, 118948 KB] New best heuristic value for pinch_tracking: 97
+[t=52.4882s, 118948 KB] g=131, 237341 evaluated, 131 expanded
+[t=53.2041s, 118948 KB] New best heuristic value for pinch_tracking: 96
+[t=53.2042s, 118948 KB] g=132, 240675 evaluated, 132 expanded
+[t=53.2724s, 118948 KB] New best heuristic value for pinch_tracking: 95
+[t=53.2725s, 118948 KB] g=133, 240994 evaluated, 133 expanded
+[t=53.9894s, 118948 KB] New best heuristic value for pinch_tracking: 94
+[t=53.9895s, 118948 KB] g=134, 244333 evaluated, 134 expanded
+[t=54.0567s, 118948 KB] New best heuristic value for pinch_tracking: 93
+[t=54.0568s, 118948 KB] g=135, 244647 evaluated, 135 expanded
+[t=54.7774s, 118948 KB] New best heuristic value for pinch_tracking: 92
+[t=54.7775s, 118948 KB] g=136, 247987 evaluated, 136 expanded
+[t=54.8455s, 118948 KB] New best heuristic value for pinch_tracking: 91
+[t=54.8456s, 118948 KB] g=137, 248300 evaluated, 137 expanded
+[t=55.5661s, 118948 KB] New best heuristic value for pinch_tracking: 90
+[t=55.5662s, 118948 KB] g=138, 251641 evaluated, 138 expanded
+[t=55.634s, 118948 KB] New best heuristic value for pinch_tracking: 89
+[t=55.6341s, 118948 KB] g=139, 251953 evaluated, 139 expanded
+[t=56.3468s, 118948 KB] New best heuristic value for pinch_tracking: 88
+[t=56.3469s, 118948 KB] g=140, 255299 evaluated, 140 expanded
+[t=56.4117s, 118948 KB] New best heuristic value for pinch_tracking: 87
+[t=56.4118s, 118948 KB] g=141, 255606 evaluated, 141 expanded
+[t=57.1207s, 118948 KB] New best heuristic value for pinch_tracking: 86
+[t=57.1208s, 118948 KB] g=142, 258954 evaluated, 142 expanded
+[t=57.1852s, 118948 KB] New best heuristic value for pinch_tracking: 85
+[t=57.1853s, 118948 KB] g=143, 259259 evaluated, 143 expanded
+[t=57.9012s, 128052 KB] New best heuristic value for pinch_tracking: 84
+[t=57.9014s, 128052 KB] g=144, 262609 evaluated, 144 expanded
+[t=57.9653s, 128052 KB] New best heuristic value for pinch_tracking: 83
+[t=57.9654s, 128052 KB] g=145, 262912 evaluated, 145 expanded
+[t=58.6748s, 128052 KB] New best heuristic value for pinch_tracking: 82
+[t=58.6749s, 128052 KB] g=146, 266264 evaluated, 146 expanded
+[t=58.7384s, 128052 KB] New best heuristic value for pinch_tracking: 81
+[t=58.7385s, 128052 KB] g=147, 266565 evaluated, 147 expanded
+[t=59.4484s, 128052 KB] New best heuristic value for pinch_tracking: 80
+[t=59.4485s, 128052 KB] g=148, 269919 evaluated, 148 expanded
+[t=59.5118s, 128052 KB] New best heuristic value for pinch_tracking: 79
+[t=59.5119s, 128052 KB] g=149, 270218 evaluated, 149 expanded
+[t=60.223s, 128052 KB] New best heuristic value for pinch_tracking: 78
+[t=60.2231s, 128052 KB] g=150, 273574 evaluated, 150 expanded
+[t=60.2858s, 128052 KB] New best heuristic value for pinch_tracking: 77
+[t=60.2859s, 128052 KB] g=151, 273871 evaluated, 151 expanded
+[t=60.998s, 128052 KB] New best heuristic value for pinch_tracking: 76
+[t=60.9981s, 128052 KB] g=152, 277228 evaluated, 152 expanded
+[t=61.0607s, 128052 KB] New best heuristic value for pinch_tracking: 75
+[t=61.0608s, 128052 KB] g=153, 277524 evaluated, 153 expanded
+[t=61.7737s, 128052 KB] New best heuristic value for pinch_tracking: 74
+[t=61.7738s, 128052 KB] g=154, 280885 evaluated, 154 expanded
+[t=61.8354s, 128052 KB] New best heuristic value for pinch_tracking: 73
+[t=61.8355s, 128052 KB] g=155, 281177 evaluated, 155 expanded
+[t=62.5492s, 128052 KB] New best heuristic value for pinch_tracking: 72
+[t=62.5493s, 128052 KB] g=156, 284542 evaluated, 156 expanded
+[t=62.6102s, 128052 KB] New best heuristic value for pinch_tracking: 71
+[t=62.6103s, 128052 KB] g=157, 284830 evaluated, 157 expanded
+[t=63.3243s, 128052 KB] New best heuristic value for pinch_tracking: 70
+[t=63.3244s, 128052 KB] g=158, 288196 evaluated, 158 expanded
+[t=63.3851s, 128052 KB] New best heuristic value for pinch_tracking: 69
+[t=63.3852s, 128052 KB] g=159, 288483 evaluated, 159 expanded
+[t=64.0995s, 128052 KB] New best heuristic value for pinch_tracking: 68
+[t=64.0996s, 128052 KB] g=160, 291850 evaluated, 160 expanded
+[t=64.1601s, 128052 KB] New best heuristic value for pinch_tracking: 67
+[t=64.1602s, 128052 KB] g=161, 292136 evaluated, 161 expanded
+[t=64.875s, 128052 KB] New best heuristic value for pinch_tracking: 66
+[t=64.8752s, 128052 KB] g=162, 295504 evaluated, 162 expanded
+[t=64.9353s, 128052 KB] New best heuristic value for pinch_tracking: 65
+[t=64.9354s, 128052 KB] g=163, 295789 evaluated, 163 expanded
+[t=65.6499s, 128052 KB] New best heuristic value for pinch_tracking: 64
+[t=65.65s, 128052 KB] g=164, 299158 evaluated, 164 expanded
+[t=65.71s, 128052 KB] New best heuristic value for pinch_tracking: 63
+[t=65.7101s, 128052 KB] g=165, 299442 evaluated, 165 expanded
+[t=66.4251s, 128052 KB] New best heuristic value for pinch_tracking: 62
+[t=66.4252s, 128052 KB] g=166, 302812 evaluated, 166 expanded
+[t=66.4853s, 128052 KB] New best heuristic value for pinch_tracking: 61
+[t=66.4854s, 128052 KB] g=167, 303095 evaluated, 167 expanded
+[t=67.2009s, 128052 KB] New best heuristic value for pinch_tracking: 60
+[t=67.201s, 128052 KB] g=168, 306467 evaluated, 168 expanded
+[t=67.2603s, 128052 KB] New best heuristic value for pinch_tracking: 59
+[t=67.2604s, 128052 KB] g=169, 306748 evaluated, 169 expanded
+[t=67.9771s, 128968 KB] New best heuristic value for pinch_tracking: 58
+[t=67.9772s, 128968 KB] g=170, 310121 evaluated, 170 expanded
+[t=68.0367s, 128968 KB] New best heuristic value for pinch_tracking: 57
+[t=68.0368s, 128968 KB] g=171, 310401 evaluated, 171 expanded
+[t=68.7528s, 128968 KB] New best heuristic value for pinch_tracking: 56
+[t=68.7529s, 128968 KB] g=172, 313776 evaluated, 172 expanded
+[t=68.812s, 128968 KB] New best heuristic value for pinch_tracking: 55
+[t=68.8121s, 128968 KB] g=173, 314054 evaluated, 173 expanded
+[t=69.5278s, 128968 KB] New best heuristic value for pinch_tracking: 54
+[t=69.5279s, 128968 KB] g=174, 317430 evaluated, 174 expanded
+[t=69.5864s, 128968 KB] New best heuristic value for pinch_tracking: 53
+[t=69.5865s, 128968 KB] g=175, 317707 evaluated, 175 expanded
+[t=70.303s, 128968 KB] New best heuristic value for pinch_tracking: 52
+[t=70.3032s, 128968 KB] g=176, 321084 evaluated, 176 expanded
+[t=70.3614s, 128968 KB] New best heuristic value for pinch_tracking: 51
+[t=70.3615s, 128968 KB] g=177, 321360 evaluated, 177 expanded
+[t=71.079s, 128968 KB] New best heuristic value for pinch_tracking: 50
+[t=71.0791s, 128968 KB] g=178, 324739 evaluated, 178 expanded
+[t=71.1375s, 130000 KB] New best heuristic value for pinch_tracking: 49
+[t=71.1377s, 130000 KB] g=179, 325013 evaluated, 179 expanded
+[t=71.8547s, 130000 KB] New best heuristic value for pinch_tracking: 48
+[t=71.8548s, 130000 KB] g=180, 328393 evaluated, 180 expanded
+[t=71.9124s, 130000 KB] New best heuristic value for pinch_tracking: 47
+[t=71.9125s, 130000 KB] g=181, 328666 evaluated, 181 expanded
+[t=72.6496s, 130000 KB] New best heuristic value for pinch_tracking: 46
+[t=72.6498s, 130000 KB] g=182, 332133 evaluated, 182 expanded
+[t=247.926s, 231848 KB] New best heuristic value for pinch_tracking: 45
+[t=247.926s, 231848 KB] g=184, 1155180 evaluated, 708 expanded
+[t=248.417s, 231848 KB] New best heuristic value for pinch_tracking: 44
+[t=248.417s, 231848 KB] g=185, 1157487 evaluated, 709 expanded
+[t=248.969s, 231848 KB] New best heuristic value for pinch_tracking: 43
+[t=248.969s, 231848 KB] g=186, 1160090 evaluated, 711 expanded
+[t=249.567s, 231848 KB] New best heuristic value for pinch_tracking: 42
+[t=249.567s, 231848 KB] g=187, 1162904 evaluated, 712 expanded
+[t=250.119s, 232760 KB] New best heuristic value for pinch_tracking: 41
+[t=250.119s, 232760 KB] g=188, 1165507 evaluated, 714 expanded
+[t=250.717s, 232760 KB] New best heuristic value for pinch_tracking: 40
+[t=250.717s, 232760 KB] g=189, 1168321 evaluated, 715 expanded
+[t=251.27s, 232760 KB] New best heuristic value for pinch_tracking: 39
+[t=251.27s, 232760 KB] g=190, 1170924 evaluated, 717 expanded
+[t=251.867s, 232760 KB] New best heuristic value for pinch_tracking: 38
+[t=251.867s, 232760 KB] g=191, 1173738 evaluated, 718 expanded
+[t=252.42s, 232760 KB] New best heuristic value for pinch_tracking: 37
+[t=252.42s, 232760 KB] g=192, 1176341 evaluated, 720 expanded
+[t=253.017s, 232760 KB] New best heuristic value for pinch_tracking: 36
+[t=253.017s, 232760 KB] g=193, 1179155 evaluated, 721 expanded
+[t=253.57s, 233724 KB] New best heuristic value for pinch_tracking: 35
+[t=253.57s, 233724 KB] g=194, 1181758 evaluated, 723 expanded
+[t=254.168s, 233724 KB] New best heuristic value for pinch_tracking: 34
+[t=254.168s, 233724 KB] g=195, 1184572 evaluated, 724 expanded
+[t=254.72s, 233724 KB] New best heuristic value for pinch_tracking: 33
+[t=254.72s, 233724 KB] g=196, 1187175 evaluated, 726 expanded
+[t=255.317s, 233724 KB] New best heuristic value for pinch_tracking: 32
+[t=255.318s, 233724 KB] g=197, 1189989 evaluated, 727 expanded
+[t=255.87s, 233724 KB] New best heuristic value for pinch_tracking: 31
+[t=255.87s, 233724 KB] g=198, 1192592 evaluated, 729 expanded
+[t=256.468s, 234628 KB] New best heuristic value for pinch_tracking: 30
+[t=256.468s, 234628 KB] g=199, 1195406 evaluated, 730 expanded
+[t=257.02s, 234628 KB] New best heuristic value for pinch_tracking: 29
+[t=257.02s, 234628 KB] g=200, 1198009 evaluated, 732 expanded
+[t=257.617s, 234628 KB] New best heuristic value for pinch_tracking: 28
+[t=257.617s, 234628 KB] g=201, 1200823 evaluated, 733 expanded
+[t=258.168s, 234628 KB] New best heuristic value for pinch_tracking: 27
+[t=258.168s, 234628 KB] g=202, 1203426 evaluated, 735 expanded
+[t=258.765s, 234628 KB] New best heuristic value for pinch_tracking: 26
+[t=258.765s, 234628 KB] g=203, 1206240 evaluated, 736 expanded
+[t=259.317s, 234628 KB] New best heuristic value for pinch_tracking: 25
+[t=259.317s, 234628 KB] g=204, 1208843 evaluated, 738 expanded
+[t=259.915s, 235616 KB] New best heuristic value for pinch_tracking: 24
+[t=259.915s, 235616 KB] g=205, 1211657 evaluated, 739 expanded
+[t=260.467s, 235616 KB] New best heuristic value for pinch_tracking: 23
+[t=260.467s, 235616 KB] g=206, 1214260 evaluated, 741 expanded
+[t=261.064s, 235616 KB] New best heuristic value for pinch_tracking: 22
+[t=261.065s, 235616 KB] g=207, 1217074 evaluated, 742 expanded
+[t=261.617s, 235616 KB] New best heuristic value for pinch_tracking: 21
+[t=261.617s, 235616 KB] g=208, 1219677 evaluated, 744 expanded
+[t=262.22s, 235616 KB] New best heuristic value for pinch_tracking: 20
+[t=262.22s, 235616 KB] g=209, 1222491 evaluated, 745 expanded
+[t=262.775s, 236576 KB] New best heuristic value for pinch_tracking: 19
+[t=262.775s, 236576 KB] g=210, 1225094 evaluated, 747 expanded
+[t=263.373s, 236576 KB] New best heuristic value for pinch_tracking: 18
+[t=263.373s, 236576 KB] g=211, 1227908 evaluated, 748 expanded
+[t=263.925s, 236780 KB] New best heuristic value for pinch_tracking: 17
+[t=263.925s, 236780 KB] g=212, 1230511 evaluated, 750 expanded
+[t=264.523s, 236780 KB] New best heuristic value for pinch_tracking: 16
+[t=264.523s, 236780 KB] g=213, 1233325 evaluated, 751 expanded
+[t=265.075s, 236780 KB] New best heuristic value for pinch_tracking: 15
+[t=265.075s, 236780 KB] g=214, 1235928 evaluated, 753 expanded
+[t=265.672s, 236780 KB] New best heuristic value for pinch_tracking: 14
+[t=265.672s, 236780 KB] g=215, 1238742 evaluated, 754 expanded
+[t=266.224s, 236780 KB] New best heuristic value for pinch_tracking: 13
+[t=266.224s, 236780 KB] g=216, 1241345 evaluated, 756 expanded
+[t=266.822s, 237684 KB] New best heuristic value for pinch_tracking: 12
+[t=266.822s, 237684 KB] g=217, 1244159 evaluated, 757 expanded
+[t=267.374s, 237684 KB] New best heuristic value for pinch_tracking: 11
+[t=267.374s, 237684 KB] g=218, 1246762 evaluated, 759 expanded
+[t=267.971s, 237684 KB] New best heuristic value for pinch_tracking: 10
+[t=267.971s, 237684 KB] g=219, 1249576 evaluated, 760 expanded
+[t=268.523s, 237684 KB] New best heuristic value for pinch_tracking: 9
+[t=268.523s, 237684 KB] g=220, 1252179 evaluated, 762 expanded
+[t=269.12s, 237684 KB] New best heuristic value for pinch_tracking: 8
+[t=269.12s, 237684 KB] g=221, 1254993 evaluated, 763 expanded
+[t=269.673s, 238616 KB] New best heuristic value for pinch_tracking: 7
+[t=269.673s, 238616 KB] g=222, 1257596 evaluated, 765 expanded
+[t=270.27s, 238616 KB] New best heuristic value for pinch_tracking: 6
+[t=270.27s, 238616 KB] g=223, 1260410 evaluated, 766 expanded
+[t=270.822s, 238616 KB] New best heuristic value for pinch_tracking: 5
+[t=270.823s, 238616 KB] g=224, 1263013 evaluated, 768 expanded
+[t=271.42s, 238616 KB] New best heuristic value for pinch_tracking: 4
+[t=271.42s, 238616 KB] g=225, 1265827 evaluated, 769 expanded
+[t=271.972s, 238616 KB] New best heuristic value for pinch_tracking: 3
+[t=271.972s, 238616 KB] g=226, 1268430 evaluated, 771 expanded
+[t=272.569s, 238616 KB] New best heuristic value for pinch_tracking: 2
+[t=272.57s, 238616 KB] g=227, 1271244 evaluated, 772 expanded
+[t=273.123s, 239576 KB] New best heuristic value for pinch_tracking: 1
+[t=273.123s, 239576 KB] g=228, 1273847 evaluated, 774 expanded
+[t=273.72s, 239576 KB] New best heuristic value for pinch_tracking: 0
+[t=273.72s, 239576 KB] g=229, 1276661 evaluated, 775 expanded
+[t=273.895s, 239576 KB] Solution found!
+[t=273.895s, 239576 KB] Actual search time: 272.432s
+switch_on instrument24 satellite10 (1)
+turn_to satellite10 star2 planet93 (1)
+calibrate satellite10 instrument24 star2 (1)
+switch_on instrument29 satellite14 (1)
+turn_to satellite14 groundstation3 phenomenon85 (1)
+calibrate satellite14 instrument29 groundstation3 (1)
+turn_to satellite9 phenomenon14 planet124 (1)
+turn_to satellite5 phenomenon80 star37 (1)
+turn_to satellite4 phenomenon123 star86 (1)
+turn_to satellite2 star61 phenomenon71 (1)
+turn_to satellite14 phenomenon109 groundstation3 (1)
+take_image satellite14 phenomenon109 instrument29 image2 (1)
+turn_to satellite14 phenomenon110 phenomenon109 (1)
+take_image satellite14 phenomenon110 instrument29 image2 (1)
+turn_to satellite14 phenomenon119 phenomenon110 (1)
+take_image satellite14 phenomenon119 instrument29 image4 (1)
+turn_to satellite14 phenomenon120 phenomenon119 (1)
+take_image satellite14 phenomenon120 instrument29 infrared0 (1)
+turn_to satellite14 phenomenon13 phenomenon120 (1)
+take_image satellite14 phenomenon13 instrument29 image4 (1)
+turn_to satellite14 phenomenon18 phenomenon13 (1)
+take_image satellite14 phenomenon18 instrument29 image4 (1)
+turn_to satellite14 phenomenon20 phenomenon18 (1)
+take_image satellite14 phenomenon20 instrument29 image4 (1)
+turn_to satellite14 phenomenon25 phenomenon20 (1)
+take_image satellite14 phenomenon25 instrument29 image4 (1)
+turn_to satellite14 phenomenon38 phenomenon25 (1)
+take_image satellite14 phenomenon38 instrument29 image4 (1)
+turn_to satellite14 phenomenon48 phenomenon38 (1)
+take_image satellite14 phenomenon48 instrument29 image4 (1)
+turn_to satellite14 phenomenon70 phenomenon48 (1)
+take_image satellite14 phenomenon70 instrument29 infrared0 (1)
+turn_to satellite14 phenomenon71 phenomenon70 (1)
+take_image satellite14 phenomenon71 instrument29 image4 (1)
+turn_to satellite14 phenomenon8 phenomenon71 (1)
+take_image satellite14 phenomenon8 instrument29 image4 (1)
+turn_to satellite14 phenomenon80 phenomenon8 (1)
+take_image satellite14 phenomenon80 instrument29 image4 (1)
+turn_to satellite14 phenomenon90 phenomenon80 (1)
+take_image satellite14 phenomenon90 instrument29 infrared0 (1)
+turn_to satellite14 phenomenon98 phenomenon90 (1)
+take_image satellite14 phenomenon98 instrument29 image4 (1)
+turn_to satellite14 planet102 phenomenon98 (1)
+take_image satellite14 planet102 instrument29 infrared0 (1)
+turn_to satellite14 planet103 planet102 (1)
+take_image satellite14 planet103 instrument29 image4 (1)
+turn_to satellite14 planet112 planet103 (1)
+take_image satellite14 planet112 instrument29 infrared0 (1)
+turn_to satellite14 planet124 planet112 (1)
+turn_to satellite10 phenomenon100 star2 (1)
+take_image satellite10 phenomenon100 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon101 phenomenon100 (1)
+take_image satellite10 phenomenon101 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon108 phenomenon101 (1)
+take_image satellite10 phenomenon108 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon113 phenomenon108 (1)
+take_image satellite10 phenomenon113 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon116 phenomenon113 (1)
+take_image satellite10 phenomenon116 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon117 phenomenon116 (1)
+take_image satellite10 phenomenon117 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon14 phenomenon117 (1)
+take_image satellite10 phenomenon14 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon39 phenomenon14 (1)
+take_image satellite10 phenomenon39 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon41 phenomenon39 (1)
+take_image satellite10 phenomenon41 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon42 phenomenon41 (1)
+take_image satellite10 phenomenon42 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon47 phenomenon42 (1)
+take_image satellite10 phenomenon47 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon56 phenomenon47 (1)
+take_image satellite10 phenomenon56 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon62 phenomenon56 (1)
+take_image satellite10 phenomenon62 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon85 phenomenon62 (1)
+take_image satellite10 phenomenon85 instrument24 spectrograph1 (1)
+turn_to satellite10 phenomenon91 phenomenon85 (1)
+take_image satellite10 phenomenon91 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon94 phenomenon91 (1)
+take_image satellite10 phenomenon94 instrument24 infrared3 (1)
+turn_to satellite10 phenomenon97 phenomenon94 (1)
+take_image satellite10 phenomenon97 instrument24 infrared3 (1)
+turn_to satellite10 planet10 phenomenon97 (1)
+take_image satellite10 planet10 instrument24 infrared3 (1)
+turn_to satellite10 planet104 planet10 (1)
+take_image satellite10 planet104 instrument24 spectrograph1 (1)
+turn_to satellite10 planet114 planet104 (1)
+take_image satellite10 planet114 instrument24 infrared3 (1)
+turn_to satellite10 planet121 planet114 (1)
+take_image satellite10 planet121 instrument24 infrared3 (1)
+turn_to satellite10 planet17 planet121 (1)
+take_image satellite10 planet17 instrument24 infrared3 (1)
+turn_to satellite10 planet28 planet17 (1)
+take_image satellite10 planet28 instrument24 image4 (1)
+turn_to satellite10 planet29 planet28 (1)
+take_image satellite10 planet29 instrument24 image4 (1)
+turn_to satellite10 planet30 planet29 (1)
+take_image satellite10 planet30 instrument24 infrared3 (1)
+turn_to satellite10 planet31 planet30 (1)
+take_image satellite10 planet31 instrument24 infrared3 (1)
+turn_to satellite10 planet32 planet31 (1)
+take_image satellite10 planet32 instrument24 spectrograph1 (1)
+turn_to satellite10 planet34 planet32 (1)
+take_image satellite10 planet34 instrument24 image4 (1)
+turn_to satellite10 planet44 planet34 (1)
+take_image satellite10 planet44 instrument24 infrared3 (1)
+turn_to satellite10 planet5 planet44 (1)
+take_image satellite10 planet5 instrument24 image4 (1)
+turn_to satellite10 planet55 planet5 (1)
+take_image satellite10 planet55 instrument24 spectrograph1 (1)
+turn_to satellite10 planet57 planet55 (1)
+take_image satellite10 planet57 instrument24 image4 (1)
+turn_to satellite10 planet59 planet57 (1)
+take_image satellite10 planet59 instrument24 image4 (1)
+turn_to satellite10 planet60 planet59 (1)
+take_image satellite10 planet60 instrument24 infrared3 (1)
+turn_to satellite10 planet67 planet60 (1)
+take_image satellite10 planet67 instrument24 infrared3 (1)
+turn_to satellite10 planet68 planet67 (1)
+take_image satellite10 planet68 instrument24 image4 (1)
+turn_to satellite10 planet69 planet68 (1)
+take_image satellite10 planet69 instrument24 spectrograph1 (1)
+turn_to satellite10 planet73 planet69 (1)
+take_image satellite10 planet73 instrument24 spectrograph1 (1)
+turn_to satellite10 planet74 planet73 (1)
+take_image satellite10 planet74 instrument24 image4 (1)
+turn_to satellite10 planet78 planet74 (1)
+take_image satellite10 planet78 instrument24 spectrograph1 (1)
+turn_to satellite10 planet81 planet78 (1)
+take_image satellite10 planet81 instrument24 image4 (1)
+turn_to satellite10 planet87 planet81 (1)
+take_image satellite10 planet87 instrument24 image4 (1)
+turn_to satellite10 planet95 planet87 (1)
+take_image satellite10 planet95 instrument24 infrared3 (1)
+turn_to satellite10 planet96 planet95 (1)
+take_image satellite10 planet96 instrument24 spectrograph1 (1)
+turn_to satellite10 planet99 planet96 (1)
+take_image satellite10 planet99 instrument24 image4 (1)
+turn_to satellite10 star107 planet99 (1)
+take_image satellite10 star107 instrument24 infrared3 (1)
+turn_to satellite10 star111 star107 (1)
+take_image satellite10 star111 instrument24 image4 (1)
+turn_to satellite10 star12 star111 (1)
+take_image satellite10 star12 instrument24 image4 (1)
+turn_to satellite10 star15 star12 (1)
+take_image satellite10 star15 instrument24 spectrograph1 (1)
+turn_to satellite10 star19 star15 (1)
+take_image satellite10 star19 instrument24 infrared3 (1)
+turn_to satellite10 star21 star19 (1)
+take_image satellite10 star21 instrument24 image4 (1)
+turn_to satellite10 star22 star21 (1)
+take_image satellite10 star22 instrument24 image4 (1)
+turn_to satellite10 star33 star22 (1)
+take_image satellite10 star33 instrument24 infrared3 (1)
+turn_to satellite10 star40 star33 (1)
+take_image satellite10 star40 instrument24 infrared3 (1)
+turn_to satellite10 star46 star40 (1)
+take_image satellite10 star46 instrument24 image4 (1)
+turn_to satellite10 star50 star46 (1)
+take_image satellite10 star50 instrument24 infrared3 (1)
+turn_to satellite10 star52 star50 (1)
+take_image satellite10 star52 instrument24 infrared3 (1)
+turn_to satellite10 star54 star52 (1)
+take_image satellite10 star54 instrument24 spectrograph1 (1)
+turn_to satellite10 star6 star54 (1)
+take_image satellite10 star6 instrument24 infrared3 (1)
+turn_to satellite10 star63 star6 (1)
+take_image satellite10 star63 instrument24 infrared3 (1)
+turn_to satellite10 star64 star63 (1)
+take_image satellite10 star64 instrument24 image4 (1)
+turn_to satellite10 star7 star64 (1)
+take_image satellite10 star7 instrument24 image4 (1)
+turn_to satellite10 star72 star7 (1)
+take_image satellite10 star72 instrument24 image4 (1)
+turn_to satellite10 star75 star72 (1)
+take_image satellite10 star75 instrument24 infrared3 (1)
+turn_to satellite10 star79 star75 (1)
+take_image satellite10 star79 instrument24 image4 (1)
+turn_to satellite10 star83 star79 (1)
+take_image satellite10 star83 instrument24 image4 (1)
+turn_to satellite1 star0 star72 (1)
+turn_to satellite14 planet45 planet124 (1)
+take_image satellite14 planet45 instrument29 infrared0 (1)
+turn_to satellite14 planet49 planet45 (1)
+take_image satellite14 planet49 instrument29 infrared0 (1)
+turn_to satellite14 planet51 planet49 (1)
+take_image satellite14 planet51 instrument29 infrared0 (1)
+turn_to satellite14 planet76 planet51 (1)
+take_image satellite14 planet76 instrument29 image2 (1)
+turn_to satellite14 planet84 planet76 (1)
+take_image satellite14 planet84 instrument29 infrared0 (1)
+turn_to satellite14 planet88 planet84 (1)
+take_image satellite14 planet88 instrument29 infrared0 (1)
+turn_to satellite14 planet89 planet88 (1)
+take_image satellite14 planet89 instrument29 infrared0 (1)
+turn_to satellite14 planet9 planet89 (1)
+take_image satellite14 planet9 instrument29 infrared0 (1)
+turn_to satellite14 planet93 planet9 (1)
+take_image satellite14 planet93 instrument29 infrared0 (1)
+turn_to satellite14 star105 planet93 (1)
+take_image satellite14 star105 instrument29 image2 (1)
+turn_to satellite14 star106 star105 (1)
+take_image satellite14 star106 instrument29 infrared0 (1)
+turn_to satellite14 star115 star106 (1)
+take_image satellite14 star115 instrument29 image2 (1)
+turn_to satellite14 star122 star115 (1)
+take_image satellite14 star122 instrument29 image2 (1)
+turn_to satellite14 star16 star122 (1)
+take_image satellite14 star16 instrument29 image2 (1)
+turn_to satellite14 star23 star16 (1)
+take_image satellite14 star23 instrument29 image2 (1)
+turn_to satellite14 star24 star23 (1)
+take_image satellite14 star24 instrument29 image2 (1)
+turn_to satellite14 star35 star24 (1)
+take_image satellite14 star35 instrument29 image2 (1)
+turn_to satellite14 star37 star35 (1)
+take_image satellite14 star37 instrument29 image2 (1)
+turn_to satellite14 star61 star37 (1)
+take_image satellite14 star61 instrument29 image2 (1)
+turn_to satellite14 star65 star61 (1)
+take_image satellite14 star65 instrument29 image2 (1)
+turn_to satellite14 star77 star65 (1)
+take_image satellite14 star77 instrument29 infrared0 (1)
+turn_to satellite14 star86 star77 (1)
+take_image satellite14 star86 instrument29 image2 (1)
+turn_to satellite14 star92 star86 (1)
+take_image satellite14 star92 instrument29 infrared0 (1)
+turn_to satellite14 planet124 star92 (1)
+[t=273.895s, 239576 KB] Plan length: 229 step(s).
+[t=273.895s, 239576 KB] Plan cost: 229
+[t=273.895s, 239576 KB] Expanded 776 state(s).
+[t=273.895s, 239576 KB] Reopened 0 state(s).
+[t=273.895s, 239576 KB] Evaluated 1277481 state(s).
+[t=273.895s, 239576 KB] Evaluations: 1277481
+[t=273.895s, 239576 KB] Generated 1464036 state(s).
+[t=273.895s, 239576 KB] Dead ends: 0 state(s).
+[t=273.895s, 239576 KB] Number of registered states: 1277481
+[t=273.895s, 239576 KB] Int hash set load factor: 1277481/2097152 = 0.60915
+[t=273.895s, 239576 KB] Int hash set resizes: 21
+[t=273.895s, 239576 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=273.895s, 239576 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=273.895s, 239576 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=273.895s, 239576 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=273.895s, 239576 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=273.895s, 239576 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=273.895s, 239576 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=273.895s, 239576 KB] Search time: 272.456s
+[t=273.895s, 239576 KB] Total time: 273.895s
+Solution found.
+Peak memory: 239576 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

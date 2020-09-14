@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/rovers/p06.pddl

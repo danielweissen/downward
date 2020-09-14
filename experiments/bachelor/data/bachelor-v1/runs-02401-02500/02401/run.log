@@ -1,0 +1,39 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.050s CPU, 0.055s wall-clock]
+Normalizing task... [0.000s CPU, 0.004s wall-clock]
+Instantiating...
+Generating Datalog program... [0.010s CPU, 0.006s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.080s CPU, 0.074s wall-clock]
+Preparing model... [0.030s CPU, 0.029s wall-clock]
+Generated 1345 rules.
+Computing model... 
+Translator ran out of memory, traceback:
+===============================================================================
+Traceback (most recent call last):
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 728, in <module>
+    main()
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 699, in main
+    sas_task = pddl_to_sas(task)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py", line 527, in pddl_to_sas
+    reachable_action_params) = instantiate.explore(task)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/instantiate.py", line 82, in explore
+    model = build_model.compute_model(prog)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/build_model.py", line 321, in compute_model
+    rule.fire(next_atom, cond_index, queue.push)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/build_model.py", line 161, in fire
+    enqueue_func(self.effect.predicate, eff_args)
+  File "/infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/build_model.py", line 290, in push
+    eff_tuple = (predicate,) + tuple(args)
+MemoryError
+===============================================================================
+translate exit code: 20
+
+Driver aborting after translate
+search time limit missing -> can't compute time scores
+search memory limit missing -> can't compute memory score

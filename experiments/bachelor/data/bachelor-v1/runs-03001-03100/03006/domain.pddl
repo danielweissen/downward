@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/trucks-strips/domain_p04.pddl

@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/psr-small/p45-domain.pddl

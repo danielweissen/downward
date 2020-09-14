@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/miconic/s12-0.pddl

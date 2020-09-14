@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/tpp/p06.pddl

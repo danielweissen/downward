@@ -1,0 +1,224 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.010s CPU, 0.004s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.006s wall-clock]
+Preparing model... [0.010s CPU, 0.003s wall-clock]
+Generated 91 rules.
+Computing model... [0.060s CPU, 0.070s wall-clock]
+2546 relevant atoms
+4016 auxiliary atoms
+6562 final queue length
+12294 total queue pushes
+Completing instantiation... [0.120s CPU, 0.132s wall-clock]
+Instantiating: [0.200s CPU, 0.214s wall-clock]
+Computing fact groups...
+Finding invariants...
+18 initial candidates
+Finding invariants: [0.020s CPU, 0.018s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+380 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.002s wall-clock]
+Computing fact groups: [0.030s CPU, 0.024s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.006s wall-clock]
+Translating task: [0.130s CPU, 0.135s wall-clock]
+3920 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+2 propositions removed
+Detecting unreachable propositions: [0.080s CPU, 0.069s wall-clock]
+Reordering and filtering variables...
+382 of 382 variables necessary.
+0 of 2 mutex groups necessary.
+2032 of 2032 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.090s CPU, 0.096s wall-clock]
+Translator variables: 382
+Translator derived variables: 0
+Translator facts: 766
+Translator goal facts: 8
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 2032
+Translator axioms: 0
+Translator task size: 19156
+Translator peak memory: 156120 KB
+Writing output... [0.030s CPU, 0.039s wall-clock]
+Done! [0.580s CPU, 0.590s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1799.31s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.6146e-05s, 17204 KB] reading input...
+[t=0.0191961s, 18064 KB] done reading input!
+[t=0.0226232s, 19192 KB] Simplifying 9872 unary operators... done! [9872 unary operators]
+[t=0.0318605s, 19928 KB] time to simplify: 0.00933507s
+[t=0.0328442s, 19928 KB] Initializing pinch heuristic...
+[t=0.0330501s, 19928 KB] Building successor generator...done!
+[t=0.0345374s, 19928 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0345807s, 19928 KB] time for successor generation creation: 0.00131515s
+[t=0.0346503s, 19928 KB] Variables: 382
+[t=0.0346904s, 19928 KB] FactPairs: 766
+[t=0.0347294s, 19928 KB] Bytes per state: 48
+[t=0.0348921s, 19928 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.0359639s, 19928 KB] New best heuristic value for pinch: 82
+[t=0.0360224s, 19928 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0360821s, 19928 KB] Initial heuristic value for pinch: 82
+[t=0.0361241s, 19928 KB] pruning method: none
+[t=0.0389463s, 19928 KB] New best heuristic value for pinch: 81
+[t=0.0390252s, 19928 KB] g=1, 5 evaluated, 1 expanded
+[t=0.0392737s, 19928 KB] New best heuristic value for pinch: 74
+[t=0.039318s, 19928 KB] g=1, 6 evaluated, 1 expanded
+[t=0.0440492s, 19928 KB] New best heuristic value for pinch: 72
+[t=0.0441387s, 19928 KB] g=2, 16 evaluated, 2 expanded
+[t=0.0495513s, 19928 KB] New best heuristic value for pinch: 66
+[t=0.0496437s, 19928 KB] g=3, 28 evaluated, 3 expanded
+[t=0.0587484s, 19928 KB] New best heuristic value for pinch: 64
+[t=0.058846s, 19928 KB] g=5, 51 evaluated, 5 expanded
+[t=0.0622566s, 19928 KB] New best heuristic value for pinch: 63
+[t=0.0623507s, 19928 KB] g=5, 59 evaluated, 5 expanded
+[t=0.0643989s, 19928 KB] New best heuristic value for pinch: 61
+[t=0.0644775s, 19928 KB] g=6, 65 evaluated, 6 expanded
+[t=0.0685978s, 19928 KB] New best heuristic value for pinch: 58
+[t=0.0686866s, 19928 KB] g=7, 76 evaluated, 7 expanded
+[t=0.0800506s, 19928 KB] New best heuristic value for pinch: 57
+[t=0.0801441s, 19928 KB] g=8, 91 evaluated, 8 expanded
+[t=0.0838417s, 19928 KB] New best heuristic value for pinch: 56
+[t=0.083939s, 19928 KB] g=9, 103 evaluated, 9 expanded
+[t=0.0922133s, 19928 KB] New best heuristic value for pinch: 55
+[t=0.0923067s, 19928 KB] g=10, 120 evaluated, 10 expanded
+[t=0.139777s, 19928 KB] New best heuristic value for pinch: 52
+[t=0.139875s, 19928 KB] g=12, 244 evaluated, 18 expanded
+[t=0.166106s, 19928 KB] New best heuristic value for pinch: 43
+[t=0.166206s, 19928 KB] g=14, 312 evaluated, 23 expanded
+[t=0.283005s, 19928 KB] New best heuristic value for pinch: 34
+[t=0.283115s, 19928 KB] g=16, 603 evaluated, 44 expanded
+[t=1.0071s, 20112 KB] New best heuristic value for pinch: 33
+[t=1.00721s, 20112 KB] g=18, 2881 evaluated, 235 expanded, 4 reopened
+[t=1.01243s, 20112 KB] New best heuristic value for pinch: 28
+[t=1.01253s, 20112 KB] g=20, 2896 evaluated, 237 expanded, 4 reopened
+[t=1.07546s, 20112 KB] New best heuristic value for pinch: 25
+[t=1.07557s, 20112 KB] g=22, 3076 evaluated, 252 expanded, 4 reopened
+[t=1.14844s, 20112 KB] New best heuristic value for pinch: 20
+[t=1.14855s, 20112 KB] g=24, 3270 evaluated, 267 expanded, 4 reopened
+[t=2.10775s, 20380 KB] New best heuristic value for pinch: 18
+[t=2.10786s, 20380 KB] g=26, 6128 evaluated, 552 expanded, 4 reopened
+[t=2.11125s, 20380 KB] New best heuristic value for pinch: 15
+[t=2.11134s, 20380 KB] g=27, 6134 evaluated, 553 expanded, 4 reopened
+[t=2.11946s, 20380 KB] New best heuristic value for pinch: 14
+[t=2.11956s, 20380 KB] g=28, 6148 evaluated, 554 expanded, 4 reopened
+[t=2.1234s, 20380 KB] New best heuristic value for pinch: 13
+[t=2.12349s, 20380 KB] g=29, 6160 evaluated, 555 expanded, 4 reopened
+[t=2.14147s, 20380 KB] New best heuristic value for pinch: 12
+[t=2.14157s, 20380 KB] g=31, 6203 evaluated, 559 expanded, 4 reopened
+[t=2.14626s, 20380 KB] New best heuristic value for pinch: 10
+[t=2.14635s, 20380 KB] g=32, 6211 evaluated, 560 expanded, 4 reopened
+[t=3.22409s, 20772 KB] New best heuristic value for pinch: 9
+[t=3.22419s, 20772 KB] g=34, 9177 evaluated, 919 expanded, 4 reopened
+[t=3.29091s, 20772 KB] New best heuristic value for pinch: 5
+[t=3.29103s, 20772 KB] g=37, 9364 evaluated, 940 expanded, 4 reopened
+[t=3.3019s, 20772 KB] New best heuristic value for pinch: 2
+[t=3.302s, 20772 KB] g=39, 9391 evaluated, 942 expanded, 4 reopened
+[t=3.39845s, 20772 KB] New best heuristic value for pinch: 1
+[t=3.39856s, 20772 KB] g=43, 9652 evaluated, 982 expanded, 4 reopened
+[t=3.40324s, 20772 KB] New best heuristic value for pinch: 0
+[t=3.40333s, 20772 KB] g=44, 9666 evaluated, 983 expanded, 4 reopened
+[t=3.40506s, 20772 KB] Solution found!
+[t=3.40514s, 20772 KB] Actual search time: 3.36902s
+pop-start s13 b6 a1 a3 b8 lco rat-a (1)
+pop-end s13 a1 a3 b14 b8 (1)
+pop-start s13 b15 a1 a3 b6 oc1b lco (1)
+pop-end s13 a1 a3 b8 b6 (1)
+push-start s12 b12 a1 a2 b2 gasoleo oca1 (1)
+push-end s12 a1 a2 b13 b2 (1)
+pop-start s13 b10 a1 a3 b15 gasoleo oc1b (1)
+pop-end s13 a1 a3 b6 b15 (1)
+pop-start s13 b1 a1 a3 b10 rat-a gasoleo (1)
+pop-end s13 a1 a3 b15 b10 (1)
+push-start s12 b6 a1 a2 b12 lco gasoleo (1)
+push-end s12 a1 a2 b2 b12 (1)
+push-start s12 b7 a1 a2 b6 lco lco (1)
+push-end s12 a1 a2 b12 b6 (1)
+push-start s12 b3 a1 a2 b7 oca1 lco (1)
+push-end s12 a1 a2 b6 b7 (1)
+push-start s12 b9 a1 a2 b3 oca1 oca1 (1)
+push-end s12 a1 a2 b7 b3 (1)
+pop-start s12 b5 a1 a2 b3 gasoleo oca1 (1)
+pop-end s12 a1 a2 b9 b3 (1)
+pop-start s12 b2 a1 a2 b5 oca1 gasoleo (1)
+pop-end s12 a1 a2 b3 b5 (1)
+pop-start s12 b16 a1 a2 b2 gasoleo oca1 (1)
+pop-end s12 a1 a2 b5 b2 (1)
+pop-start s12 b4 a1 a2 b16 rat-a gasoleo (1)
+pop-end s12 a1 a2 b2 b16 (1)
+push-start s12 b17 a1 a2 b16 rat-a gasoleo (1)
+push-end s12 a1 a2 b4 b16 (1)
+push-start s12 b14 a1 a2 b17 rat-a rat-a (1)
+push-end s12 a1 a2 b16 b17 (1)
+push-start s12 b8 a1 a2 b14 rat-a rat-a (1)
+push-end s12 a1 a2 b17 b14 (1)
+pop-start s12 b16 a1 a2 b14 gasoleo rat-a (1)
+pop-end s12 a1 a2 b8 b14 (1)
+pop-start s12 b0 a1 a2 b16 oc1b gasoleo (1)
+pop-end s12 a1 a2 b14 b16 (1)
+push-start s12 b3 a1 a2 b16 oca1 gasoleo (1)
+push-end s12 a1 a2 b0 b16 (1)
+push-start s12 b9 a1 a2 b3 oca1 oca1 (1)
+push-end s12 a1 a2 b16 b3 (1)
+push-start s12 b15 a1 a2 b9 oc1b oca1 (1)
+push-end s12 a1 a2 b3 b9 (1)
+pop-start s12 b0 a1 a2 b9 oc1b oca1 (1)
+pop-end s12 a1 a2 b15 b9 (1)
+[t=3.40519s, 20772 KB] Plan length: 44 step(s).
+[t=3.40519s, 20772 KB] Plan cost: 44
+[t=3.40519s, 20772 KB] Expanded 984 state(s).
+[t=3.40519s, 20772 KB] Reopened 4 state(s).
+[t=3.40519s, 20772 KB] Evaluated 9670 state(s).
+[t=3.40519s, 20772 KB] Evaluations: 9670
+[t=3.40519s, 20772 KB] Generated 10478 state(s).
+[t=3.40519s, 20772 KB] Dead ends: 0 state(s).
+[t=3.40519s, 20772 KB] Number of registered states: 9670
+[t=3.40519s, 20772 KB] Int hash set load factor: 9670/16384 = 0.59021
+[t=3.40519s, 20772 KB] Int hash set resizes: 14
+[t=3.40519s, 20772 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=3.40519s, 20772 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=3.40519s, 20772 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=3.40519s, 20772 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=3.40519s, 20772 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=3.40519s, 20772 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=3.40519s, 20772 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=3.40519s, 20772 KB] Search time: 3.3703s
+[t=3.40519s, 20772 KB] Total time: 3.40519s
+Solution found.
+Peak memory: 20772 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

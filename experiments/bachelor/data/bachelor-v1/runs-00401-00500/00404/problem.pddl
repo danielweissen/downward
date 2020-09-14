@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/maintenance-sat14-adl/maintenance-1-3-150-500-6-001.pddl

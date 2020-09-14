@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/barman-sat14-strips/domain.pddl

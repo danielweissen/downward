@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/termes-sat18-strips/p09.pddl

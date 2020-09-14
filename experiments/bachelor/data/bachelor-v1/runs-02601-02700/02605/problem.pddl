@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/psr-small/p39-s79-n3-l3-f70.pddl

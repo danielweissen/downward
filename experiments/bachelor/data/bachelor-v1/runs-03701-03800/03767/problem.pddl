@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/miconic-simpleadl/s22-4.pddl

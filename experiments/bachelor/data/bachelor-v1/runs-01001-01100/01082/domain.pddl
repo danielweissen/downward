@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/rovers/domain.pddl

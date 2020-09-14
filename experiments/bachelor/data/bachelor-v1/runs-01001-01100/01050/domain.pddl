@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/psr-small/p30-domain.pddl

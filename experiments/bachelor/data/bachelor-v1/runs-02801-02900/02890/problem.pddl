@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/storage/p08.pddl

@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/settlers-sat18-adl/p10.pddl

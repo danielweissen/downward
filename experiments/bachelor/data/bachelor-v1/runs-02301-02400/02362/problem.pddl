@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/nomystery-sat11-strips/p06.pddl

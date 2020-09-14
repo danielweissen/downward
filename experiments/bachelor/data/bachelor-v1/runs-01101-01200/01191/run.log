@@ -1,0 +1,125 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.006s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.010s CPU, 0.002s wall-clock]
+Generated 65 rules.
+Computing model... [0.000s CPU, 0.009s wall-clock]
+817 relevant atoms
+164 auxiliary atoms
+981 final queue length
+2435 total queue pushes
+Completing instantiation... [0.040s CPU, 0.034s wall-clock]
+Instantiating: [0.050s CPU, 0.048s wall-clock]
+Computing fact groups...
+Finding invariants...
+21 initial candidates
+Finding invariants: [0.000s CPU, 0.004s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+290 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.010s CPU, 0.001s wall-clock]
+Computing fact groups: [0.010s CPU, 0.008s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.001s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.003s wall-clock]
+Translating task: [0.060s CPU, 0.053s wall-clock]
+1642 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+14 propositions removed
+Detecting unreachable propositions: [0.020s CPU, 0.019s wall-clock]
+Reordering and filtering variables...
+153 of 283 variables necessary.
+0 of 0 mutex groups necessary.
+385 of 385 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.010s CPU, 0.017s wall-clock]
+Translator variables: 153
+Translator derived variables: 0
+Translator facts: 306
+Translator goal facts: 16
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 385
+Translator axioms: 0
+Translator task size: 3752
+Translator peak memory: 146380 KB
+Writing output... [0.000s CPU, 0.010s wall-clock]
+Done! [0.160s CPU, 0.165s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1799.74s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.4448e-05s, 17204 KB] reading input...
+[t=0.00401096s, 17352 KB] done reading input!
+[t=0.00609401s, 17784 KB] Simplifying 1659 unary operators... done! [1322 unary operators]
+[t=0.00748539s, 17916 KB] time to simplify: 0.00147453s
+[t=0.00770159s, 17916 KB] Initializing pinch heuristic...
+[t=0.0078359s, 17916 KB] Building successor generator...done!
+[t=0.00817708s, 17916 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.00821618s, 17916 KB] time for successor generation creation: 0.000216872s
+[t=0.00826537s, 17916 KB] Variables: 153
+[t=0.00830509s, 17916 KB] FactPairs: 306
+[t=0.00834433s, 17916 KB] Bytes per state: 20
+[t=0.00847103s, 17916 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.00870507s, 17916 KB] New best heuristic value for pinch: 16
+[t=0.00874884s, 17916 KB] g=0, 1 evaluated, 0 expanded
+[t=0.00879913s, 17916 KB] Initial heuristic value for pinch: 16
+[t=0.0088399s, 17916 KB] pruning method: none
+[t=0.00967737s, 17916 KB] New best heuristic value for pinch: 15
+[t=0.00972351s, 17916 KB] g=1, 25 evaluated, 1 expanded
+[t=0.0155233s, 17916 KB] New best heuristic value for pinch: 14
+[t=0.0155845s, 17916 KB] g=1, 229 evaluated, 1 expanded
+[t=0.0170022s, 17916 KB] New best heuristic value for pinch: 13
+[t=0.0170515s, 17916 KB] g=2, 295 evaluated, 2 expanded
+[t=0.0285323s, 17916 KB] New best heuristic value for pinch: 12
+[t=0.0286167s, 17916 KB] g=3, 683 evaluated, 3 expanded
+[t=0.104282s, 17916 KB] New best heuristic value for pinch: 11
+[t=0.104368s, 17916 KB] g=5, 3521 evaluated, 21 expanded
+[t=0.107717s, 17916 KB] New best heuristic value for pinch: 10
+[t=0.10777s, 17916 KB] g=6, 3635 evaluated, 22 expanded
+[t=0.113863s, 17916 KB] New best heuristic value for pinch: 9
+[t=0.113932s, 17916 KB] g=7, 3869 evaluated, 23 expanded
+[t=0.339652s, 18696 KB] New best heuristic value for pinch: 8
+[t=0.339752s, 18696 KB] g=9, 18447 evaluated, 141 expanded
+[t=0.344875s, 18696 KB] New best heuristic value for pinch: 7
+[t=0.344942s, 18696 KB] g=10, 18619 evaluated, 142 expanded
+[t=0.403528s, 18828 KB] New best heuristic value for pinch: 6
+[t=0.403624s, 18828 KB] g=12, 22041 evaluated, 168 expanded
+[t=0.409834s, 18828 KB] New best heuristic value for pinch: 5
+[t=0.409889s, 18828 KB] g=13, 22285 evaluated, 169 expanded
+[t=0.609278s, 19624 KB] New best heuristic value for pinch: 4
+[t=0.609402s, 19624 KB] g=15, 34862 evaluated, 303 expanded
+[t=10.8199s, 56724 KB] New best heuristic value for pinch: 3
+[t=10.82s, 56724 KB] g=17, 696110 evaluated, 7816 expanded
+[t=11.0726s, 57400 KB] New best heuristic value for pinch: 2
+[t=11.0727s, 57400 KB] g=19, 712629 evaluated, 7990 expanded
+Failed to allocate memory.
+Memory limit has been reached.
+Peak memory: 3024740 KB
+Remove intermediate file output.sas
+search exit code: 22
+
+Driver aborting after search

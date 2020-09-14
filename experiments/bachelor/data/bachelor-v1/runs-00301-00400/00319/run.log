@@ -1,0 +1,236 @@
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: 1799.96s
+INFO     translator memory limit: 3584 MB
+INFO     translator command line string: /infai/weidan00/downward/experiments/bachelor/.venv/bin/python3 /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/translate/translate.py domain.pddl problem.pddl --sas-file output.sas
+Parsing...
+Parsing: [0.000s CPU, 0.003s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.001s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.010s CPU, 0.004s wall-clock]
+Preparing model... [0.000s CPU, 0.002s wall-clock]
+Generated 74 rules.
+Computing model... [0.150s CPU, 0.153s wall-clock]
+9100 relevant atoms
+2306 auxiliary atoms
+11406 final queue length
+42098 total queue pushes
+Completing instantiation... [0.520s CPU, 0.520s wall-clock]
+Instantiating: [0.690s CPU, 0.683s wall-clock]
+Computing fact groups...
+Finding invariants...
+16 initial candidates
+Finding invariants: [0.010s CPU, 0.014s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+0 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.015s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.020s CPU, 0.021s wall-clock]
+Translating task: [0.420s CPU, 0.423s wall-clock]
+0 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+13 propositions removed
+Detecting unreachable propositions: [0.240s CPU, 0.229s wall-clock]
+Reordering and filtering variables...
+13 of 13 variables necessary.
+0 of 13 mutex groups necessary.
+6184 of 6184 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.060s CPU, 0.066s wall-clock]
+Translator variables: 13
+Translator derived variables: 0
+Translator facts: 81
+Translator goal facts: 2
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 6184
+Translator axioms: 0
+Translator task size: 52280
+Translator peak memory: 184780 KB
+Writing output... [0.070s CPU, 0.089s wall-clock]
+Done! [1.520s CPU, 1.534s wall-clock]
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: output.sas
+INFO     search time limit: 1798.37s
+INFO     search memory limit: 3584 MB
+INFO     search command line string: /infai/weidan00/downward/experiments/bachelor/data/bachelor-v1/code-7aa5f34_e5e41175/builds/release/bin/downward --search 'eager_wastar([pinch()], w=2)' --internal-plan-file sas_plan < output.sas
+[t=6.5559e-05s, 17204 KB] reading input...
+[t=0.0451173s, 19376 KB] done reading input!
+[t=0.0506652s, 21212 KB] Simplifying 20848 unary operators... done! [2200 unary operators]
+[t=0.0673615s, 22184 KB] time to simplify: 0.0168048s
+[t=0.0676084s, 22184 KB] Initializing pinch heuristic...
+[t=0.0677669s, 22184 KB] Building successor generator...done!
+[t=0.0701126s, 22184 KB] peak memory difference for successor generator creation: 0 KB
+[t=0.0701605s, 22184 KB] time for successor generation creation: 0.00217198s
+[t=0.0702673s, 22184 KB] Variables: 13
+[t=0.0703085s, 22184 KB] FactPairs: 81
+[t=0.0703482s, 22184 KB] Bytes per state: 8
+[t=0.0704988s, 22184 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+[t=0.0708154s, 22184 KB] New best heuristic value for pinch: 56
+[t=0.0708755s, 22184 KB] g=0, 1 evaluated, 0 expanded
+[t=0.0709367s, 22184 KB] Initial heuristic value for pinch: 56
+[t=0.0710018s, 22184 KB] pruning method: none
+[t=0.0712116s, 22184 KB] New best heuristic value for pinch: 54
+[t=0.071268s, 22184 KB] g=1, 3 evaluated, 1 expanded
+[t=0.0812481s, 22184 KB] New best heuristic value for pinch: 52
+[t=0.0813288s, 22184 KB] g=2, 377 evaluated, 2 expanded
+[t=0.0831933s, 22184 KB] New best heuristic value for pinch: 49
+[t=0.0832581s, 22184 KB] g=3, 433 evaluated, 3 expanded
+[t=0.101538s, 22184 KB] New best heuristic value for pinch: 48
+[t=0.101647s, 22184 KB] g=5, 821 evaluated, 8 expanded
+[t=0.112526s, 22184 KB] New best heuristic value for pinch: 45
+[t=0.112622s, 22184 KB] g=7, 1102 evaluated, 15 expanded
+[t=0.158413s, 22184 KB] New best heuristic value for pinch: 42
+[t=0.158507s, 22184 KB] g=9, 2152 evaluated, 48 expanded
+[t=0.286731s, 22184 KB] New best heuristic value for pinch: 40
+[t=0.286849s, 22184 KB] g=12, 4414 evaluated, 129 expanded
+[t=0.288629s, 22184 KB] New best heuristic value for pinch: 37
+[t=0.288681s, 22184 KB] g=13, 4458 evaluated, 130 expanded
+[t=0.396024s, 22184 KB] New best heuristic value for pinch: 35
+[t=0.396121s, 22184 KB] g=16, 6416 evaluated, 196 expanded
+[t=0.397882s, 22184 KB] New best heuristic value for pinch: 32
+[t=0.397951s, 22184 KB] g=17, 6460 evaluated, 197 expanded
+[t=0.491356s, 22184 KB] New best heuristic value for pinch: 30
+[t=0.491463s, 22184 KB] g=20, 8238 evaluated, 250 expanded
+[t=0.493215s, 22184 KB] New best heuristic value for pinch: 27
+[t=0.493264s, 22184 KB] g=21, 8282 evaluated, 251 expanded
+[t=0.803495s, 22184 KB] New best heuristic value for pinch: 26
+[t=0.803611s, 22184 KB] g=24, 14510 evaluated, 541 expanded
+[t=0.805179s, 22184 KB] New best heuristic value for pinch: 25
+[t=0.805229s, 22184 KB] g=25, 14549 evaluated, 542 expanded
+[t=0.807805s, 22184 KB] New best heuristic value for pinch: 24
+[t=0.807857s, 22184 KB] g=26, 14613 evaluated, 543 expanded
+[t=7.28273s, 27700 KB] New best heuristic value for pinch: 21
+[t=7.28285s, 27700 KB] g=31, 126995 evaluated, 11920 expanded, 60 reopened
+[t=7.28811s, 27700 KB] New best heuristic value for pinch: 20
+[t=7.28819s, 27700 KB] g=33, 127081 evaluated, 11922 expanded, 60 reopened
+[t=7.292s, 27700 KB] New best heuristic value for pinch: 19
+[t=7.29208s, 27700 KB] g=34, 127140 evaluated, 11923 expanded, 60 reopened
+[t=24.3053s, 38600 KB] New best heuristic value for pinch: 16
+[t=24.3054s, 38600 KB] g=39, 431876 evaluated, 44984 expanded, 752 reopened
+[t=24.3105s, 38600 KB] New best heuristic value for pinch: 15
+[t=24.3105s, 38600 KB] g=41, 431952 evaluated, 44986 expanded, 752 reopened
+[t=24.3144s, 38600 KB] New best heuristic value for pinch: 14
+[t=24.3145s, 38600 KB] g=42, 432010 evaluated, 44987 expanded, 752 reopened
+[t=25.5729s, 47068 KB] New best heuristic value for pinch: 11
+[t=25.573s, 47068 KB] g=45, 451535 evaluated, 46549 expanded, 752 reopened
+[t=25.5786s, 47068 KB] New best heuristic value for pinch: 10
+[t=25.5787s, 47068 KB] g=47, 451637 evaluated, 46551 expanded, 752 reopened
+[t=25.5821s, 47068 KB] New best heuristic value for pinch: 9
+[t=25.5822s, 47068 KB] g=48, 451700 evaluated, 46552 expanded, 752 reopened
+[t=25.6651s, 47068 KB] New best heuristic value for pinch: 6
+[t=25.6653s, 47068 KB] g=51, 453325 evaluated, 46601 expanded, 752 reopened
+[t=25.6672s, 47068 KB] New best heuristic value for pinch: 3
+[t=25.6673s, 47068 KB] g=52, 453358 evaluated, 46602 expanded, 752 reopened
+[t=25.6706s, 47068 KB] New best heuristic value for pinch: 2
+[t=25.6707s, 47068 KB] g=54, 453420 evaluated, 46604 expanded, 752 reopened
+[t=25.6714s, 47068 KB] New best heuristic value for pinch: 1
+[t=25.6715s, 47068 KB] g=55, 453434 evaluated, 46605 expanded, 752 reopened
+[t=25.6723s, 47068 KB] New best heuristic value for pinch: 0
+[t=25.6723s, 47068 KB] g=56, 453448 evaluated, 46606 expanded, 752 reopened
+[t=25.673s, 47068 KB] Solution found!
+[t=25.6731s, 47068 KB] Actual search time: 25.6021s
+drive_tent_passenger girl0 place0 place1 car0 tent1 guy0 (1)
+put_up girl0 place1 tent1 (1)
+put_down girl1 place0 tent0 (1)
+drive_tent girl1 place0 place2 car1 tent0 (1)
+put_up girl1 place2 tent0 (1)
+drive_passenger girl0 place1 place0 car0 guy0 (1)
+drive guy1 place0 place1 car0 (1)
+walk_together tent1 place1 guy0 place0 girl0 couple0 (1)
+walk_together tent0 place2 guy0 place1 girl0 couple0 (1)
+put_down guy1 place1 tent1 (1)
+drive_tent guy1 place1 place3 car0 tent1 (1)
+put_up guy1 place3 tent1 (1)
+walk_together tent1 place3 guy0 place2 girl0 couple0 (1)
+put_down girl1 place2 tent0 (1)
+drive_tent girl1 place2 place4 car1 tent0 (1)
+put_up girl1 place4 tent0 (1)
+walk_together tent0 place4 guy0 place3 girl0 couple0 (1)
+put_down guy1 place3 tent1 (1)
+drive_tent guy1 place3 place5 car0 tent1 (1)
+put_up guy1 place5 tent1 (1)
+walk_together tent1 place5 guy0 place4 girl0 couple0 (1)
+put_down girl1 place4 tent0 (1)
+drive_tent girl1 place4 place6 car1 tent0 (1)
+put_up girl1 place6 tent0 (1)
+walk_together tent0 place6 guy0 place5 girl0 couple0 (1)
+put_down girl0 place6 tent0 (1)
+drive_tent_passenger girl0 place6 place1 car1 tent0 girl1 (1)
+put_up girl0 place1 tent0 (1)
+drive guy1 place5 place1 car0 (1)
+drive_passenger girl1 place1 place0 car0 guy1 (1)
+walk_together tent0 place1 guy1 place0 girl1 couple1 (1)
+put_down girl0 place1 tent0 (1)
+drive_tent_passenger girl1 place1 place0 car1 tent0 guy1 (1)
+drive_tent girl1 place0 place2 car0 tent0 (1)
+put_up girl1 place2 tent0 (1)
+drive guy1 place0 place6 car1 (1)
+drive_passenger guy0 place6 place2 car1 guy1 (1)
+drive_passenger girl1 place2 place1 car0 guy1 (1)
+walk_together tent0 place2 guy1 place1 girl1 couple1 (1)
+put_down guy0 place2 tent0 (1)
+drive_tent_passenger girl1 place2 place3 car1 tent0 guy1 (1)
+put_up girl1 place3 tent0 (1)
+drive girl0 place1 place3 car0 (1)
+drive_passenger girl1 place3 place2 car0 guy1 (1)
+walk_together tent0 place3 guy1 place2 girl1 couple1 (1)
+put_down girl0 place3 tent0 (1)
+drive_tent_passenger girl1 place3 place4 car1 tent0 guy1 (1)
+put_up girl1 place4 tent0 (1)
+drive guy0 place2 place4 car0 (1)
+drive_passenger girl1 place4 place3 car0 guy1 (1)
+walk_together tent0 place4 guy1 place3 girl1 couple1 (1)
+walk_together tent1 place5 guy1 place4 girl1 couple1 (1)
+put_down guy0 place4 tent0 (1)
+drive_tent guy0 place4 place6 car1 tent0 (1)
+put_up guy0 place6 tent0 (1)
+walk_together tent0 place6 guy1 place5 girl1 couple1 (1)
+[t=25.6731s, 47068 KB] Plan length: 56 step(s).
+[t=25.6731s, 47068 KB] Plan cost: 56
+[t=25.6731s, 47068 KB] Expanded 46607 state(s).
+[t=25.6731s, 47068 KB] Reopened 752 state(s).
+[t=25.6731s, 47068 KB] Evaluated 453461 state(s).
+[t=25.6731s, 47068 KB] Evaluations: 453461
+[t=25.6731s, 47068 KB] Generated 1671352 state(s).
+[t=25.6731s, 47068 KB] Dead ends: 0 state(s).
+[t=25.6731s, 47068 KB] Number of registered states: 453461
+[t=25.6731s, 47068 KB] Int hash set load factor: 453461/1048576 = 0.432454
+[t=25.6731s, 47068 KB] Int hash set resizes: 20
+[t=25.6731s, 47068 KB] mean number of q cost that have been adjusted 0 times in relation to total number of q: -1
+[t=25.6731s, 47068 KB] mean number of q cost that have been adjusted 1 times in relation to total number of q: -1
+[t=25.6731s, 47068 KB] mean number of q cost that have been adjusted 2 times in relation to total number of q: -1
+[t=25.6731s, 47068 KB] mean number of q that are at some point overconsitent in relation to total number of q: -1
+[t=25.6731s, 47068 KB] mean number of q that are at first underconsisten in relation to total number of q: -1
+[t=25.6731s, 47068 KB] mean number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=25.6731s, 47068 KB] variance number of state variables that are not in common between two following states in relation to total number of state variables: -1
+[t=25.6731s, 47068 KB] Search time: 25.6026s
+[t=25.6731s, 47068 KB] Total time: 25.6731s
+Solution found.
+Peak memory: 47068 KB
+Remove intermediate file output.sas
+search exit code: 0
+
+INFO     Running validate.
+INFO     validate stdin: None
+INFO     validate time limit: None
+INFO     validate memory limit: None
+INFO     validate command line string: validate domain.pddl problem.pddl sas_plan

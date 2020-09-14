@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/psr-small/p23-domain.pddl

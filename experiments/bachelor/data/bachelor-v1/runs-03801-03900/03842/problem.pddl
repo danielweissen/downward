@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/mprime/prob05.pddl

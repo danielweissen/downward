@@ -1,0 +1,1 @@
+../../../../../../../benchmarks/satellite/p19-pfile19.pddl
