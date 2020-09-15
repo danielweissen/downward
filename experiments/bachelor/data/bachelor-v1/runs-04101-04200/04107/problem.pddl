@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-tankage/p45-net5-b26-g4-t50.pddl

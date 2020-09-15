@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-tankage/p30-net3-b20-g8-t70.pddl

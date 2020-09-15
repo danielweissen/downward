@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/movie/domain.pddl

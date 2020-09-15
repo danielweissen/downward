@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s21-2.pddl

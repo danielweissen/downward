@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p33-HC-pfile13.pddl

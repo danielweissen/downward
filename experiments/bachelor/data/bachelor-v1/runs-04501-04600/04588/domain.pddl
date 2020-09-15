@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/visitall-sat11-strips/domain.pddl

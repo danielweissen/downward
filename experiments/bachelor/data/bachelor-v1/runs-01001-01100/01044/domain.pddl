@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p24-domain.pddl

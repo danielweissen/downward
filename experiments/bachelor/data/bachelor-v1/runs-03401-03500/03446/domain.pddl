@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/logistics00/domain.pddl

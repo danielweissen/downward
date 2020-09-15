@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s19-0.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/nurikabe-sat18-adl/domain.pddl

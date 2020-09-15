@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/parcprinter-sat11-strips/p18-domain.pddl

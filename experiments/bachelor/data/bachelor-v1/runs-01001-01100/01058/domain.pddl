@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p38-domain.pddl

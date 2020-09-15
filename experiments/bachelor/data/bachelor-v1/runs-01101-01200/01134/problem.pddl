@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p24-HC-pfile4.pddl

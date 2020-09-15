@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/logistics98/prob16.pddl

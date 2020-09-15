@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/tidybot-sat11-strips/p05.pddl

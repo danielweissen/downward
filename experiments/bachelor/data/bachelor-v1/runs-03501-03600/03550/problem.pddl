@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s9-2.pddl

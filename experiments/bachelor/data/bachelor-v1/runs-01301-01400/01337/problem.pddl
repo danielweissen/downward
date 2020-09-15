@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/storage/p01.pddl

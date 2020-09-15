@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s25-0.pddl

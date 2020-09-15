@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/organic-synthesis-sat18-strips/domain-p20.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p30-HC-pfile10.pddl

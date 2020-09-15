@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/caldera-sat18-adl/domain.pddl

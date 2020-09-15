@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/movie/prob16.pddl

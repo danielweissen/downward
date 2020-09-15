@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/trucks-strips/p20.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p19-net2-b18-g6.pddl

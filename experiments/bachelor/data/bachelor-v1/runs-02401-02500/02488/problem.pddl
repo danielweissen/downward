@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p22-net3-b12-g4.pddl

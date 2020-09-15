@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p24-net3-b14-g5.pddl

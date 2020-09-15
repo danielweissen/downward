@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/schedule/probschedule-12-1.pddl

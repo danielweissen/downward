@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p17-pfile17.pddl

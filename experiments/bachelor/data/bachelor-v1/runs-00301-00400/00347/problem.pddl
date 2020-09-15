@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/logistics00/probLOGISTICS-9-0.pddl

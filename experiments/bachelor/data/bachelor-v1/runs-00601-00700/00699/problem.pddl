@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic-simpleadl/s27-3.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/driverlog/p06.pddl

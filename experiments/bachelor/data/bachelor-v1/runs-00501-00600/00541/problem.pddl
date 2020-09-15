@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s26-0.pddl

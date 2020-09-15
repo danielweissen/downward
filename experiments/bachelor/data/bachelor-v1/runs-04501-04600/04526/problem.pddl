@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/tpp/p08.pddl

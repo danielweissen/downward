@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/trucks-strips/domain_p15.pddl

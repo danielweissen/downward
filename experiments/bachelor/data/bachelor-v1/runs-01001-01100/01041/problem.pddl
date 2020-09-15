@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p21-s35-n3-l2-f70.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/movie/prob04.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p34-net4-b16-g6.pddl

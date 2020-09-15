@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p43-domain.pddl

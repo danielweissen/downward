@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/driverlog/p12.pddl

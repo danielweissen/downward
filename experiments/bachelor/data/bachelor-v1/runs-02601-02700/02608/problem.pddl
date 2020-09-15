@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p42-s82-n3-l4-f50.pddl

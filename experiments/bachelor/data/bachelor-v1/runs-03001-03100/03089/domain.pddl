@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/zenotravel/domain.pddl

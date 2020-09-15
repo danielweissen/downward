@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p11-domain.pddl

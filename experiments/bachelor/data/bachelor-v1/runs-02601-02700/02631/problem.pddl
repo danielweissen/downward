@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/rovers/p15.pddl

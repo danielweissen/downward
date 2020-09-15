@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/mprime/prob06.pddl

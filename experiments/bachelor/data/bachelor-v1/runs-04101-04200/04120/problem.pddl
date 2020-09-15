@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/psr-small/p08-s12-n1-l5-f10.pddl

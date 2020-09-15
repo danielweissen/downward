@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/snake-sat18-strips/p20.pddl

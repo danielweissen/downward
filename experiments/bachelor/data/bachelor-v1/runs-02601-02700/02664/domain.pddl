@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/domain.pddl

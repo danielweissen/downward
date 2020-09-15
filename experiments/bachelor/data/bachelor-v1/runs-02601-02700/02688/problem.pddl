@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p32-HC-pfile12.pddl

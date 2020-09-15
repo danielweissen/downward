@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/barman-sat11-strips/pfile09-033.pddl

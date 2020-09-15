@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pathways/p22.pddl

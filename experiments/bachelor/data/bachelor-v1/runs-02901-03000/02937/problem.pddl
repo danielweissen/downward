@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/thoughtful-sat14-strips/bootstrap-typed-05.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/thoughtful-sat14-strips/p13_7_78-typed.pddl

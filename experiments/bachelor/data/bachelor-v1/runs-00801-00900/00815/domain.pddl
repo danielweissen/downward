@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/nomystery-sat11-strips/domain.pddl

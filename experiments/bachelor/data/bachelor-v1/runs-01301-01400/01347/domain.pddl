@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/storage/domain.pddl

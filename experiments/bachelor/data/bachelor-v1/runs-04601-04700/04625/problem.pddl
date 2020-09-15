@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/zenotravel/p07.pddl

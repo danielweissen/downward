@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/mprime/prob23.pddl

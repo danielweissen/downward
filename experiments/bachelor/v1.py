@@ -15,9 +15,9 @@ SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 BENCHMARKS_DIR = os.environ["DOWNWARD_BENCHMARKS"]
 REVISIONS = ["HEAD"]
 CONFIGS = [
-    IssueConfig("inc-add", ["--search","eager_wastar([pinch()], w=2)"], driver_options=[]),
-    IssueConfig("add", ["--search","eager_wastar([add()], w=2)"], driver_options=[]),
-    IssueConfig("inc-add-tracking", ["--search","eager_wastar([pinch_tracking()], w=2)"], driver_options=[]),
+    IssueConfig("inc-add", ["--search", "astar(pinch())"], driver_options=[]),
+    IssueConfig("add", ["--search", "astar(add())"], driver_options=[]),
+    IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
 ]
 
 SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC

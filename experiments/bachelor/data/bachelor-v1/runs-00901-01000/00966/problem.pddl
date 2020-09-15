@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p46-net5-b26-g6.pddl

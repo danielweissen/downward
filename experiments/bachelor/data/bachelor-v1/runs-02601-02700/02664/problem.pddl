@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p08-pfile8.pddl

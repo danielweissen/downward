@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/schedule/domain.pddl

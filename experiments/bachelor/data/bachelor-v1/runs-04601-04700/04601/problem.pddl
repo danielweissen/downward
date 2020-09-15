@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/visitall-sat14-strips/pfile32.pddl

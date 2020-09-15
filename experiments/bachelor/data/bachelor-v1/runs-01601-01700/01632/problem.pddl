@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/barman-sat14-strips/p4-11-5-15.pddl

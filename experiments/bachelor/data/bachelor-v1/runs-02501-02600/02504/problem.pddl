@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pipesworld-notankage/p38-net4-b20-g7.pddl

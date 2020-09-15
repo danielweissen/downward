@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/snake-sat18-strips/domain.pddl

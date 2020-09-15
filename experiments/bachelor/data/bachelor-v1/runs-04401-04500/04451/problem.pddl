@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/storage/p23.pddl

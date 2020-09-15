@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/schedule/probschedule-22-2.pddl

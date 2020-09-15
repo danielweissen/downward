@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/storage/p03.pddl

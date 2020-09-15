@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/pathways/p14.pddl

@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/settlers-sat18-adl/domain.pddl

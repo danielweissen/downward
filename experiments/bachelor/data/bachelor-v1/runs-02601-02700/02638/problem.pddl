@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/rovers/p22.pddl

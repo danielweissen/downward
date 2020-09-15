@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p13-pfile13.pddl

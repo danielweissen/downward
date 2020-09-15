@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/maintenance-sat14-adl/domain.pddl

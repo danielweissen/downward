@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic-simpleadl/s17-4.pddl

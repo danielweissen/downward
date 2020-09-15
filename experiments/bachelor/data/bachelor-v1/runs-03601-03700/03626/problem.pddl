@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s24-3.pddl

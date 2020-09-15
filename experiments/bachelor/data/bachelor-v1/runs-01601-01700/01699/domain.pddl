@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/childsnack-sat14-strips/domain.pddl

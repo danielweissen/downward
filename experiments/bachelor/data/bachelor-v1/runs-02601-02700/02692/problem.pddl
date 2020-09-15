@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/satellite/p36-HC-pfile16.pddl

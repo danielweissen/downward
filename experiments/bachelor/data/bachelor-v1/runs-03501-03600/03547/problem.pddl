@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/miconic/s8-4.pddl

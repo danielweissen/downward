@@ -1,1 +1,0 @@
-../../../../../../../benchmarks/caldera-sat18-adl/p09.pddl
