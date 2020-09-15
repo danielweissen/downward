@@ -112,7 +112,8 @@ int PinchHeuristic::get_min_operator_cost(Proposition *prop) {
             min = a;
         }
     }
-    return get_operator(min)->cost;
+    UnaryOperator *op = get_operator(min);
+    return  op->base_cost + op->cost;
 }
 
 int PinchHeuristic::make_inf(int a) {
@@ -136,20 +137,20 @@ void PinchHeuristic::solve_equations() {
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        prop->rhsq = make_inf(std::min(prop->rhsq,(1+op->cost)));
+                        prop->rhsq = make_inf(std::min(prop->rhsq,(op->base_cost+op->cost)));
                         adjust_proposition(prop);
                     }
                     continue;
                 } else {
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
-                    op->rhsq = make_inf(1 + get_pre_condition_sum(index));
+                    op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(index));
                     adjust_operator(op);
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        if(prop->rhsq == (1 + x_old)) {
-                            prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+                        if(prop->rhsq == (op->base_cost + x_old)) {
+                            prop->rhsq = make_inf(get_min_operator_cost(prop));
                             adjust_proposition(prop);
                         }
                     }
@@ -172,7 +173,7 @@ void PinchHeuristic::solve_equations() {
                         prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator* op = get_operator(op_id);
                         if (op->rhsq >= MAX_COST_VALUE) {
-                            op->rhsq = make_inf(1 + get_pre_condition_sum(op_id));
+                            op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(op_id));
                         } else {
                             op->rhsq = make_inf(op->rhsq - old_cost + prop->cost);
                         }
@@ -182,7 +183,7 @@ void PinchHeuristic::solve_equations() {
                 } else {
                     prop->cost = MAX_COST_VALUE;
                     if (!prop_is_part_of_s(index)) {
-                        prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+                        prop->rhsq = make_inf(get_min_operator_cost(prop));
                         adjust_proposition(prop);
                     }
                     for (OpID op_id : precondition_of_pool.get_slice(
@@ -272,7 +273,7 @@ void PinchHeuristic::handle_last_state(const State &state) {
         if (state[i].get_value() != last_state[i].get_value()) {
             PropID prop_id = get_prop_id(last_state[i]);
             Proposition *prop = get_proposition(prop_id);
-            prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+            prop->rhsq = make_inf(get_min_operator_cost(prop));
             adjust_proposition(prop);
         }
     }
