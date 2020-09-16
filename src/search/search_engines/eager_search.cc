@@ -122,7 +122,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "mean number of q cost that have been adjusted 2 times: " << a->get_current_adjustment_mean(5) << endl;
             utils::g_log << "total number of variables: " << a->get_total_number_of_variables() << endl;
             utils::g_log << "total number of operators: " << a->get_total_number_of_operators() << endl;
-            utils::g_log << "total number of q: " << a->get_total_number_of_q() << endl;
+            utils::g_log << "total number of qs: " << a->get_total_number_of_q() << endl;
             utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
             utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
             utils::g_log << "total number of q poped out of queue mean: " << a->get_number_out_of_queue_mean() << endl;
@@ -137,7 +137,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "mean number of q cost that have been adjusted 2 times: " << "-1" << endl;
             utils::g_log << "total number of variables: " << a->get_total_number_of_variables() << endl;
             utils::g_log << "total number of operators: " << a->get_total_number_of_operators() << endl;
-            utils::g_log << "total number of q: " << a->get_total_number_of_q() << endl;
+            utils::g_log << "total number of qs: " << a->get_total_number_of_q() << endl;
             utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
             utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
             utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
@@ -154,7 +154,7 @@ void EagerSearch::print_test_statistics() const {
         utils::g_log << "mean number of q cost that have been adjusted 2 times: " << "-1" << endl;
         utils::g_log << "total number of variables: " << "-1" << endl;
         utils::g_log << "total number of operators: " << "-1" << endl;
-        utils::g_log << "total number of q: " << "-1" << endl;
+        utils::g_log << "total number of qs: " << "-1" << endl;
         utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;

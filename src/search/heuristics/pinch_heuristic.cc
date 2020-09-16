@@ -107,13 +107,15 @@ int PinchHeuristic::get_min_operator_cost(Proposition *prop) {
     }
 
     OpID min = prop->add_effects.front();
+    UnaryOperator * min_op = get_operator(min);
+    UnaryOperator * current;
     for(OpID a : prop->add_effects) {
-        if(get_operator(a)->cost < get_operator(min)->cost) {
-            min = a;
+        current = get_operator(a);
+        if((current->cost) < (min_op->cost)) {
+            min_op = current;
         }
     }
-    UnaryOperator *op = get_operator(min);
-    return  (op->base_cost + op->cost);
+    return  (min_op->base_cost + min_op->cost);
 }
 
 int PinchHeuristic::make_inf(int a) {
@@ -144,7 +146,7 @@ void PinchHeuristic::solve_equations() {
                     op->cost = op->rhsq;
                     add = op->effect;
                     if(!prop_is_part_of_s(add)) {
-                        Proposition *prop = get_proposition(add);
+                        prop = get_proposition(add);
                         prop->rhsq = make_inf(std::min(prop->rhsq,(op->base_cost+op->cost)));
                         adjust_proposition(prop);
                     }
@@ -156,7 +158,7 @@ void PinchHeuristic::solve_equations() {
                     adjust_operator(op);
                     add = op->effect;
                     if(!prop_is_part_of_s(add)) {
-                        Proposition *prop = get_proposition(add);
+                        prop = get_proposition(add);
                         if(prop->rhsq == (op->base_cost + x_old)) {
                             prop->rhsq = make_inf(get_min_operator_cost(prop));
                             adjust_proposition(prop);
