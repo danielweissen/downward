@@ -19,11 +19,12 @@ CONFIGS = [
     IssueConfig("inc-add", ["--search", "astar(pinch())"], driver_options=[]),
     IssueConfig("add", ["--search", "astar(add())"], driver_options=[]),
     IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
+    IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
-SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
+#SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
 #SUITE = common_setup.DEFAULT_OPTIMAL_SUITE
-#SUITE = IssueExperiment.DEFAULT_TEST_SUITE
+SUITE = IssueExperiment.DEFAULT_TEST_SUITE
 
 ENVIRONMENT = BaselSlurmEnvironment(
     partition="infai_2",
@@ -54,12 +55,20 @@ exp.add_fetcher(name='fetch')
 
 ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
     Attribute("perc_0_adjust", function=arithmetic_mean),
-    "perc_1_adjust",
-    "perc_2_adjust",
-    "perc_overconsistent",
-    "perc_underconsistent",
-    "avg_num_diff_vars",
-    "var_num_diff_vars",
+    Attribute("perc_1_adjust", function=arithmetic_mean),
+    Attribute("perc_2_adjust", function=arithmetic_mean),
+    Attribute("perc_overconsistent", function=arithmetic_mean),
+    Attribute("perc_underconsistent", function=arithmetic_mean),
+    Attribute("avg_num_diff_vars", function=arithmetic_mean),
+    Attribute("var_num_diff_vars", function=arithmetic_mean),
+    Attribute("perc_0_adjust_number", function=arithmetic_mean),
+    Attribute("perc_1_adjust_number", function=arithmetic_mean),
+    Attribute("perc_2_adjust_number", function=arithmetic_mean),
+    Attribute("total_num_var", function=arithmetic_mean),
+    Attribute("total_num_op", function=arithmetic_mean),
+    Attribute("total_num_q", function=arithmetic_mean),
+    Attribute("total_num_q_popped", function=arithmetic_mean),
+    Attribute("total_num_q_popped_processed", function=arithmetic_mean)
 ]
 
 exp.add_absolute_report_step(attributes=ATTRIBUTES)
