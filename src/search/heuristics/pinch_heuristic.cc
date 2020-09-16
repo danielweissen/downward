@@ -43,11 +43,11 @@ void PinchHeuristic::setup_exploration_queue() {
     // for each o ∈ O with Prec(o) = ∅ do set rhso := xo := 1
     for(UnaryOperator &op : unary_operators) {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
-            op.cost = 1;
-            op.rhsq = 1;
-            op.val_in_queue = 1;
+            op.cost = op.base_cost;
+            op.rhsq = op.base_cost;
+            op.val_in_queue = op.base_cost;
             //this isnt part of the pseudo code
-            queue.push(1,make_op(get_op_id(op)));
+            queue.push(op.base_cost,make_op(get_op_id(op)));
             ++num_in_queue;
         }
     }    
@@ -113,7 +113,7 @@ int PinchHeuristic::get_min_operator_cost(Proposition *prop) {
         }
     }
     UnaryOperator *op = get_operator(min);
-    return  op->base_cost + op->cost;
+    return  (op->base_cost + op->cost);
 }
 
 int PinchHeuristic::make_inf(int a) {
@@ -121,20 +121,28 @@ int PinchHeuristic::make_inf(int a) {
 }
 
 void PinchHeuristic::solve_equations() {
+    int queue_val;
+    int index;
+    int x_old;
+    Proposition * prop;
+    UnaryOperator * op;
+    std::pair<int,int> top;
+    PropID add;
+    int old_cost;
     while(num_in_queue > 0) {
-        std::pair<int,int> top = queue.top();
-        int queue_val = top.first;
-        int index = top.second;
+        top = queue.top();
+        queue_val = top.first;
+        index = top.second;
         if (index < 0) {
             index = make_op(index);
-            UnaryOperator *op = get_operator(index);
+            op = get_operator(index);
             if(op->val_in_queue == queue_val) {
                 if(op->rhsq < op->cost) {
                     queue.pop();
                     op->val_in_queue = -1;
                     num_in_queue--;
                     op->cost = op->rhsq;
-                    PropID add = op->effect;
+                    add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
                         prop->rhsq = make_inf(std::min(prop->rhsq,(op->base_cost+op->cost)));
@@ -142,11 +150,11 @@ void PinchHeuristic::solve_equations() {
                     }
                     continue;
                 } else {
-                    int x_old = op->cost;
+                    x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
                     op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(index));
                     adjust_operator(op);
-                    PropID add = op->effect;
+                    add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
                         if(prop->rhsq == (op->base_cost + x_old)) {
@@ -161,17 +169,17 @@ void PinchHeuristic::solve_equations() {
                 continue;
             }
         } else { 
-            Proposition *prop = get_proposition(index);
+            prop = get_proposition(index);
             if(prop->val_in_queue == queue_val) {
                 if (prop->rhsq < prop->cost) {
                     queue.pop();
                     prop->val_in_queue = -1;
                     num_in_queue--;
-                    int old_cost = prop->cost;
+                    old_cost = prop->cost;
                     prop->cost = prop->rhsq;
                     for (OpID op_id : precondition_of_pool.get_slice(
                         prop->precondition_of, prop->num_precondition_occurences)) {
-                        UnaryOperator* op = get_operator(op_id);
+                        op = get_operator(op_id);
                         if (op->rhsq >= MAX_COST_VALUE) {
                             op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(op_id));
                         } else {
@@ -188,7 +196,7 @@ void PinchHeuristic::solve_equations() {
                     }
                     for (OpID op_id : precondition_of_pool.get_slice(
                         prop->precondition_of, prop->num_precondition_occurences)) {
-                        UnaryOperator* op = get_operator(op_id);
+                        op = get_operator(op_id);
                         op->rhsq = MAX_COST_VALUE;
                         adjust_operator(op);
                     }
@@ -207,6 +215,9 @@ int PinchHeuristic::compute_heuristic(const State &state) {
     current_state = vector<bool>(propositions.size(), false);
 
     if(first_time) {
+        for(UnaryOperator& op : unary_operators) {
+        //cout << op.base_cost << endl;
+        }
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
         queue.clear();
