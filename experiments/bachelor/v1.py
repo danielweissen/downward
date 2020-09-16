@@ -22,9 +22,9 @@ CONFIGS = [
     IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
-#SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
+SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
 #SUITE = common_setup.DEFAULT_OPTIMAL_SUITE
-SUITE = IssueExperiment.DEFAULT_TEST_SUITE
+#SUITE = IssueExperiment.DEFAULT_TEST_SUITE
 
 ENVIRONMENT = BaselSlurmEnvironment(
     partition="infai_2",
