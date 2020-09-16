@@ -18,6 +18,7 @@
 #include <set>
 
 #include "../heuristics/pinch_tracking_heuristic.h"
+#include "../heuristics/additive_heuristic_tracking.h"
 
 using namespace std;
 
@@ -111,22 +112,55 @@ void EagerSearch::print_statistics() const {
 
 void EagerSearch::print_test_statistics() const {
     if(open_list->get_evaluators()) {
-        pinch_tracking_heuristic::PinchTrackingHeuristic * a = (pinch_tracking_heuristic::PinchTrackingHeuristic*)open_list->get_evaluators();
-        utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " << a->get_current_adjustment_mean(0) << endl;
-        utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << a->get_current_adjustment_mean(1) << endl;
-        utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << a->get_current_adjustment_mean(2) << endl;
-        utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << a->get_over_consisten_variables_mean() << endl;
-        utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << a->get_under_consisten_variables_mean() << endl;
-        utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
-        utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
+        if(open_list->get_evaluators()->get_description() == "pinch_tracking") {
+            pinch_tracking_heuristic::PinchTrackingHeuristic * a = (pinch_tracking_heuristic::PinchTrackingHeuristic*)open_list->get_evaluators();
+            utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " << a->get_current_adjustment_mean(0) << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << a->get_current_adjustment_mean(1) << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << a->get_current_adjustment_mean(2) << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 0 times: " << a->get_current_adjustment_mean(3) << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 1 times: " << a->get_current_adjustment_mean(4) << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 2 times: " << a->get_current_adjustment_mean(5) << endl;
+            utils::g_log << "total number of variables: " << a->get_total_number_of_variables() << endl;
+            utils::g_log << "total number of operators: " << a->get_total_number_of_operators() << endl;
+            utils::g_log << "total number of q: " << a->get_total_number_of_q() << endl;
+            utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
+            utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
+            utils::g_log << "total number of q poped out of queue mean: " << a->get_number_out_of_queue_mean() << endl;
+            utils::g_log << "total number of q poped out of queue and processed mean: " << a->get_number_out_of_queue_processed_mean() << endl;
+        } else if(open_list->get_evaluators()->get_description() == "add_tracking") {
+            additive_heuristic_tracking::AdditiveHeuristicTracking * a = (additive_heuristic_tracking::AdditiveHeuristicTracking*)open_list->get_evaluators();
+            utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " "-1" << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << "-1" << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << "-1" << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 0 times: " << "-1" << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 1 times: " << "-1" << endl;
+            utils::g_log << "mean number of q cost that have been adjusted 2 times: " << "-1" << endl;
+            utils::g_log << "total number of variables: " << a->get_total_number_of_variables() << endl;
+            utils::g_log << "total number of operators: " << a->get_total_number_of_operators() << endl;
+            utils::g_log << "total number of q: " << a->get_total_number_of_q() << endl;
+            utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
+            utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
+            utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+            utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+            utils::g_log << "total number of q poped out of queue mean: " << a->get_number_out_of_queue_mean() << endl;
+            utils::g_log << "total number of q poped out of queue and processed mean: " << a->get_number_out_of_queue_processed_mean() << endl;
+        } 
     } else {
         utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " "-1" << endl;
         utils::g_log << "mean number of q cost that have been adjusted 1 times in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of q cost that have been adjusted 2 times in relation to total number of q: " << "-1" << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 0 times: " << "-1" << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 1 times: " << "-1" << endl;
+        utils::g_log << "mean number of q cost that have been adjusted 2 times: " << "-1" << endl;
+        utils::g_log << "total number of variables: " << "-1" << endl;
+        utils::g_log << "total number of operators: " << "-1" << endl;
+        utils::g_log << "total number of q: " << "-1" << endl;
         utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
         utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+        utils::g_log << "total number of q poped out of queue mean: " << "-1" << endl;
+        utils::g_log << "total number of q poped out of queue and processed mean: " << "-1" << endl;
     }
 }
 

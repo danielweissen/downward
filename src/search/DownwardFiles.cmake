@@ -486,6 +486,14 @@ fast_downward_plugin(
 )
 
 fast_downward_plugin(
+    NAME ADDITIVE_HEURISTIC_TRACKING
+    HELP "The additive heuristic tracking"
+    SOURCES
+        heuristics/additive_heuristic_tracking
+    DEPENDS PRIORITY_QUEUES RELAXATION_HEURISTIC TASK_PROPERTIES
+)
+
+fast_downward_plugin(
     NAME BLIND_SEARCH_HEURISTIC
     HELP "The 'blind search' heuristic"
     SOURCES

@@ -44,11 +44,15 @@ class PinchTrackingHeuristic : public relaxation_heuristic::RelaxationHeuristic 
     int num_of_true_state_variable;
     int num_of_under_consitent_q = 0;
     int num_of_over_consistent_q = 0;
+    int num_out_of_queue = 0;
+    int num_out_of_queue_and_processed = 0;
     std::vector<int> number_of_state_variables_not_in_common;
     std::vector<int> number_of_under_consistent_q;
     std::vector<int> number_of_over_consistent_q;
     std::vector<int> number_of_prop_cost_adjustments;
     std::vector<int> number_of_op_cost_adjustments;
+    std::vector<int> number_out_of_queue;
+    std::vector<int> number_out_of_queue_and_processed;
     std::vector<int> adjustment_0;
     std::vector<int> adjustment_1;
     std::vector<int> adjustment_2;
@@ -62,6 +66,8 @@ class PinchTrackingHeuristic : public relaxation_heuristic::RelaxationHeuristic 
     double number_of_prop_cost_adjustments_mean;
     double number_of_op_cost_adjustments_mean;
     double number_of_state_variables_not_in_common_variance;
+    double number_out_of_queue_mean;
+    double number_out_of_queue_mean_processed;
     
 
     priority_queues::BucketQueue<int> queue;
@@ -94,6 +100,11 @@ public:
     double get_under_consisten_variables_mean();
     double get_over_consisten_variables_mean();
     double get_state_variables_not_in_common_variance();
+    double get_number_out_of_queue_mean();
+    double get_number_out_of_queue_processed_mean();
+    int get_total_number_of_variables();
+    int get_total_number_of_operators();
+    int get_total_number_of_q();
 };
 
 

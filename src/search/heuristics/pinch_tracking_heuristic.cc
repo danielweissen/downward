@@ -124,10 +124,12 @@ void PinchTrackingHeuristic::solve_equations() {
         std::pair<int,int> top = queue.top();
         int queue_val = top.first;
         int index = top.second;
+        num_out_of_queue++;
         if (index < 0) {
             index = make_op(index);
             UnaryOperator *op = get_operator(index);
             if(op->val_in_queue == queue_val) {
+                num_out_of_queue_and_processed++;
                 if(op->rhsq < op->cost) {
                     num_of_over_consistent_q++;
                     queue.pop();
@@ -166,6 +168,7 @@ void PinchTrackingHeuristic::solve_equations() {
         } else { 
             Proposition *prop = get_proposition(index);
             if(prop->val_in_queue == queue_val) {
+                num_out_of_queue_and_processed++;
                 if (prop->rhsq < prop->cost) {
                     num_of_over_consistent_q++;
                     queue.pop();
@@ -214,6 +217,8 @@ int PinchTrackingHeuristic::compute_heuristic(const State &state) {
     num_of_different_state_variables = 0;
     num_of_under_consitent_q = 0;
     num_of_over_consistent_q = 0;
+    num_out_of_queue_and_processed = 0;
+    num_out_of_queue = 0;
     num_in_queue = 0;
     current_state = vector<bool>(propositions.size(), false);
     number_of_prop_cost_adjustments = vector<int>(propositions.size(), 0);
@@ -256,6 +261,8 @@ void PinchTrackingHeuristic::calc_means() {
     number_of_under_consistent_q.push_back(num_of_under_consitent_q);
     number_of_over_consistent_q.push_back(num_of_over_consistent_q);
     number_of_state_variables_not_in_common.push_back(num_of_different_state_variables);
+    number_out_of_queue.push_back(num_out_of_queue);
+    number_out_of_queue_and_processed.push_back(num_out_of_queue_and_processed);
     update_adjustment_means();
 }
 
@@ -309,16 +316,42 @@ double PinchTrackingHeuristic::get_current_adjustment_mean(int which) {
     } else if(which == 1) {
         adjustment_1_mean = ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()) / (propositions.size() + unary_operators.size()));
         return adjustment_1_mean;
-    } else {
+    } else if(which == 2) {
         adjustment_2_mean = ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()) / (propositions.size() + unary_operators.size()));
         return adjustment_2_mean;
+    } else if(which == 3) {
+        return ((std::accumulate(std::begin(adjustment_0), std::end(adjustment_0), 0.0) / adjustment_0.size()));
+    } else if(which == 4) {
+        return ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()));
+    } else {
+        return ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()));
     }
+}
+
+int PinchTrackingHeuristic::get_total_number_of_variables() {
+    return propositions.size();
+}
+int PinchTrackingHeuristic::get_total_number_of_operators() {
+    return unary_operators.size();
+}
+int PinchTrackingHeuristic::get_total_number_of_q() {
+    return (propositions.size() + unary_operators.size());
 }
 
 // number of state variables that change from one state to another in relation to total number of state variables
 double PinchTrackingHeuristic::get_state_variables_not_in_common_mean() {
     number_of_state_variables_not_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
     return number_of_state_variables_not_in_common_mean;
+}
+
+double PinchTrackingHeuristic::get_number_out_of_queue_mean() {
+    number_out_of_queue_mean = ((std::accumulate(std::begin(number_out_of_queue), std::end(number_out_of_queue), 0.0) / number_out_of_queue.size()));
+    return number_out_of_queue_mean;
+}
+
+double PinchTrackingHeuristic::get_number_out_of_queue_processed_mean() {
+    number_out_of_queue_mean_processed = ((std::accumulate(std::begin(number_out_of_queue_and_processed), std::end(number_out_of_queue_and_processed), 0.0) / number_out_of_queue_and_processed.size()));
+    return number_out_of_queue_mean_processed;
 }
 
 // number of q that are under consisten relation to total amount of q

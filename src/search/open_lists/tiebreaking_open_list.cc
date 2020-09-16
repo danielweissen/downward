@@ -56,7 +56,7 @@ public:
 template<class Entry>
 Evaluator* TieBreakingOpenList<Entry>::get_evaluators() {
     for (const shared_ptr<Evaluator> &evaluator : evaluators) {
-        if(evaluator.get()->get_description() == "pinch_tracking") {
+        if(evaluator.get()->get_description() == "pinch_tracking" || evaluator.get()->get_description() == "add_tracking") {
             //pinch_tracking_heuristic::PinchTrackingHeuristic *a = (pinch_tracking_heuristic::PinchTrackingHeuristic*)evaluator.get();
             return evaluator.get();
         }
