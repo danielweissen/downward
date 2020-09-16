@@ -4,6 +4,7 @@ import itertools
 import os
 
 from lab.environments import LocalEnvironment, BaselSlurmEnvironment
+from lab.reports import Attribute, arithmetic_mean
 
 from downward.reports.compare import ComparativeReport
 
@@ -52,7 +53,7 @@ exp.add_step('start', exp.start_runs)
 exp.add_fetcher(name='fetch')
 
 ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
-    "perc_0_adjust",
+    Attribute("perc_0_adjust", function=arithmetic_mean),
     "perc_1_adjust",
     "perc_2_adjust",
     "perc_overconsistent",
