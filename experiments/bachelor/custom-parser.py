@@ -31,7 +31,7 @@ def main():
     parser.add_pattern(
         "total_num_op", "total number of operators: (.+)$", type=float, flags='M')
     parser.add_pattern(
-        "total_num_q", "total number of q: (.+)$", type=float, flags='M')
+        "total_num_q", "total number of qs: (.+)$", type=float, flags='M')
     parser.add_pattern(
         "total_num_q_popped", "total number of q poped out of queue mean: (.+)$", type=float, flags='M')
     parser.add_pattern(
