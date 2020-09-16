@@ -97,7 +97,7 @@ bool PinchHeuristic::prop_is_part_of_s(PropID prop) {
 }
  
 int PinchHeuristic::make_op(OpID op) {
-    op++;
+    ++op;
     return -op;
 }
 
@@ -140,7 +140,7 @@ void PinchHeuristic::solve_equations() {
                 if(op->rhsq < op->cost) {
                     queue.pop();
                     op->val_in_queue = -1;
-                    num_in_queue--;
+                    --num_in_queue;
                     op->cost = op->rhsq;
                     add = op->effect;
                     if(!prop_is_part_of_s(add)) {
@@ -174,7 +174,7 @@ void PinchHeuristic::solve_equations() {
                 if (prop->rhsq < prop->cost) {
                     queue.pop();
                     prop->val_in_queue = -1;
-                    num_in_queue--;
+                    --num_in_queue;
                     old_cost = prop->cost;
                     prop->cost = prop->rhsq;
                     for (OpID op_id : precondition_of_pool.get_slice(
