@@ -36,7 +36,8 @@ def main():
         "total_num_q_popped", "total number of q poped out of queue mean: (.+)$", type=float, flags='M')
     parser.add_pattern(
         "total_num_q_popped_processed", "total number of q poped out of queue and processed mean: (.+)$", type=float, flags='M')
+    parser.add_pattern(
+        "average_num_pre_per_o", "average number of preconditions per operator: (.+)$", type=float, flags='M')
     parser.parse()
-
 
 main()
