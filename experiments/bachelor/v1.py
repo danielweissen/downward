@@ -69,7 +69,7 @@ ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
     Attribute("total_num_q", function=arithmetic_mean),
     Attribute("total_num_q_popped", function=arithmetic_mean),
     Attribute("total_num_q_popped_processed", function=arithmetic_mean),
-    Attribute("average_num_pre_per_o", function=arithmetic_mean)
+    Attribute("average_num_pre_per_o", function=arithmetic_mean),
 ]
 
 exp.add_absolute_report_step(attributes=ATTRIBUTES)

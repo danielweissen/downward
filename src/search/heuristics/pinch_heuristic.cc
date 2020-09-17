@@ -218,9 +218,6 @@ int PinchHeuristic::compute_heuristic(const State &state) {
     current_state = vector<bool>(propositions.size(), false);
 
     if(first_time) {
-        for(UnaryOperator &o : unary_operators) {
-            cout << o.base_cost << endl;
-        }
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
         queue.clear();
