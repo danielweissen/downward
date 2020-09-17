@@ -127,6 +127,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
             utils::g_log << "total number of q poped out of queue mean: " << a->get_number_out_of_queue_mean() << endl;
             utils::g_log << "total number of q poped out of queue and processed mean: " << a->get_number_out_of_queue_processed_mean() << endl;
+            utils::g_log << "average number of preconditions per operator: " << a->get_average_number_of_preconditions_per_operator() << endl;
         } else if(open_list->get_evaluators()->get_description() == "add_tracking") {
             additive_heuristic_tracking::AdditiveHeuristicTracking * a = (additive_heuristic_tracking::AdditiveHeuristicTracking*)open_list->get_evaluators();
             utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " "-1" << endl;
@@ -144,6 +145,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
             utils::g_log << "total number of q poped out of queue mean: " << a->get_number_out_of_queue_mean() << endl;
             utils::g_log << "total number of q poped out of queue and processed mean: " << a->get_number_out_of_queue_processed_mean() << endl;
+            utils::g_log << "average number of preconditions per operator: " << a->get_average_number_of_preconditions_per_operator() << endl;
         } 
     } else {
         utils::g_log << "mean number of q cost that have been adjusted 0 times in relation to total number of q: " "-1" << endl;
@@ -161,6 +163,7 @@ void EagerSearch::print_test_statistics() const {
         utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
         utils::g_log << "total number of q poped out of queue mean: " << "-1" << endl;
         utils::g_log << "total number of q poped out of queue and processed mean: " << "-1" << endl;
+        utils::g_log << "average number of preconditions per operator: " << "-1" << endl;
     }
 }
 

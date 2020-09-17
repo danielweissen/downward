@@ -105,6 +105,7 @@ public:
     int get_total_number_of_variables();
     int get_total_number_of_operators();
     int get_total_number_of_q();
+    double get_average_number_of_preconditions_per_operator();
 };
 
 

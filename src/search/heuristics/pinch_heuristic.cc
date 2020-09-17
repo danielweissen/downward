@@ -43,6 +43,7 @@ void PinchHeuristic::setup_exploration_queue() {
     // for each o ∈ O with Prec(o) = ∅ do set rhso := xo := 1
     for(UnaryOperator &op : unary_operators) {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
+            cout << "ADFSDFFASDFASD" << endl;
             op.cost = op.base_cost;
             op.rhsq = op.base_cost;
             op.val_in_queue = op.base_cost;
@@ -217,6 +218,9 @@ int PinchHeuristic::compute_heuristic(const State &state) {
     current_state = vector<bool>(propositions.size(), false);
 
     if(first_time) {
+        for(UnaryOperator &o : unary_operators) {
+            cout << o.base_cost << endl;
+        }
         num_in_queue = 0;
         current_state = vector<bool>(propositions.size(), false);
         queue.clear();

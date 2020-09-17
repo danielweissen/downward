@@ -176,6 +176,14 @@ double AdditiveHeuristicTracking::get_number_out_of_queue_processed_mean() {
     return number_out_of_queue_mean_processed;
 }
 
+double AdditiveHeuristicTracking::get_average_number_of_preconditions_per_operator() {
+    std::vector<int> pre_number_vec = vector<int>(unary_operators.size(), 0);
+    for(UnaryOperator &o : unary_operators) {
+        pre_number_vec.push_back(o.num_preconditions);
+    }
+    return ((std::accumulate(std::begin(pre_number_vec), std::end(pre_number_vec), 0.0) / pre_number_vec.size()));
+}
+
 void AdditiveHeuristicTracking::compute_heuristic_for_cegar(const State &state) {
     compute_heuristic(state);
 }
