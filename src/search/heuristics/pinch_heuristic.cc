@@ -43,7 +43,6 @@ void PinchHeuristic::setup_exploration_queue() {
     // for each o ∈ O with Prec(o) = ∅ do set rhso := xo := 1
     for(UnaryOperator &op : unary_operators) {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
-            cout << "ADFSDFFASDFASD" << endl;
             op.cost = op.base_cost;
             op.rhsq = op.base_cost;
             op.val_in_queue = op.base_cost;
@@ -93,10 +92,13 @@ int PinchHeuristic::get_pre_condition_sum(OpID id) {
     return sum;
 }
 
+// check if proposition is part of the current state
 bool PinchHeuristic::prop_is_part_of_s(PropID prop) {
     return current_state[prop];
 }
  
+// this function is used to adjust the index of operators so we can differentiate them from proposition indexes in the PQ
+// -1 - -infinity is used for operatros, 0 - infinity is used for propositions
 int PinchHeuristic::make_op(OpID op) {
     ++op;
     return -op;
@@ -136,6 +138,7 @@ void PinchHeuristic::solve_equations() {
         top = queue.top();
         queue_val = top.first;
         index = top.second;
+        // top is an operator
         if (index < 0) {
             index = make_op(index);
             op = get_operator(index);
@@ -172,6 +175,7 @@ void PinchHeuristic::solve_equations() {
                 continue;
             }
         } else { 
+            // // top is a proposition
             prop = get_proposition(index);
             if(prop->val_in_queue == queue_val) {
                 if (prop->rhsq < prop->cost) {
@@ -214,15 +218,18 @@ void PinchHeuristic::solve_equations() {
 }
 
 int PinchHeuristic::compute_heuristic(const State &state) {
+    // empty the priority queue
     num_in_queue = 0;
     current_state = vector<bool>(propositions.size(), false);
+    queue.clear();
 
     if(first_time) {
-        num_in_queue = 0;
-        current_state = vector<bool>(propositions.size(), false);
-        queue.clear();
+        //for each q ∈ P ∪ O do set rhsq := xq := ∞
+        //for each o ∈ O with P rec(o) = ∅ do set rhso := xo := 1
         setup_exploration_queue();
         assert(state == task_proxy.get_initial_state());
+        //set s to the state whose heuristic value needs to get computed
+        // for each p ∈ s do rhsp := 0 AdjustVariable(p)
         for(FactProxy fact : state) { 
             PropID prop_id = get_prop_id(fact);
             current_state[prop_id] = true;
@@ -232,8 +239,9 @@ int PinchHeuristic::compute_heuristic(const State &state) {
         }
         first_time = false;
     } else {
-        queue.clear();
+        // for each p ∈ s \ s' do rhsp := 0 AdjustVariable(p)
         handle_current_state(state);
+        // for each p ∈ s' \ s do rhsp := 1 + mino∈O|p∈Add(o) xo AdjustVariable(p)
         handle_last_state(state);
     }
 
@@ -241,6 +249,7 @@ int PinchHeuristic::compute_heuristic(const State &state) {
 
     int total_cost = compute_total_cost();
 
+    // set s' := s and s to the state whose heuristic value needs to get computed next
     last_state = State(state);
 
     return (total_cost);
@@ -263,7 +272,6 @@ int PinchHeuristic::compute_total_cost() {
     return (total_cost/2);
  }
 
- // for each p ∈ s \ s' do rhsp := 0 AdjustVariable(p)
 void PinchHeuristic::handle_current_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         PropID prop_id = get_prop_id(state[i]);
@@ -278,7 +286,6 @@ void PinchHeuristic::handle_current_state(const State &state) {
     }
 }
 
-// for each p ∈ s' \ s do rhsp := 1 + mino∈O|p∈Add(o) xo AdjustVariable(p)
 void PinchHeuristic::handle_last_state(const State &state) {
     for (size_t i = 0; i < task_proxy.get_variables().size(); ++i) {
         if (state[i].get_value() != last_state[i].get_value()) {
