@@ -345,11 +345,17 @@ double PinchTrackingHeuristic::get_state_variables_not_in_common_mean() {
 }
 
 double PinchTrackingHeuristic::get_number_out_of_queue_mean() {
+    if(number_out_of_queue.empty()) {
+        return 0;
+    }
     number_out_of_queue_mean = ((std::accumulate(std::begin(number_out_of_queue), std::end(number_out_of_queue), 0.0) / number_out_of_queue.size()));
     return number_out_of_queue_mean;
 }
 
 double PinchTrackingHeuristic::get_number_out_of_queue_processed_mean() {
+    if(number_out_of_queue_and_processed.empty()) {
+        return 0;
+    }
     number_out_of_queue_mean_processed = ((std::accumulate(std::begin(number_out_of_queue_and_processed), std::end(number_out_of_queue_and_processed), 0.0) / number_out_of_queue_and_processed.size()));
     return number_out_of_queue_mean_processed;
 }
@@ -359,7 +365,11 @@ double PinchTrackingHeuristic::get_average_number_of_preconditions_per_operator(
     for(UnaryOperator &o : unary_operators) {
         pre_number_vec.push_back(o.num_preconditions);
     }
-    return ((std::accumulate(std::begin(pre_number_vec), std::end(pre_number_vec), 0.0) / pre_number_vec.size()));
+    if(pre_number_vec.empty()) {
+        return 0;
+    }
+    double average_number_of_preconditions_per_operator = (std::accumulate(std::begin(pre_number_vec), std::end(pre_number_vec), 0.0) / pre_number_vec.size());
+    return average_number_of_preconditions_per_operator;
 }
 
 // number of q that are under consisten relation to total amount of q

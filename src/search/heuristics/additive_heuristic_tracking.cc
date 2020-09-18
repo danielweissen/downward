@@ -168,10 +168,16 @@ int AdditiveHeuristicTracking::compute_heuristic(const GlobalState &global_state
 }
 
 double AdditiveHeuristicTracking::get_number_out_of_queue_mean() {
+    if(number_out_of_queue.empty()) {
+        return 0;
+    }
     number_out_of_queue_mean = ((std::accumulate(std::begin(number_out_of_queue), std::end(number_out_of_queue), 0.0) / number_out_of_queue.size()));
     return number_out_of_queue_mean;
 }
 double AdditiveHeuristicTracking::get_number_out_of_queue_processed_mean() {
+    if(number_out_of_queue_and_processed.empty()) {
+        return 0;
+    }
     number_out_of_queue_mean_processed = ((std::accumulate(std::begin(number_out_of_queue_and_processed), std::end(number_out_of_queue_and_processed), 0.0) / number_out_of_queue_and_processed.size()));
     return number_out_of_queue_mean_processed;
 }
@@ -180,6 +186,9 @@ double AdditiveHeuristicTracking::get_average_number_of_preconditions_per_operat
     std::vector<int> pre_number_vec = vector<int>(unary_operators.size(), 0);
     for(UnaryOperator &o : unary_operators) {
         pre_number_vec.push_back(o.num_preconditions);
+    }
+    if(pre_number_vec.empty()) {
+        return 0;
     }
     return ((std::accumulate(std::begin(pre_number_vec), std::end(pre_number_vec), 0.0) / pre_number_vec.size()));
 }
