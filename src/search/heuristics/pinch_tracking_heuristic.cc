@@ -374,11 +374,17 @@ double PinchTrackingHeuristic::get_average_number_of_preconditions_per_operator(
 
 // number of q that are under consisten relation to total amount of q
 double PinchTrackingHeuristic::get_under_consisten_variables_mean() {
+    if(number_of_under_consistent_q.empty()) {
+        return 0;
+    }
     number_of_under_consistent_q_mean = ((std::accumulate(std::begin(number_of_under_consistent_q), std::end(number_of_under_consistent_q), 0.0) / number_of_under_consistent_q.size()) / (propositions.size() + unary_operators.size()));
     return number_of_under_consistent_q_mean;
 }
 
 double PinchTrackingHeuristic::get_over_consisten_variables_mean() {
+    if(number_of_over_consistent_q.empty()) {
+        return 0;
+    }
     number_of_over_consistent_q_mean = ((std::accumulate(std::begin(number_of_over_consistent_q), std::end(number_of_over_consistent_q), 0.0) / number_of_over_consistent_q.size()) / (propositions.size() + unary_operators.size()));
     return number_of_over_consistent_q_mean;
 }
