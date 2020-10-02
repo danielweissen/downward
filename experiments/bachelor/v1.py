@@ -7,9 +7,12 @@ from lab.environments import LocalEnvironment, BaselSlurmEnvironment
 from lab.reports import Attribute, arithmetic_mean
 
 from downward.reports.compare import ComparativeReport
+from downward.experiment import FastDownwardExperiment
 
 import common_setup
 from common_setup import IssueConfig, IssueExperiment
+#from downward.reports.scatter import ScatterPlotReport
+from relativescatter import RelativeScatterPlotReport
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
@@ -22,9 +25,13 @@ CONFIGS = [
     IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
-SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
+#SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
+#SUITE = common_setup.DEFAULT_SATISFICING_SUITE
 #SUITE = common_setup.DEFAULT_OPTIMAL_SUITE
-#SUITE = IssueExperiment.DEFAULT_TEST_SUITE
+SUITE = IssueExperiment.DEFAULT_TEST_SUITE
+
+def domain_as_category(run1, run2):
+     return run1['domain']
 
 ENVIRONMENT = BaselSlurmEnvironment(
     partition="infai_2",
@@ -72,8 +79,12 @@ ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
     Attribute("average_num_pre_per_o", function=arithmetic_mean),
 ]
 
+
+
 exp.add_absolute_report_step(attributes=ATTRIBUTES)
-#exp.add_comparison_table_step()
-#exp.add_scatter_plot_step(relative=True, attributes=["search_time", "total_time"])
+#exp.add_comparison_table_step(attributes=ATTRIBUTES)
+exp.add_scatter_plot_step(relative=True, attributes=["search_time", "total_time"])
+
+#exp.add_report(ScatterPlotReport(attributes=["expansions_until_last_jump"],filter_algorithm=["add", "inc-add"],get_category=domain_as_category,format="png",),name="scatterplot-expansions")
 
 exp.run_steps()
