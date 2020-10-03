@@ -87,6 +87,6 @@ exp.add_absolute_report_step(attributes=ATTRIBUTES)
 
 #exp.add_report(ScatterPlotReport(attributes=["expansions_until_last_jump"],filter_algorithm=["add", "inc-add"],get_category=domain_as_category,format="png",),name="scatterplot-expansions")
 
-exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["astar(add())", "astar(pinch())"]),outfile = "plot")
+exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["inc-add", "add"]),outfile = "plot.png")
 
 exp.run_steps()
