@@ -11,8 +11,8 @@ from downward.experiment import FastDownwardExperiment
 
 import common_setup
 from common_setup import IssueConfig, IssueExperiment
-#from downward.reports.scatter import ScatterPlotReport
-from relativescatter import RelativeScatterPlotReport
+from downward.reports.scatter import ScatterPlotReport
+#from relativescatter import RelativeScatterPlotReport
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
@@ -21,8 +21,8 @@ REVISIONS = ["HEAD"]
 CONFIGS = [
     IssueConfig("inc-add", ["--search", "astar(pinch())"], driver_options=[]),
     IssueConfig("add", ["--search", "astar(add())"], driver_options=[]),
-    IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
-    IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
+   # IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
+   # IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
 #SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
@@ -83,8 +83,10 @@ ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
 
 exp.add_absolute_report_step(attributes=ATTRIBUTES)
 #exp.add_comparison_table_step(attributes=ATTRIBUTES)
-exp.add_scatter_plot_step(relative=True, attributes=["search_time", "total_time"])
+#exp.add_scatter_plot_step(relative=True, attributes=["search_time", "total_time"])
 
 #exp.add_report(ScatterPlotReport(attributes=["expansions_until_last_jump"],filter_algorithm=["add", "inc-add"],get_category=domain_as_category,format="png",),name="scatterplot-expansions")
+
+exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["astar(add())", "astar(pinch())"]),outfile = "plot")
 
 exp.run_steps()

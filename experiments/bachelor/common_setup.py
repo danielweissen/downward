@@ -14,7 +14,7 @@ from downward.reports.absolute import AbsoluteReport
 from downward.reports.compare import ComparativeReport
 from downward.reports.scatter import ScatterPlotReport
 
-from relativescatter import RelativeScatterPlotReport
+#from relativescatter import RelativeScatterPlotReport
 
 
 def parse_args():
@@ -370,47 +370,4 @@ class IssueExperiment(FastDownwardExperiment):
         self.add_step(
             "publish-comparison-tables", publish_comparison_tables)
 
-    def add_scatter_plot_step(self, relative=False, attributes=None):
-        """Add step creating (relative) scatter plots for all revision pairs.
-
-        Create a scatter plot for each combination of attribute,
-        configuration and revisions pair. If *attributes* is not
-        specified, a list of common scatter plot attributes is used.
-        For portfolios all attributes except "cost", "coverage" and
-        "plan_length" will be ignored. ::
-
-            exp.add_scatter_plot_step(attributes=["expansions"])
-
-        """
-        if relative:
-            report_class = RelativeScatterPlotReport
-            scatter_dir = os.path.join(self.eval_dir, "scatter-relative")
-            step_name = "make-relative-scatter-plots"
-        else:
-            report_class = ScatterPlotReport
-            scatter_dir = os.path.join(self.eval_dir, "scatter-absolute")
-            step_name = "make-absolute-scatter-plots"
-        if attributes is None:
-            attributes = self.DEFAULT_SCATTER_PLOT_ATTRIBUTES
-
-        def make_scatter_plot(config_nick, rev1, rev2, attribute):
-            name = "-".join([self.name, rev1, rev2, attribute, config_nick])
-            print("Make scatter plot for", name)
-            algo1 = get_algo_nick(rev1, config_nick)
-            algo2 = get_algo_nick(rev2, config_nick)
-            report = report_class(
-                filter_algorithm=[algo1, algo2],
-                attributes=[attribute],
-                get_category=lambda run1, run2: run1["domain"])
-            report(
-                self.eval_dir,
-                os.path.join(scatter_dir, rev1 + "-" + rev2, name))
-
-        def make_scatter_plots():
-            for config in self._configs:
-                for rev1, rev2 in itertools.combinations(self._revisions, 2):
-                    for attribute in self.get_supported_attributes(
-                            config.nick, attributes):
-                        make_scatter_plot(config.nick, rev1, rev2, attribute)
-
-        self.add_step(step_name, make_scatter_plots)
+   
