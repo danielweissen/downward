@@ -42,7 +42,7 @@ class PinchHeuristic : public relaxation_heuristic::RelaxationHeuristic {
     std::vector<bool> current_state;
     State last_state;    
 
-    priority_queues::BucketQueue<int> queue;
+    priority_queues::AdaptiveQueue<int> queue;
     int num_in_queue;
 
     bool first_time = true;

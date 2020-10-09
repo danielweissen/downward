@@ -40,6 +40,7 @@ public:
 
     virtual void push(int key, const Value &value) = 0;
     virtual Entry pop() = 0;
+    virtual Entry top() = 0;
     virtual bool empty() const = 0;
     virtual void clear() = 0;
 
@@ -294,6 +295,10 @@ public:
 
     Entry pop() {
         return wrapped_queue->pop();
+    }
+
+    Entry top() {
+        return wrapped_queue->top();
     }
 
     bool empty() const {
