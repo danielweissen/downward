@@ -124,7 +124,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "total number of variables: " << a->get_total_number_of_variables() << endl;
             utils::g_log << "total number of operators: " << a->get_total_number_of_operators() << endl;
             utils::g_log << "total number of qs: " << a->get_total_number_of_q() << endl;
-            utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
+            utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_mean() << endl;
             utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of propositions: " << a->get_state_variables_not_in_common_mean_in_relation_to_total_number_of_state_variables() << endl;
             utils::g_log << "mean number of true state variables in relation to total number of propositions: " << a->get_mean_number_of_true_state_variables_in_relation_to_total_number_of_state_variables() << endl;
             utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << a->get_state_variables_not_in_common_variance() << endl;
@@ -145,7 +145,7 @@ void EagerSearch::print_test_statistics() const {
             utils::g_log << "total number of qs: " << a->get_total_number_of_q() << endl;
             utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
             utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
-            utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+            utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of state variables: " << "-1" << endl;
             utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of propositions: " << "-1" << endl;
             utils::g_log << "mean number of true state variables in relation to total number of propositions: " << "-1" << endl;
             utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
@@ -166,7 +166,7 @@ void EagerSearch::print_test_statistics() const {
         utils::g_log << "total number of qs: " << "-1" << endl;
         utils::g_log << "mean number of q that are at some point overconsitent in relation to total number of q: " << "-1" << endl;
         utils::g_log << "mean number of q that are at first underconsisten in relation to total number of q: " << "-1" << endl;
-        utils::g_log << "mean number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;
+        utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of state variables: " << "-1" << endl;
         utils::g_log << "mean number of state variables that are in common between two following states in relation to total number of propositions: " << "-1" << endl;
         utils::g_log << "mean number of true state variables in relation to total number of propositions: " << "-1" << endl;
         utils::g_log << "variance number of state variables that are not in common between two following states in relation to total number of state variables: " << "-1" << endl;

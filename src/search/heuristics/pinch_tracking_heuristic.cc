@@ -348,7 +348,7 @@ int PinchTrackingHeuristic::get_total_number_of_q() {
 
 // number of state variables that change from one state to another in relation to total number of state variables
 double PinchTrackingHeuristic::get_state_variables_not_in_common_mean() {
-    number_of_state_variables_not_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
+    number_of_state_variables_not_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_in_common), std::end(number_of_state_variables_in_common), 0.0) / number_of_state_variables_in_common.size()) / num_of_true_state_variable);
     return number_of_state_variables_not_in_common_mean;
 }
 
