@@ -34,10 +34,13 @@ class AdditiveHeuristicTracking : public relaxation_heuristic::RelaxationHeurist
 
     int num_out_of_queue = 0;
     int num_out_of_queue_and_processed = 0;
+    int num_of_cost_adjustments;
     std::vector<int> number_out_of_queue;
     std::vector<int> number_out_of_queue_and_processed;
+    std::vector<int> number_of_cost_adjustments;
     double number_out_of_queue_mean;
     double number_out_of_queue_mean_processed;
+    double number_of_cost_adjustments_mean;
 
     void setup_exploration_queue();
     void setup_exploration_queue_state(const State &state);
@@ -78,6 +81,7 @@ public:
 
     double get_number_out_of_queue_mean();
     double get_number_out_of_queue_processed_mean();
+    double get_number_of_cost_adjustments_mean();
     int get_total_number_of_variables();
     int get_total_number_of_operators();
     int get_total_number_of_q();

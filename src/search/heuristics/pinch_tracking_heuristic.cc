@@ -43,11 +43,11 @@ void PinchTrackingHeuristic::setup_exploration_queue() {
     // for each o ∈ O with Prec(o) = ∅ do set rhso := xo := 1
     for(UnaryOperator &op : unary_operators) {
         if(get_preconditions_vector(get_op_id(op)).empty()) {
-            op.cost = 1;
-            op.rhsq = 1;
-            op.val_in_queue = 1;
+            op.cost = op.base_cost;
+            op.rhsq = op.base_cost;
+            op.val_in_queue = op.base_cost;
             //this isnt part of the pseudo code
-            queue.push(1,make_op(get_op_id(op)));
+            queue.push(op.base_cost,make_op(get_op_id(op)));
             ++num_in_queue;
         }
     }    
@@ -107,12 +107,15 @@ int PinchTrackingHeuristic::get_min_operator_cost(Proposition *prop) {
     }
 
     OpID min = prop->add_effects.front();
+    UnaryOperator * min_op = get_operator(min);
+    UnaryOperator * current;
     for(OpID a : prop->add_effects) {
-        if(get_operator(a)->cost < get_operator(min)->cost) {
-            min = a;
+        current = get_operator(a);
+        if((current->cost) < (min_op->cost)) {
+            min_op = current;
         }
     }
-    return get_operator(min)->cost;
+    return  (min_op->base_cost + min_op->cost);
 }
 
 int PinchTrackingHeuristic::make_inf(int a) {
@@ -140,7 +143,7 @@ void PinchTrackingHeuristic::solve_equations() {
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        prop->rhsq = make_inf(std::min(prop->rhsq,(1+op->cost)));
+                        prop->rhsq = make_inf(std::min(prop->rhsq,(op->base_cost+op->cost)));
                         adjust_proposition(prop);
                     }
                     continue;
@@ -149,13 +152,13 @@ void PinchTrackingHeuristic::solve_equations() {
                     int x_old = op->cost;
                     op->cost = MAX_COST_VALUE;
                     number_of_op_cost_adjustments[index] = number_of_op_cost_adjustments[index]+1;
-                    op->rhsq = make_inf(1 + get_pre_condition_sum(index));
+                    op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(index));
                     adjust_operator(op);
                     PropID add = op->effect;
                     if(!prop_is_part_of_s(add)) {
                         Proposition *prop = get_proposition(add);
-                        if(prop->rhsq == (1 + x_old)) {
-                            prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+                        if(prop->rhsq == (op->base_cost + x_old)) {
+                            prop->rhsq = make_inf(get_min_operator_cost(prop));
                             adjust_proposition(prop);
                         }
                     }
@@ -181,7 +184,7 @@ void PinchTrackingHeuristic::solve_equations() {
                         prop->precondition_of, prop->num_precondition_occurences)) {
                         UnaryOperator* op = get_operator(op_id);
                         if (op->rhsq >= MAX_COST_VALUE) {
-                            op->rhsq = make_inf(1 + get_pre_condition_sum(op_id));
+                            op->rhsq = make_inf(op->base_cost + get_pre_condition_sum(op_id));
                         } else {
                             op->rhsq = make_inf(op->rhsq - old_cost + prop->cost);
                         }
@@ -193,7 +196,7 @@ void PinchTrackingHeuristic::solve_equations() {
                     prop->cost = MAX_COST_VALUE;
                     number_of_prop_cost_adjustments[index] = number_of_prop_cost_adjustments[index]+1;
                     if (!prop_is_part_of_s(index)) {
-                        prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+                        prop->rhsq = make_inf(get_min_operator_cost(prop));
                         adjust_proposition(prop);
                     }
                     for (OpID op_id : precondition_of_pool.get_slice(
@@ -215,6 +218,7 @@ void PinchTrackingHeuristic::solve_equations() {
 int PinchTrackingHeuristic::compute_heuristic(const State &state) {
 
     num_of_different_state_variables = 0;
+    num_of_same_state_variables = 0;
     num_of_under_consitent_q = 0;
     num_of_over_consistent_q = 0;
     num_out_of_queue_and_processed = 0;
@@ -261,6 +265,7 @@ void PinchTrackingHeuristic::calc_means() {
     number_of_under_consistent_q.push_back(num_of_under_consitent_q);
     number_of_over_consistent_q.push_back(num_of_over_consistent_q);
     number_of_state_variables_not_in_common.push_back(num_of_different_state_variables);
+    number_of_state_variables_in_common.push_back(num_of_same_state_variables);
     number_out_of_queue.push_back(num_out_of_queue);
     number_out_of_queue_and_processed.push_back(num_out_of_queue_and_processed);
     update_adjustment_means();
@@ -296,6 +301,7 @@ void PinchTrackingHeuristic::update_adjustment_means() {
     adjustment_0.push_back(std::get<0>(val));
     adjustment_1.push_back(std::get<1>(val));
     adjustment_2.push_back(std::get<2>(val));
+    adjustment_total.push_back(std::get<1>(val)+(2*std::get<2>(val)));
 }
 
 double PinchTrackingHeuristic::get_state_variables_not_in_common_variance() {
@@ -323,8 +329,10 @@ double PinchTrackingHeuristic::get_current_adjustment_mean(int which) {
         return ((std::accumulate(std::begin(adjustment_0), std::end(adjustment_0), 0.0) / adjustment_0.size()));
     } else if(which == 4) {
         return ((std::accumulate(std::begin(adjustment_1), std::end(adjustment_1), 0.0) / adjustment_1.size()));
-    } else {
+    } else if(which == 5) {
         return ((std::accumulate(std::begin(adjustment_2), std::end(adjustment_2), 0.0) / adjustment_2.size()));
+    } else {
+        return ((std::accumulate(std::begin(adjustment_total), std::end(adjustment_total), 0.0) / adjustment_total.size()));
     }
 }
 
@@ -342,6 +350,15 @@ int PinchTrackingHeuristic::get_total_number_of_q() {
 double PinchTrackingHeuristic::get_state_variables_not_in_common_mean() {
     number_of_state_variables_not_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_not_in_common), std::end(number_of_state_variables_not_in_common), 0.0) / number_of_state_variables_not_in_common.size()) / num_of_true_state_variable);
     return number_of_state_variables_not_in_common_mean;
+}
+
+double PinchTrackingHeuristic::get_state_variables_not_in_common_mean_in_relation_to_total_number_of_state_variables() {
+    number_of_state_variables_in_common_mean = ((std::accumulate(std::begin(number_of_state_variables_in_common), std::end(number_of_state_variables_in_common), 0.0) / number_of_state_variables_in_common.size()) / (int)propositions.size());
+    return number_of_state_variables_in_common_mean;
+}
+
+double PinchTrackingHeuristic::get_mean_number_of_true_state_variables_in_relation_to_total_number_of_state_variables() {
+    return ((double)num_of_true_state_variable / (double)propositions.size());
 }
 
 double PinchTrackingHeuristic::get_number_out_of_queue_mean() {
@@ -416,6 +433,7 @@ void PinchTrackingHeuristic::handle_current_state(const State &state) {
             prop->rhsq = 0;
             adjust_proposition(prop);
         } else {
+            num_of_same_state_variables++;
             current_state[prop_id] = true;
         }
     }
@@ -427,7 +445,7 @@ void PinchTrackingHeuristic::handle_last_state(const State &state) {
         if (state[i].get_value() != last_state[i].get_value()) {
             PropID prop_id = get_prop_id(last_state[i]);
             Proposition *prop = get_proposition(prop_id);
-            prop->rhsq = make_inf(1 + get_min_operator_cost(prop));
+            prop->rhsq = make_inf(get_min_operator_cost(prop));
             adjust_proposition(prop);
         }
     }

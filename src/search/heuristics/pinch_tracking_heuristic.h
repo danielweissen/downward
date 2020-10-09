@@ -41,12 +41,14 @@ class PinchTrackingHeuristic : public relaxation_heuristic::RelaxationHeuristic 
     std::vector<bool> current_state;
     State last_state;
     int num_of_different_state_variables = 0;
+    int num_of_same_state_variables = 0;
     int num_of_true_state_variable;
     int num_of_under_consitent_q = 0;
     int num_of_over_consistent_q = 0;
     int num_out_of_queue = 0;
     int num_out_of_queue_and_processed = 0;
     std::vector<int> number_of_state_variables_not_in_common;
+    std::vector<int> number_of_state_variables_in_common;
     std::vector<int> number_of_under_consistent_q;
     std::vector<int> number_of_over_consistent_q;
     std::vector<int> number_of_prop_cost_adjustments;
@@ -56,11 +58,14 @@ class PinchTrackingHeuristic : public relaxation_heuristic::RelaxationHeuristic 
     std::vector<int> adjustment_0;
     std::vector<int> adjustment_1;
     std::vector<int> adjustment_2;
+    std::vector<int> adjustment_total;
 
     double adjustment_0_mean;
     double adjustment_1_mean;
     double adjustment_2_mean;
+    double adjustment_total_mean;
     double number_of_state_variables_not_in_common_mean;
+    double number_of_state_variables_in_common_mean;
     double number_of_under_consistent_q_mean;
     double number_of_over_consistent_q_mean;
     double number_of_prop_cost_adjustments_mean;
@@ -97,6 +102,7 @@ public:
     explicit PinchTrackingHeuristic(const options::Options &opts);
     double get_current_adjustment_mean(int which);
     double get_state_variables_not_in_common_mean();
+    double get_state_variables_not_in_common_mean_in_relation_to_total_number_of_state_variables();
     double get_under_consisten_variables_mean();
     double get_over_consisten_variables_mean();
     double get_state_variables_not_in_common_variance();
@@ -106,6 +112,8 @@ public:
     int get_total_number_of_operators();
     int get_total_number_of_q();
     double get_average_number_of_preconditions_per_operator();
+    double get_mean_number_of_true_state_variables_in_relation_to_total_number_of_state_variables();
+
 };
 
 

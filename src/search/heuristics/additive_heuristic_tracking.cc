@@ -37,7 +37,7 @@ void AdditiveHeuristicTracking::write_overflow_warning() {
 // heuristic computation
 void AdditiveHeuristicTracking::setup_exploration_queue() {
     queue.clear();
-
+    num_of_cost_adjustments = 0;
     for (Proposition &prop : propositions) {
         prop.cost = -1;
         prop.marked = false;
@@ -47,9 +47,9 @@ void AdditiveHeuristicTracking::setup_exploration_queue() {
     for (UnaryOperator &op : unary_operators) {
         op.unsatisfied_preconditions = op.num_preconditions;
         op.cost = op.base_cost; // will be increased by precondition costs
-
-        if (op.unsatisfied_preconditions == 0)
+        if (op.unsatisfied_preconditions == 0) {
             enqueue_if_necessary(op.effect, op.base_cost, get_op_id(op));
+        }
     }
 }
 
@@ -62,7 +62,7 @@ void AdditiveHeuristicTracking::setup_exploration_queue_state(const State &state
 
 void AdditiveHeuristicTracking::relaxed_exploration() {
     num_out_of_queue = 0;
-    num_out_of_queue_and_processed = 0;
+    num_out_of_queue_and_processed = 0; 
     int unsolved_goals = goal_propositions.size();
     while (!queue.empty()) {
         pair<int, PropID> top_pair = queue.pop();
@@ -71,22 +71,25 @@ void AdditiveHeuristicTracking::relaxed_exploration() {
         PropID prop_id = top_pair.second;
         Proposition *prop = get_proposition(prop_id);
         int prop_cost = prop->cost;
+        num_of_cost_adjustments++;
         assert(prop_cost >= 0);
         assert(prop_cost <= distance);
         if (prop_cost < distance)
             continue;
+        ++num_out_of_queue_and_processed;
         if (prop->is_goal && --unsolved_goals == 0)
             return;
-        ++num_out_of_queue_and_processed;
         for (OpID op_id : precondition_of_pool.get_slice(
                  prop->precondition_of, prop->num_precondition_occurences)) {
             UnaryOperator *unary_op = get_operator(op_id);
             increase_cost(unary_op->cost, prop_cost);
             --unary_op->unsatisfied_preconditions;
             assert(unary_op->unsatisfied_preconditions >= 0);
-            if (unary_op->unsatisfied_preconditions == 0)
+            if (unary_op->unsatisfied_preconditions == 0) {
+                num_of_cost_adjustments++;
                 enqueue_if_necessary(unary_op->effect,
                                      unary_op->cost, op_id);
+            }
         }
     }
 }
@@ -133,6 +136,7 @@ int AdditiveHeuristicTracking::compute_add_and_ff(const State &state) {
 
     number_out_of_queue.push_back(num_out_of_queue);
     number_out_of_queue_and_processed.push_back(num_out_of_queue_and_processed);
+    number_of_cost_adjustments.push_back(num_of_cost_adjustments);
     //for (Proposition &prop : propositions) {
     //    utils::g_log << "prop id:" << get_prop_id(prop)<< endl;
     //    utils::g_log << "prop cost:" << prop.cost << endl;
@@ -174,6 +178,15 @@ double AdditiveHeuristicTracking::get_number_out_of_queue_mean() {
     number_out_of_queue_mean = ((std::accumulate(std::begin(number_out_of_queue), std::end(number_out_of_queue), 0.0) / number_out_of_queue.size()));
     return number_out_of_queue_mean;
 }
+
+double AdditiveHeuristicTracking::get_number_of_cost_adjustments_mean() {
+    if(number_of_cost_adjustments.empty()) {
+        return 0;
+    }
+    number_of_cost_adjustments_mean = ((std::accumulate(std::begin(number_of_cost_adjustments), std::end(number_of_cost_adjustments), 0.0) / number_of_cost_adjustments.size()));
+    return number_of_cost_adjustments_mean;
+}
+
 double AdditiveHeuristicTracking::get_number_out_of_queue_processed_mean() {
     if(number_out_of_queue_and_processed.empty()) {
         return 0;

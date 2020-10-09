@@ -50,7 +50,7 @@ void PinchHeuristic::setup_exploration_queue() {
             queue.push(op.base_cost,make_op(get_op_id(op)));
             ++num_in_queue;
         }
-    }    
+    }   
 }
 
 void PinchHeuristic::adjust_proposition(Proposition *prop) {
