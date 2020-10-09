@@ -38,6 +38,12 @@ def main():
         "total_num_q_popped_processed", "total number of q poped out of queue and processed mean: (.+)$", type=float, flags='M')
     parser.add_pattern(
         "average_num_pre_per_o", "average number of preconditions per operator: (.+)$", type=float, flags='M')
+    parser.add_pattern(
+        "perc_total_adjust_number", "mean number of q cost that have been adjusted: (.+)$", type=float, flags='M')
+    parser.add_pattern(
+        "state_true_var_relate_prop", "mean number of true state variables in relation to total number of propositions: (.+)$", type=float, flags='M')
+    parser.add_pattern(
+        "state_var_relate_prop", " mean number of state variables that are in common between two following states in relation to total number of propositions: (.+)$", type=float, flags='M') 
     parser.parse()
 
 main()

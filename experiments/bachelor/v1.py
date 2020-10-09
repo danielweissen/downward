@@ -77,6 +77,9 @@ ATTRIBUTES = exp.DEFAULT_TABLE_ATTRIBUTES + [
     Attribute("total_num_q_popped", function=arithmetic_mean),
     Attribute("total_num_q_popped_processed", function=arithmetic_mean),
     Attribute("average_num_pre_per_o", function=arithmetic_mean),
+    Attribute("perc_total_adjust_number", function=arithmetic_mean),
+    Attribute("state_true_var_relate_prop", function=arithmetic_mean),
+    Attribute("state_var_relate_prop", function=arithmetic_mean),  
 ]
 
 
@@ -93,3 +96,4 @@ exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["H
 exp.add_report(ScatterPlotReport(attributes=["total_num_q_popped"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotQPopped.png")
 
 exp.run_steps()
+ 
