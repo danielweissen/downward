@@ -19,10 +19,10 @@ SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 BENCHMARKS_DIR = os.environ["DOWNWARD_BENCHMARKS"]
 REVISIONS = ["HEAD"]
 CONFIGS = [
-   # IssueConfig("inc-add", ["--search", "astar(pinch())"], driver_options=[]),
-   # IssueConfig("add", ["--search", "astar(add())"], driver_options=[]),
-    IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
-    IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
+    IssueConfig("inc-add", ["--search", "astar(pinch())"], driver_options=[]),
+    IssueConfig("add", ["--search", "astar(add())"], driver_options=[]),
+  #  IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
+  #  IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
 #SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
@@ -92,8 +92,8 @@ exp.add_absolute_report_step(attributes=ATTRIBUTES)
 
 #exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=["gripper"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plot.png")
 
-exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotSearch.png")
-exp.add_report(ScatterPlotReport(attributes=["total_num_q_popped"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotQPopped.png")
+exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plotSearch.png")
+#exp.add_report(ScatterPlotReport(attributes=["total_num_q_popped"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotQPopped.png")
 
 exp.run_steps()
  

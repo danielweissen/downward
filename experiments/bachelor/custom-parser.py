@@ -17,7 +17,7 @@ def main():
     parser.add_pattern(
         "perc_underconsistent", "mean number of q that are at first underconsisten in relation to total number of q: (.+)$", type=float, flags='M')
     parser.add_pattern(
-        "avg_num_diff_vars", "mean number of state variables that are not in common between two following states in relation to total number of state variables: (.+)$", type=float, flags='M')
+        "avg_num_diff_vars", "mean number of state variables that are in common between two following states in relation to total number of state variables: (.+)$", type=float, flags='M')
     parser.add_pattern(
         "var_num_diff_vars", "variance number of state variables that are not in common between two following states in relation to total number of state variables: (.+)$", type=float, flags='M')
     parser.add_pattern(
