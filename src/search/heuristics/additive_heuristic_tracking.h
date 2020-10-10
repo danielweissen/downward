@@ -29,7 +29,7 @@ class AdditiveHeuristicTracking : public relaxation_heuristic::RelaxationHeurist
      */
     static const int MAX_COST_VALUE = 100000000;
 
-    priority_queues::AdaptiveQueue<PropID> queue;
+    priority_queues::BucketQueue<PropID> queue;
     bool did_write_overflow_warning;
 
     int num_out_of_queue = 0;

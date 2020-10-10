@@ -75,7 +75,7 @@ class PinchTrackingHeuristic : public relaxation_heuristic::RelaxationHeuristic 
     double number_out_of_queue_mean_processed;
     
 
-    priority_queues::AdaptiveQueue<int> queue;
+    priority_queues::BucketQueue<int> queue;
     int num_in_queue;
 
     bool first_time = true;
