@@ -19,12 +19,12 @@ SCRIPT_NAME = os.path.splitext(os.path.basename(__file__))[0]
 BENCHMARKS_DIR = os.environ["DOWNWARD_BENCHMARKS"]
 REVISIONS = ["HEAD"]
 CONFIGS = [
-    IssueConfig("PINCH", ["--search","eager_wastar([pinch()], w=2)"], driver_options=[]),
-    IssueConfig("GD", ["--search","eager_wastar([add()], w=2)"], driver_options=[]),
+  #  IssueConfig("PINCH", ["--search","eager_wastar([pinch()], w=2)"], driver_options=[]),
+  #  IssueConfig("GD", ["--search","eager_wastar([add()], w=2)"], driver_options=[]),
   #  IssueConfig("inc-add", ["--search","lazy_greedy([pinch()])"], driver_options=[]),
   #  IssueConfig("add", ["--search","lazy_greedy([add()])"], driver_options=[]),
-  #  IssueConfig("inc-add-tracking", ["--search", "astar(pinch_tracking())"], driver_options=[]),
-  #  IssueConfig("add-tracking", ["--search", "astar(add_tracking())"], driver_options=[]),
+    IssueConfig("PINCH", ["--search", "astar(pinch_tracking())"], driver_options=[]),
+    IssueConfig("GD", ["--search", "astar(add_tracking())"], driver_options=[]),
 ]
 
 #SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
@@ -39,10 +39,10 @@ def improvement(run1, run2):
      time1 = run1.get('search_time', 1800)
      time2 = run2.get('search_time', 1800)
      if time1 > time2:
-         return 'GD better'
+         return 'GD favored'
      if time1 == time2:
          return 'equal'
-     return 'PINCH better'
+     return 'PINCH favored'
 
 ENVIRONMENT = BaselSlurmEnvironment(
     partition="infai_2",
@@ -104,7 +104,7 @@ exp.add_absolute_report_step(attributes=ATTRIBUTES)
 #exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=["gripper"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plot.png")
 
 #exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plotSearch.png")
-exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-GD", "HEAD-PINCH"],get_category=improvement),outfile = "plotSearchimpr.png")
+exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=["satellite","logistics98","woodworking-sat11-strips","maintenance-sat14-adl","miconic-fulladl","caldera-sat18-adl","schedule","freecell","pipesworld-notankage","spider-sat18-strips","agricola-sat18-strips"],filter_algorithm=["HEAD-PINCH", "HEAD-GD"],get_category=domain_as_category),outfile = "plotSearchimpr.png")
 #exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add", "HEAD-add"]),outfile = "plotSearch.png")
 #exp.add_report(ScatterPlotReport(attributes=["total_num_q_popped"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotQPopped.png")
 
