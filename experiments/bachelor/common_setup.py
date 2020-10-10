@@ -81,7 +81,7 @@ DEFAULT_SATISFICING_SUITE = [
     'settlers-sat18-adl', 'snake-sat18-strips','spider-sat18-strips', 'storage',
     'termes-sat18-strips', 'tetris-sat14-strips',
     'thoughtful-sat14-strips', 'tidybot-sat11-strips', 'tpp',
-    'transport-sat08-strips', 'transport-sat11-strips',
+    'transport-sat11-strips',
     'trucks', 'trucks-strips',
     'visitall-sat11-strips', 'visitall-sat14-strips',
     'woodworking-sat08-strips', 'woodworking-sat11-strips',
