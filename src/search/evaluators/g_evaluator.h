@@ -13,6 +13,7 @@ public:
         EvaluationContext &eval_context) override;
 
     virtual void get_path_dependent_evaluators(std::set<Evaluator *> &) override {}
+    std::string get_name() {return "g";}
 };
 }
 

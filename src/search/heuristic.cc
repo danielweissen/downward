@@ -108,3 +108,7 @@ int Heuristic::get_cached_estimate(const GlobalState &state) const {
     assert(is_estimate_cached(state));
     return heuristic_cache[state].h;
 }
+
+std::string Heuristic::get_name() {
+    return "heuristic";
+}

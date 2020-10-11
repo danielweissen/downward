@@ -2,6 +2,7 @@
 #define EVALUATORS_COMBINING_EVALUATOR_H
 
 #include "../evaluator.h"
+#include "weighted_evaluator.h"
 
 #include <memory>
 #include <set>
@@ -39,6 +40,18 @@ public:
     virtual bool dead_ends_are_reliable() const override;
     virtual EvaluationResult compute_result(
         EvaluationContext &eval_context) override;
+
+    std::string get_name() {return "comb";}
+
+    Evaluator* get_evaluators() {
+    for (const std::shared_ptr<Evaluator> &evaluator : subevaluators) {
+        if(evaluator.get()->get_name() == "weight") {
+            weighted_evaluator::WeightedEvaluator *a = (weighted_evaluator::WeightedEvaluator*)evaluator.get();
+            return a->get_evaluator();
+        }
+    }
+    return nullptr;
+    }
 
     virtual void get_path_dependent_evaluators(
         std::set<Evaluator *> &evals) override;

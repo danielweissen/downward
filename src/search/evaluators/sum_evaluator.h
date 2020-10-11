@@ -18,6 +18,7 @@ public:
     explicit SumEvaluator(const options::Options &opts);
     explicit SumEvaluator(const std::vector<std::shared_ptr<Evaluator>> &evals);
     virtual ~SumEvaluator() override;
+    std::string get_name() {return "sum";}
 };
 }
 

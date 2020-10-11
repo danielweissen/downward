@@ -1,6 +1,7 @@
 #include "best_first_open_list.h"
 
 #include "../evaluator.h"
+#include "../evaluators/combining_evaluator.h"
 #include "../open_list.h"
 #include "../option_parser.h"
 #include "../plugin.h"
@@ -45,6 +46,10 @@ public:
 
 template<class Entry>
 Evaluator* BestFirstOpenList<Entry>::get_evaluators() {
+    if(evaluator.get()->get_name() == "comb" || evaluator.get()->get_name() == "sum") {
+        combining_evaluator::CombiningEvaluator  * a = (combining_evaluator::CombiningEvaluator*)evaluator.get();
+        return a->get_evaluators();
+    }
     return nullptr;
 }
 

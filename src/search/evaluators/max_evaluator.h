@@ -17,6 +17,7 @@ protected:
 public:
     explicit MaxEvaluator(const options::Options &opts);
     virtual ~MaxEvaluator() override;
+    std::string get_name() {return "max";}
 };
 }
 

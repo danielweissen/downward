@@ -16,6 +16,7 @@ protected:
         EvaluationContext &eval_context) override;
 
 public:
+    std::string get_name() {return "const";}
     explicit ConstEvaluator(const options::Options &opts);
     virtual void get_path_dependent_evaluators(
         std::set<Evaluator *> &) override {}
