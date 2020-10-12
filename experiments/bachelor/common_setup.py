@@ -87,6 +87,90 @@ DEFAULT_SATISFICING_SUITE = [
     'woodworking-sat08-strips', 'woodworking-sat11-strips',
     'zenotravel']
 
+DEFAULT_SATISFICING_SUITE_NOW = ['assembly',
+   'caldera-split-sat18-adl', 'citycar-sat14-adl',
+   'flashfill-sat18-adl', 'maintenance-sat14-adl', 'nurikabe-sat18-adl', 'optical-telegraphs', 
+'organic-synthesis-split-sat18-strips', 'tetris-sat14-strips',
+    'tidybot-sat11-strips',
+    'visitall-sat11-strips', 'visitall-sat14-strips']
+
+
+
+DEFAULT_SATISFICING_SUITE_ABOVE_15 = [   
+    'assembly',
+    'blocks',    
+    'cavediving-14-adl',
+    'citycar-sat14-adl',
+    'driverlog',
+    'floortile-sat11-strips',
+    'floortile-sat14-strips', 'grid',
+    'gripper', 'hiking-sat14-strips', 'logistics00', 'logistics98',
+     'maintenance-sat14-adl', 'miconic',
+    'miconic-simpleadl', 'movie', 'mprime', 'mystery',
+    'nomystery-sat11-strips', 'openstacks',
+    'openstacks-sat08-adl', 'openstacks-sat08-strips',
+    'openstacks-sat11-strips', 'openstacks-sat14-strips',
+    'organic-synthesis-split-sat18-strips', 'parcprinter-08-strips', 
+    'parcprinter-sat11-strips',
+    'pathways',
+    'philosophers', 'pipesworld-notankage', 'psr-large',
+     'psr-middle', 'rovers', 'satellite',
+    'schedule',
+    'storage',
+    'tetris-sat14-strips',
+    'tpp',
+    'transport-sat11-strips',
+    'trucks', 'trucks-strips',
+    'visitall-sat11-strips',
+    'woodworking-sat11-strips',
+    'zenotravel'] 
+
+DEFAULT_SATISFICING_SUITE_ABOVE_2 = [
+     'airport', 'assembly', 'blocks', 'floortile-sat11-strips', 'floortile-sat14-strips', 'gripper', 'logistics00', 'logistics98',
+     'maintenance-sat14-adl', 'movie', 'pathways',
+    'philosophers', 'pipesworld-notankage', 'psr-large',
+     'psr-middle', 'psr-small', 'rovers', 'satellite',
+    'schedule', 'tpp']
+
+DEFAULT_SATISFICING_SUITE_BELOW_165 = [
+    'assembly',
+    'cavediving-14-adl',
+    'citycar-sat14-adl',
+    'maintenance-sat14-adl', 'miconic',
+    'miconic-simpleadl', 'openstacks',
+    'openstacks-sat11-strips', 'openstacks-sat14-strips',
+    'organic-synthesis-split-sat18-strips', 'parcprinter-08-strips',
+    'parcprinter-sat11-strips',
+    'pathways',
+    'philosophers', 'pipesworld-notankage', 'psr-large',
+    'psr-middle',
+    'schedule',
+    'tetris-sat14-strips',
+    'visitall-sat11-strips',
+    'woodworking-sat11-strips']
+
+
+DEFAULT_SATISFICING_SUITE_BELOW_11 = [
+    'assembly', 'driverlog', 'logistics00', 'logistics98',
+    'maintenance-sat14-adl', 'miconic',  
+    'miconic-simpleadl', 'movie', 'pathways',
+    'rovers', 'satellite',
+    'visitall-sat11-strips',
+    'zenotravel']
+
+
+
+
+DEFAULT_SATISFICING_SUITE_A = [
+    'agricola-sat18-strips',
+    'caldera-sat18-adl',
+    'freecell', 'logistics98',
+    'maintenance-sat14-adl', 'miconic-fulladl',
+    'pipesworld-notankage', 'satellite',
+    'schedule', 'spider-sat18-strips',
+    'woodworking-sat11-strips',
+    ] 
+
 DEFAULT_SATISFICING_SUITE_UC = [
     'airport',
     'barman-sat11-strips', 'barman-sat14-strips', 'blocks',
@@ -224,6 +308,7 @@ class IssueExperiment(FastDownwardExperiment):
         "memory",
         "search_time",
         "total_time",
+        "perc_total_adjust_number",
         ]
 
     PORTFOLIO_ATTRIBUTES = [

@@ -23,8 +23,8 @@ CONFIGS = [
   #  IssueConfig("GD", ["--search","eager_wastar([add()], w=2)"], driver_options=[]),
   #  IssueConfig("inc-add", ["--search","lazy_greedy([pinch()])"], driver_options=[]),
   #  IssueConfig("add", ["--search","lazy_greedy([add()])"], driver_options=[]),
-    IssueConfig("PINCH", ["--search", "astar(pinch_tracking())"], driver_options=[]),
-    IssueConfig("GD", ["--search", "astar(add_tracking())"], driver_options=[]),
+    IssueConfig("PINCH", ["--search", "eager_wastar([pinch_tracking()], w=2)"], driver_options=[]),
+    IssueConfig("GD", ["--search", "eager_wastar([add_tracking()], w=2)"], driver_options=[]),
 ]
 
 #SUITE = common_setup.DEFAULT_SATISFICING_SUITE_UC
@@ -41,7 +41,7 @@ def improvement(run1, run2):
      if time1 > time2:
          return 'GD favored'
      if time1 == time2:
-         return 'equal'
+         return 'Equal'
      return 'PINCH favored'
 
 ENVIRONMENT = BaselSlurmEnvironment(
@@ -101,11 +101,11 @@ exp.add_absolute_report_step(attributes=ATTRIBUTES)
 
 #exp.add_report(ScatterPlotReport(attributes=["expansions_until_last_jump"],filter_algorithm=["add", "inc-add"],get_category=domain_as_category,format="png",),name="scatterplot-expansions")
 
-#exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=["gripper"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plot.png")
+exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=common_setup.DEFAULT_SATISFICING_SUITE_NOW,filter_algorithm=["HEAD-PINCH", "HEAD-GD"],get_category=improvement),outfile = "plot.png")
 
 #exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add", "HEAD-add"],get_category=domain_as_category),outfile = "plotSearch.png")
-exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_domain=["satellite","logistics98","woodworking-sat11-strips","maintenance-sat14-adl","miconic-fulladl","caldera-sat18-adl","schedule","freecell","pipesworld-notankage","spider-sat18-strips","agricola-sat18-strips"],filter_algorithm=["HEAD-PINCH", "HEAD-GD"],get_category=domain_as_category),outfile = "plotSearchimpr.png")
-#exp.add_report(ScatterPlotReport(attributes=["search_time"],filter_algorithm=["HEAD-inc-add", "HEAD-add"]),outfile = "plotSearch.png")
+#exp.add_report("ScatterPlotReport(attributes=["total_num_q_popped_processed"],filter_algorithm=["HEAD-PINCH", "HEAD-GD"],get_category=improvement),outfile = "plotSearchimpr.png")
+#exp.add_report(ScatterPlotReport(scale='symlog',attributes=["perc_total_adjust_number"],filter_algorithm=["HEAD-PINCH", "HEAD-GD"],get_category=domain_as_category),outfile = "plotSearch.png")
 #exp.add_report(ScatterPlotReport(attributes=["total_num_q_popped"],filter_algorithm=["HEAD-inc-add-tracking", "HEAD-add-tracking"],get_category=domain_as_category),outfile = "plotQPopped.png")
 
 exp.run_steps()
